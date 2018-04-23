@@ -1,0 +1,53 @@
+{
+  "name": "GymBook",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "start":"npm run serve | node server"
+  },
+  "dependencies": {
+    "vue": "^2.5.13",
+    "element-ui": "^2.0.10",
+    "jsonwebtoken": "8.1.0",
+    "koa": "2.4.1",
+    "koa-bodyparser": "4.2.0",
+    "koa-router": "7.3.0",
+    "koa2-cors": "2.0.5",
+    "mysql": "2.15.0",
+    "node-sass": "^4.8.3",
+    "sass-loader": "^7.0.1",
+    "vue-router": "^3.0.1",
+    "vuex": "3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-beta.6",
+    "@vue/cli-plugin-eslint": "^3.0.0-beta.6",
+    "@vue/cli-service": "^3.0.0-beta.6",
+    "vue-template-compiler": "^2.5.13"
+  },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
