@@ -13,8 +13,8 @@ const router= new Router({
     mode:'history',
     routes:[
         {
-            path:'/navigation',
-            name:'navagation',
+            path:'/',
+            name:'navigation',
             component:navigation
         }
     ]
