@@ -7,9 +7,5 @@
 </template>
 
 <script>
-    export default{
-        components:{
-            header
-        }
-    }
+export default {};
 </script>

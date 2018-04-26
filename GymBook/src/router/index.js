@@ -8,12 +8,12 @@ const navigation = resolve => {
         resolve(require("../components/public/navigation.vue"));
     });
 };
-const PingPangRoomDetails = require('../components/showMoreDetailsByOrder/PingPangRoomDetails.vue')
-const SwimmingRoomDetails = require('../components/showMoreDetailsByOrder/SwimmingRoomDetails.vue')
-const GymRoomDetails = require('../components/showMoreDetailsByOrder/GymRoomDetails.vue')
-const BaseketballRoomDetails = require("../components/showMoreDetailsByOrder/BaseketballRoomDetails.vue");
-const TennisRoomDetails = require("../components/showMoreDetailsByOrder/TennisRoomDetails.vue");
-const BadmintonRoomDetails = require('../components/showMoreDetailsByOrder/BadmintonRoomDetails.vue')
+import PingPangRoomDetails from "../components/showMoreDetailsByOrder/PingPangRoomDetails.vue";
+import SwimmingRoomDetails from "../components/showMoreDetailsByOrder/SwimmingRoomDetails.vue";
+import GymRoomDetails from "../components/showMoreDetailsByOrder/GymRoomDetails.vue";
+import BaseketballRoomDetails from "../components/showMoreDetailsByOrder/BaseketballRoomDetails.vue";
+import TennisRoomDetails from "../components/showMoreDetailsByOrder/TennisRoomDetails.vue";
+import BadmintonRoomDetails from "../components/showMoreDetailsByOrder/BadmintonRoomDetails.vue";
 
 const router = new Router({
     mode: "history",
@@ -24,35 +24,37 @@ const router = new Router({
             component: navigation
         },
         {
-            path: "/showMoreDetailsByOrder",
-            children: [
-                {
-                    path: "PingPangRoom",
-                    component: PingPangRoomDetails
-                },
-                {
-                    path: "SwimmingRoom",
-                    component: SwimmingRoomDetails
-                },
-                {
-                    path: "GymRoom",
-                    component: GymRoomDetails
-                },
-                {
-                    path: "BaseketballRoom",
-                    component: BaseketballRoomDetails
-                },
-                {
-                    path: "TennisRoom",
-                    component: TennisRoomDetails
-                },
-                {
-                    path: "BadmintonRoom",
-                    component: BadmintonRoomDetails
-                }
-            ]
+            path: "/showMoreDetailsByOrder/PingPangRoom",
+            name: "PingPangRoomDetails",
+            component: PingPangRoomDetails
+        },
+        {
+            path: "/showMoreDetailsByOrder/SwimmingRoom",
+            name: "SwimmingRoomDetails",
+            component: SwimmingRoomDetails
+        },
+        {
+            path: "/showMoreDetailsByOrder/GymRoom",
+            name: "GymRoomDetails",
+            component: GymRoomDetails
+        },
+        {
+            path: "/showMoreDetailsByOrder/BaseketballRoom",
+            name: "BaseketballRoomDetails",
+            component: BaseketballRoomDetails
+        },
+        {
+            path: "/showMoreDetailsByOrder/TennisRoom",
+            name: "TennisRoomDetails",
+            component: TennisRoomDetails
+        },
+        {
+            path: "/showMoreDetailsByOrder/BadmintonRoom",
+            name: "BadmintonRoomDetails",
+            component: BadmintonRoomDetails
         }
     ]
+    
 });
 export default router;
 
