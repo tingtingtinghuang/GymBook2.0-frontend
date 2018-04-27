@@ -8,14 +8,23 @@
             <p>{{pMessage}}</p>
         </el-col>
         <el-col :span="2">
-            <i>icon</i>
-            <el-button>关注</el-button>
+            <follow></follow>
         </el-col>
     </el-row>
 </template>
+<style>
+img{
+    width: 50px;
+    height:50px;
+}
+</style>
 
 <script>
+import follow from './follow'
 export default {
     props: ['imgSrc','h2Message','pMessage'],
+    components:{
+        follow
+    }
 };
 </script>
