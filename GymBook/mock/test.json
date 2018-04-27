@@ -1,0 +1,32 @@
+[
+  {
+    "url": "/gym",
+    "desc": "获取篮球体育馆列表",
+    "mock": true,
+    "res": {
+      "code": 1,
+      "msg": "success",
+      "data": {
+        "id": 1,
+        "title": "篮球体育馆",
+        "description": "篮球体育馆",
+        "html": "篮球体育馆",
+        "addr": "北京西路",
+        "rank": 4,
+        "time_type": 0,
+        "status": 0,
+        "logo": null,
+        "price": "11",
+        "limit_num": 11,
+        "buy_limit_num": 11,
+        "open_time": null,
+        "limit_time": null,
+        "ref_type": 1,
+        "ref_area": 1,
+        "ref_sport": 1,
+        "createdAt": "2018-04-25T11:13:58.000Z",
+        "updatedAt": "2018-04-25T11:14:01.000Z"
+      }
+    }
+  }
+]
