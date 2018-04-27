@@ -1,3 +1,4 @@
+
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -17,6 +18,7 @@ const router= new Router({
             name:'navigation',
             component:navigation
         }
+
     ]
 })
 export default router;

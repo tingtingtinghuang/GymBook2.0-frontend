@@ -2,7 +2,7 @@
   <div>
     <header>
        <!-- <img src='../../assets/logo.png'> -->
-       <div><router-link to=''>登录</router-link></div>
+       <div><router-link to='/login'>登录</router-link></div>
        <ul>
          <li><router-link to=''>预定大厅</router-link></li>
          <li><router-link to=''>预订中心</router-link></li>
