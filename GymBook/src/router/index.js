@@ -4,12 +4,15 @@ import Router from 'vue-router'
 Vue.use(Router);
 
 import  filterBox from '../components/public/filterBox.vue';
+import navigation from '../components/public/navigation.vue';
+import login from '../components/public/login.vue';
+import Demo from '../components/public/Demo.vue';
 
-const navigation=resolve=>{
-    require.ensure(['../components/public/navigation.vue'],()=>{
-      resolve(require('../components/public/navigation.vue'));
-    })
-  }
+// const navigation=resolve=>{
+//     require.ensure(['../components/public/navigation.vue'],()=>{
+//       resolve(require('../components/public/navigation.vue'));
+//     })
+//   }
 
 const router= new Router({
     mode:'history',
@@ -21,7 +24,9 @@ const router= new Router({
         },
         {
             path:'/filterBox',component:filterBox
-        }
+        },
+        { path: '/login', component: login },
+        { path: '/demo', component: Demo }
     ]
 })
 export default router;
