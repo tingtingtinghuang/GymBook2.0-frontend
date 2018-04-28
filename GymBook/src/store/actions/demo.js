@@ -4,7 +4,7 @@ import API from '../../utils/api';
 const actions = {
   //获取getGym列表
   getGym: ({ commit }, params) => {
-    API.getGymAPI(params).then(res => {
+    return API.getGymAPI(params).then(res => {
       commit(types.GYM_DETAIL, res.data);
     }, err => {
       if (err) {
