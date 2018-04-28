@@ -3,19 +3,25 @@
         <el-col :span="2">
             <img :src= 'imgSrc'>
         </el-col>
-        <el-col :span="20">
+        <el-col :span="19" class="message" offset="1">
             <h2>{{h2Message}}</h2>
             <p>{{pMessage}}</p>
         </el-col>
         <el-col :span="2">
-            <follow></follow>
+            <follow class="follow"></follow>
         </el-col>
     </el-row>
 </template>
 <style>
 img{
-    width: 50px;
-    height:50px;
+    width: 100%;
+}
+.message{
+    text-align: left
+}
+.follow{
+    margin-top: 40px;
+    margin-right: 10px;
 }
 </style>
 

@@ -1,14 +1,23 @@
 <template>
     <div class="follow">
-        <img :src="src">
-        <label>关注</label>
+        <img :src="src"><label>关注</label>
     </div>
 </template>
 
 <style>
+.follow{
+    border: 1px solid #000;
+}
+.follow:hover{
+    background: blue;
+}
 .follow>img{
-    width: 24px;
-    height: 24px;
+    width: 20%;
+    vertical-align: middle;
+}
+.follow>label{
+    vertical-align: middle;
+    padding-left: 3px;
 }
 </style>
 

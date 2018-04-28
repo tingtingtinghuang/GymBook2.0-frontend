@@ -32,26 +32,26 @@
 </template>
 
 <script>
-    import Breadcrumb from './commontComponent/Breadcrumb.vue'
-    import showImageAndMessage from './commontComponent/showImageAndMessage.vue'
-    import card from './commontComponent/card.vue'
-    import stockList from './commontComponent/stockList.vue'
-    import tableByGymRoom from './commontComponent/tableByGymRoom.vue'
-    import heart from '../../assets/heart.png'
-    export default {
-        data(){
-            return{
-                imgSrc: heart,
-                h2Message:'南校园英东羽毛球场',
-                pMessage:'中山大学英东体育馆'
-            }
-        },
-        components:{
-            Breadcrumb,
-            showImageAndMessage,
-            card,
-            stockList,
-            tableByGymRoom,
+import Breadcrumb from './commontComponent/Breadcrumb.vue'
+import showImageAndMessage from './commontComponent/showImageAndMessage.vue'
+import card from './commontComponent/card.vue'
+import stockList from './commontComponent/stockList.vue'
+import tableByGymRoom from './commontComponent/tableByGymRoom.vue'
+import heart from '../../assets/heart.png'
+export default {
+    data(){
+        return{
+            imgSrc: heart,
+            h2Message:'南校园英东羽毛球场',
+            pMessage:'中山大学英东体育馆'
         }
+    },
+    components:{
+        Breadcrumb,
+        showImageAndMessage,
+        card,
+        stockList,
+        tableByGymRoom,
     }
+}
 </script>
