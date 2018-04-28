@@ -4,8 +4,7 @@ import Homepage from '../pages/Homepage'
 import Reservepage from '../pages/Reserve'
 import Introductionpage from '../pages/Introduction'
 
-Vue.use(Router)
-
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
@@ -26,4 +25,3 @@ export default new Router({
       component: Introductionpage
     }
   ]
-})
