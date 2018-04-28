@@ -29,7 +29,9 @@
   },
   "babel": {
     "presets": [
-      "@vue/app"
+      "@vue/app",
+      "es2015",
+      "stage-0"
     ]
   },
   "eslintConfig": {
