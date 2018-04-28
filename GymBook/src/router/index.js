@@ -1,5 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
+import login from '../components/public/login.vue';
+import Demo from '../components/public/Demo.vue';
+import filterBox from '../components/public/filterBox.vue';
 
 Vue.use(Router);
 
@@ -23,6 +26,11 @@ const router = new Router({
             name: "navigation",
             component: navigation
         },
+        {
+            path:'/filterBox',component:filterBox
+        },
+        { path: '/login', component: login },
+        { path: '/demo', component: Demo },
         {
             path: "/showMoreDetailsByOrder/PingPangRoom",
             name: "PingPangRoomDetails",
@@ -54,7 +62,6 @@ const router = new Router({
             component: BadmintonRoomDetails
         }
     ]
-    
 });
 export default router;
 
