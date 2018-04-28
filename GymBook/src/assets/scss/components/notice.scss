@@ -1,0 +1,48 @@
+.notice{
+  border-radius: 3px;
+  border: solid $gray 1px;
+  overflow: hidden;
+  margin: 10px 0;
+  .header,.footer{
+    padding: 8px;
+  }
+  .header{
+    background-color: $grey;
+    border-bottom: solid $gray 1px;
+    i,p{
+      display: inline-block;
+      color: $darkblue;
+    }
+  }
+  .body{
+    padding: 5px;
+    height: 200px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 0px;  /* remove scrollbar space */
+      background: transparent;  /* optional: just make scrollbar invisible */
+    }
+  }
+  a{
+    color: $blue;
+  }
+  .item{
+    display: flex;
+    font-size: 1rem;
+    padding: 6px 10px;
+    justify-content: space-between;
+    .title:hover{
+      text-decoration: underline;
+    }
+    .date{
+      color: black;
+    }
+  }
+  .footer{
+    border-top: solid $gray 1px;
+    text-align: right;
+    a:hover{
+      text-decoration: underline;
+    }
+  }
+}
