@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Homepage from '../pages/Homepage'
-import Reservepage from '../pages/Reserve'
-import Introductionpage from '../pages/Introduction'
 
 Vue.use(Router);
 
