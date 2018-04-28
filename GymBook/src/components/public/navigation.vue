@@ -2,7 +2,7 @@
   <div>
     <header>
        <!-- <img src='../../assets/logo.png'> -->
-       <div><router-link to='login'>登录</router-link></div>
+       <div><router-link to='/login'>登录</router-link></div>
        <ul>
 
          <li><router-link to='demo'>Demo</router-link></li>
