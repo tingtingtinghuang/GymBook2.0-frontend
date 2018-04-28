@@ -1,5 +1,7 @@
+
 import Vue from 'vue'
 import Router from 'vue-router'
+import login from '../components/public/login.vue';
 
 Vue.use(Router);
 
@@ -21,7 +23,13 @@ const router= new Router({
         },
         {
             path:'/filterBox',component:filterBox
-        }
+        },
+         {
+            path: '/login',
+            name: 'login',
+            component: login
+         }
+
     ]
 })
 export default router;

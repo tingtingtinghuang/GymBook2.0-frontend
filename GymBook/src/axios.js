@@ -87,7 +87,7 @@ export default{
     },
     openGym(data)
     {
-        return axios_instance.put("http:\/\/localhost:8081/gym/open",: data);
+        return axios_instance.put("http:\/\/localhost:8081/gym/open", data);
     },
     closeGym(data)
     {
