@@ -12,7 +12,7 @@
         </el-row>
         <el-row>
             <el-col :span="24">
-                <el-tabs v-model="activeName">
+                <el-tabs>
                     <el-tab-pane label="预订" name="first">
                         <stockList/>
                         <el-row>
@@ -20,7 +20,7 @@
                                 <tableByGymRoom></tableByGymRoom>
                             </el-col>
                             <el-col :span="4">
-                                <card/>
+                                <SidebarOrder/>
                             </el-col>
                         </el-row>
                     </el-tab-pane>
@@ -28,8 +28,6 @@
                 </el-tabs>
             </el-col>
         </el-row>
-
-        <SidebarOrder></SidebarOrder>
     </div>
 </template>
 

@@ -12,7 +12,7 @@
         </el-row>
         <el-row>
             <el-col :span="24">
-                <el-tabs v-model="activeName">
+                <el-tabs>
                     <el-tab-pane label="预订" name="first">
                         <stockList/>
                         <el-row>
@@ -20,7 +20,7 @@
                                 <tableByGymRoom></tableByGymRoom>
                             </el-col>
                             <el-col :span="4">
-                                <card/>
+                                <SidebarOrder/>
                             </el-col>
                         </el-row>
                     </el-tab-pane>
@@ -34,7 +34,7 @@
 <script>
 import Breadcrumb from './commontComponent/Breadcrumb.vue'
 import showImageAndMessage from './commontComponent/showImageAndMessage.vue'
-import card from './commontComponent/card.vue'
+import SidebarOrder from './commontComponent/SidebarOrder.vue'
 import stockList from './commontComponent/stockList.vue'
 import tableByGymRoom from './commontComponent/tableByGymRoom.vue'
 import heart from '../../assets/heart.png'
@@ -43,13 +43,14 @@ export default {
         return{
             imgSrc: heart,
             h2Message:'南校园英东羽毛球场',
-            pMessage:'中山大学英东体育馆'
+            pMessage:'中山大学英东体育馆',
+            something:'一些事情'
         }
     },
     components:{
         Breadcrumb,
         showImageAndMessage,
-        card,
+        SidebarOrder,
         stockList,
         tableByGymRoom,
     }

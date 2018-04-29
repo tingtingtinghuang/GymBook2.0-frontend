@@ -3,7 +3,7 @@
         <el-col :span="2">
             <img :src= 'imgSrc'>
         </el-col>
-        <el-col :span="19" class="message" offset="1">
+        <el-col :span="19" class="message" :offset=1>
             <h2>{{h2Message}}</h2>
             <p>{{pMessage}}</p>
         </el-col>
