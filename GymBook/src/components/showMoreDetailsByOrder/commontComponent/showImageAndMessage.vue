@@ -1,9 +1,9 @@
 <template>
     <el-row>
-        <el-col :span="2">
+        <el-col :span="3" class="first-row">
             <img :src= 'imgSrc'>
         </el-col>
-        <el-col :span="19" class="message" :offset=1>
+        <el-col :span="18" class="message" :offset=1>
             <h2>{{h2Message}}</h2>
             <p>{{pMessage}}</p>
         </el-col>
@@ -13,8 +13,14 @@
     </el-row>
 </template>
 <style>
-img{
+.first-row{
+    display: flex
+}
+.first-row>img{
     width: 100%;
+    height: 100%;
+    margin-top:20px;
+    margin-left: 10px;
 }
 .message{
     text-align: left

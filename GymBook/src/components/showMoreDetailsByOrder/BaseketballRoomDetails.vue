@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-        <el-row>
+        <el-row class="first-line">
             <el-col :span="24">
                 <Breadcrumb></Breadcrumb>
             </el-col>
@@ -28,6 +28,10 @@
 </template>
 
 <style>
+.first-line{
+    height: 20px;
+    border-bottom: 1px solid #000;
+}
 .imgBox>img{
     width: 100%;
 }

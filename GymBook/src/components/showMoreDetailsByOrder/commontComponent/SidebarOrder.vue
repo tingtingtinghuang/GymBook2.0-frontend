@@ -62,10 +62,6 @@
     list-style: none;
   }
 
-  .orderDetails {
-    border: 10px solid #333;
-  }
-
   .orderDetails .state {
     display: flex;
     align-items: center;

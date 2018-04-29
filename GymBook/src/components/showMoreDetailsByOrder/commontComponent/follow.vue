@@ -9,7 +9,7 @@
     border: 1px solid #000;
 }
 .follow:hover{
-    background: blue;
+    background: rgb(218, 135, 174);
 }
 .follow>img{
     width: 20%;
