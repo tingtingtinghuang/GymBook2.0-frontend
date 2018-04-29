@@ -1,10 +1,10 @@
 <template>
- <el-row class="fourth-line">
+ <el-row class="container">
     <el-col :span="2" v-for="(store, index) in storeList" :store="store" :key="store.id" :offset="index > 0 ? 1 : 1">
         <el-card  :body-style="{ padding: '0px' }">
             <div v-on:click="toggleClass(store)">
-                <div style="padding: 14px;">
-                    <p>{{store.weekday}}</p>
+                <div style="padding: 5px;">
+                    <p class="week">{{store.weekday}}</p>
                     <p class="showOut">剩余<span>{{store.number}}</span></p>
                 </div>
                 <div class="date">{{store.date}}</div>
@@ -25,6 +25,9 @@
 </template>
 
 <style>
+.container{
+    line-height: 7px;
+}
 .showOut{
     color:yellowgreen;
 }
@@ -32,6 +35,7 @@
     padding: 2px;
 }
 .date{
+    line-height:14px;
     background: grey;
 }
 .active{

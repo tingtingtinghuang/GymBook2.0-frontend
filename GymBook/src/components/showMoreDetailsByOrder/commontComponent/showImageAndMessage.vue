@@ -34,8 +34,8 @@
 <script>
 import follow from './follow'
 export default {
-    props: ['imgSrc','h2Message','pMessage'],
-    components:{
+    props: ['imgSrc', 'h2Message', 'pMessage'],
+    components: {
         follow
     }
 };

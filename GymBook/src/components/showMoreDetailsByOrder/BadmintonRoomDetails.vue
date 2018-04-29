@@ -12,7 +12,7 @@
         </el-row>
         <el-row class="third-line">
             <el-col :span="24">
-                <el-tabs>
+                <el-tabs value="first">
                     <el-tab-pane label="预订" name="first">
                         <stockList/>
                         <el-row class="fourth-line">
@@ -31,12 +31,16 @@
     </div>
 </template>
 <style>
+.container{
+    margin: 0;
+    padding: 0;
+}
 .first-line{
     height: 20px;
     border-bottom: 1px solid #000;
 }
 .seconed-line{
-    height: 180px;
+    height: 150px;
     border-bottom: 1px solid #000;
 }
 .fourth-line{
@@ -59,8 +63,7 @@ export default {
         return{
             imgSrc: imgSrc,
             h2Message:'南校园英东羽毛球场',
-            pMessage:'中山大学英东体育馆',
-            something:'一些事情'
+            pMessage:'中山大学英东体育馆'
         }
     },
     components:{

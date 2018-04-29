@@ -4,7 +4,7 @@
       <el-col :span="20">
         <div class="orderDetails">
           <div class="state">
-            <span> 可预订</span>
+            <span>可预订</span>
             <span>已预订</span>
           </div>
           <ul class="orderDetailsList">
@@ -51,6 +51,9 @@
 </script>
 
 <style scoped>
+  .container{
+    font-size: 14px;
+  }
   ul,
   p,
   li {
@@ -73,12 +76,13 @@
   .orderDetails .state span {
     display: block;
     position: relative;
+    text-indent: 20px;
   }
 
   .orderDetails .state span::after {
     content: "";
     position: absolute;
-    left: -30px;
+    left: -5px;
     top: 50%;
     margin-top: -10px;
     width: 20px;
