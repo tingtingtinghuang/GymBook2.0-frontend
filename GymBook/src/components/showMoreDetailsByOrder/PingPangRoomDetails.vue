@@ -5,22 +5,25 @@
                 <Breadcrumb></Breadcrumb>
             </el-col>
         </el-row>
+
         <el-row>
             <el-col :span="24">
                 <showImageAndMessage :imgSrc='imgSrc' :h2Message='h2Message' :pMessage='pMessage' />
             </el-col>
         </el-row>
+
         <el-row>
             <el-col :span="24">
                 <el-tabs v-model="activeName">
                     <el-tab-pane label="预订" name="first">
                         <stockList/>
                         <el-row>
-                            <el-col :span="20">
+                            <el-col :span="18">
                                 <tableByGymRoom></tableByGymRoom>
                             </el-col>
-                            <el-col :span="4">
-                                <card/>
+                            <el-col :span="6">
+                                <!-- <card/> -->
+                                <SidebarOrder></SidebarOrder>
                             </el-col>
                         </el-row>
                     </el-tab-pane>
@@ -29,7 +32,7 @@
             </el-col>
         </el-row>
 
-        <SidebarOrder></SidebarOrder>
+
     </div>
 </template>
 
@@ -48,7 +51,11 @@
             return {
                 imgSrc: heart,
                 h2Message: '南校园英东羽毛球场',
-                pMessage: '中山大学英东体育馆'
+                pMessage: '中山大学英东体育馆',
+
+                // 不清楚下面变量的作用，先写上，防止报错
+                activeName: true,
+                something: '哈哈哈哈，我是打酱油的'
             }
         },
         components: {
