@@ -1,17 +1,21 @@
 <template>
  <el-row class="container">
-    <el-col :span="2" v-for="(store, index) in storeList" :store="store" :key="store.id" :offset="index > 0 ? 1 : 1">
-        <el-card  :body-style="{ padding: '0px' }">
-            <div v-on:click="toggleClass(store)">
-                <div style="padding: 5px;">
-                    <p class="week">{{store.weekday}}</p>
-                    <p class="showOut">剩余<span>{{store.number}}</span></p>
-                </div>
-                <div class="date">{{store.date}}</div>
-            </div>
-        </el-card>
+    <el-col :span="20">
+        <el-row>
+            <el-col :span="3"  v-for="(store, index) in storeList" :store="store" :key="store.id" :offset="index > 0 ? 1 : 1">
+                <el-card :body-style="{ padding: '0px' }">
+                    <div v-on:click="toggleClass(index)" :class="{active:addClass === index}">
+                        <div style="padding: 5px;">
+                            <p class="week">{{store.weekday}}</p>
+                            <p class="showOut">剩余<span>{{store.number}}</span></p>
+                        </div>
+                        <div class="date">{{store.date}}</div>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
     </el-col>
-    <el-col :span="4" :offset=14>
+    <el-col :span="4">
         <div class="box">
             <el-date-picker
                 type="date"
@@ -26,7 +30,7 @@
 
 <style>
 .container{
-    line-height: 7px;
+    line-height: 12px;
 }
 .showOut{
     color:yellowgreen;
@@ -35,11 +39,11 @@
     padding: 2px;
 }
 .date{
-    line-height:14px;
+    line-height:12px;
     background: grey;
 }
 .active{
-    border: 3px solid rgb(218, 218, 104);
+    border: 2px solid yellow;
 }
 </style>
 
@@ -54,22 +58,21 @@ export default {
                     weekday: "星期二",
                     number: 0,
                     date: new Date(),
-                    isActive:false
                 },
                 {
                     id: 2,
                     weekday: "星期三",
                     number: 2,
                     date: new Date(),
-                    isActive:false
                 }
-            ]
+            ],
+            addClass:""
         };
     },
-    methods: {
-        toggleClass: function({id}) {
-            Vue.set(this.storeList, id, true)
-            console.log(id)
+    methods:{
+        toggleClass:function(index){
+            this.addClass = index
+            console.log(this.addClass)
         }
     }
 };
