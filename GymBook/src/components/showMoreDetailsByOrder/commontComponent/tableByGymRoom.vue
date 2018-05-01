@@ -1,6 +1,6 @@
 <template>
   <div class="" style="padding-bottom:500px;">
-    <el-table :data="tableData3" border style="width: 100%">
+    <el-table :data="tableData3" border max-height="500" style="width: 100%">
 
       <el-table-column fixed label="场次" width="150" align="center">
         <template slot-scope="scope">
@@ -13,14 +13,12 @@
 
       <el-table-column align="center" v-for="{ prop, label } in colConfigs" :key="prop" :prop="prop" :label="label" width="200">
         <template slot-scope="scope">
-          <div class="showIsEmpty" :class="{no:  scope.row[label]===0 ?false:true }"> {{ scope.row[label] }} </div>
+          <div class="showIsEmpty" :class="{no:  scope.row[label]===0 ?false:true }">
+            <!-- {{ scope.row[label] }}   -->
+          </div>
         </template>
       </el-table-column>
     </el-table>
-
-    {{tableData3}}
-
-    <div>{{colConfigs}}</div>
   </div>
 
 </template>
@@ -39,6 +37,14 @@
           time: '05:00',
           money: 15,
           isHaveEnd: [1, 0, 0, 0, 0, 0, 0, 0, 0]
+        }, {
+          time: '05:00',
+          money: 15,
+          isHaveEnd: [0, 1, 0, 0, 0, 0, 0, 0, 0]
+        }, {
+          time: '05:00',
+          money: 15,
+          isHaveEnd: [0, 1, 0, 0, 0, 0, 0, 0, 0]
         }, {
           time: '05:00',
           money: 15,
@@ -81,10 +87,12 @@
     height: 100px;
     background: green;
     color: #000;
+    background: url('./images/reservation_true.png') no-repeat center center;
+    background-size: 80px 50px;
   }
 
-
   .showIsEmpty.no {
-    background: orange;
+    background: url('./images/reservation_false.png') no-repeat center center;
+    background-size: 80px 50px;
   }
 </style>

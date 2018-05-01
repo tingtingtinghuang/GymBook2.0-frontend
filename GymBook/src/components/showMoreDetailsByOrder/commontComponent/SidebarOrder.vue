@@ -1,46 +1,41 @@
 <template>
   <div class="container">
-    <el-row>
-      <el-col :span="20">
-        <div class="orderDetails">
-          <div class="state">
-            <span>可预订</span>
-            <span>已预订</span>
-          </div>
-          <ul class="orderDetailsList">
-            <li>
-              <span> 场地</span>
-              <strong> 南校圆二号网球场</strong>
-            </li>
-            <li>
-              <span> 类型</span>
-              <strong> 日</strong>
-            </li>
-            <li>
-              <span> 日期</span>
-              <strong> 2018年04月24日 星期二</strong>
-            </li>
+    <div class="orderDetails">
+      <div class="state">
+        <span>可预订</span>
+        <span>已预订</span>
+      </div>
+      <ul class="orderDetailsList">
+        <li>
+          <span> 场地</span>
+          <strong> 南校圆二号网球场</strong>
+        </li>
+        <li>
+          <span> 类型</span>
+          <strong> 日</strong>
+        </li>
+        <li>
+          <span> 日期</span>
+          <strong> 2018年04月24日 星期二</strong>
+        </li>
 
-          </ul>
+      </ul>
 
-          <div class="orderImportantDetails">
-            <div class="countBox">
-              <span> 场次</span>
-              <strong> 请选择场次</strong>
-            </div>
-            <p> 已选择0个场地，再次单击可取消选择</p>
-
-            <div class="orderMoney">
-              <span> 合计</span>
-              <strong>￥0.00</strong>
-            </div>
-
-          </div>
-          <button class="submitBtn"> 确认预定</button>
+      <div class="orderImportantDetails">
+        <div class="countBox">
+          <span> 场次</span>
+          <strong> 请选择场次</strong>
         </div>
-      </el-col>
-    </el-row>
+        <p> 已选择0个场地，再次单击可取消选择</p>
 
+        <div class="orderMoney">
+          <span> 合计</span>
+          <strong>￥0.00</strong>
+        </div>
+
+      </div>
+      <button class="submitBtn"> 确认预定</button>
+    </div>
   </div>
 </template>
 
@@ -51,9 +46,10 @@
 </script>
 
 <style scoped>
-  .container{
+  .container {
     font-size: 14px;
   }
+
   ul,
   p,
   li {
