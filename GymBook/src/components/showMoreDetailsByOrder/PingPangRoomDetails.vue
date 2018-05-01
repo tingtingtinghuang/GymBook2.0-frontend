@@ -16,10 +16,10 @@
                     <el-tab-pane label="预订" name="first">
                         <stockList/>
                         <el-row class="fourth-line">
-                            <el-col :span="19">
+                            <el-col :span="20">
                                 <tableByGymRoom></tableByGymRoom>
                             </el-col>
-                            <el-col :span="5">
+                            <el-col :span="4">
                                 <div style="display: flex; justify-content: flex-end">
                                     <SidebarOrder/>
                                 </div>
@@ -33,52 +33,52 @@
     </div>
 </template>
 <style>
-    .container {
-        margin: 0;
-        padding: 0;
-    }
+.container {
+    margin: 0;
+    padding: 0;
+}
 
-    .first-line {
-        height: 20px;
-        border-bottom: 1px solid #000;
-    }
+.first-line {
+    height: 20px;
+    border-bottom: 1px solid #000;
+}
 
-    .seconed-line {
-        height: 150px;
-        border-bottom: 1px solid #000;
-    }
+.seconed-line {
+    height: 150px;
+    border-bottom: 1px solid #000;
+}
 
-    .fourth-line {
-        margin-top: 40px;
-    }
+.fourth-line {
+    margin-top: 40px;
+}
 
-    .imgBox>img {
-        width: 100%;
-    }
+.imgBox>img {
+    width: 100%;
+}
 </style>
 
 <script>
-    import Breadcrumb from './commontComponent/Breadcrumb.vue'
-    import showImageAndMessage from './commontComponent/showImageAndMessage.vue'
-    import SidebarOrder from './commontComponent/SidebarOrder.vue'
-    import stockList from './commontComponent/stockList.vue'
-    import tableByGymRoom from './commontComponent/tableByGymRoom.vue'
-    import imgSrc from "./../../assets/100001.jpg"
-    export default {
-        data() {
-            return {
-                imgSrc: imgSrc,
-                h2Message: '南校园英乒乓球馆',
-                pMessage: '中山大学英东体育馆',
-                something: 'something'
-            }
-        },
-        components: {
-            Breadcrumb,
-            showImageAndMessage,
-            SidebarOrder,
-            stockList,
-            tableByGymRoom,
+import Breadcrumb from './commontComponent/Breadcrumb.vue'
+import showImageAndMessage from './commontComponent/showImageAndMessage.vue'
+import SidebarOrder from './commontComponent/SidebarOrder.vue'
+import stockList from './commontComponent/stockList.vue'
+import tableByGymRoom from './commontComponent/tableByGymRoom.vue'
+import imgSrc from "./../../assets/100001.jpg"
+export default {
+    data() {
+        return {
+            imgSrc: imgSrc,
+            h2Message: '南校园英乒乓球馆',
+            pMessage: '中山大学英东体育馆',
+            something: 'something'
         }
+    },
+    components: {
+        Breadcrumb,
+        showImageAndMessage,
+        SidebarOrder,
+        stockList,
+        tableByGymRoom,
     }
+}
 </script>
