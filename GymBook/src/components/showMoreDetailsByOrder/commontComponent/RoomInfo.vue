@@ -17,25 +17,25 @@
         <el-time-picker is-range="" arrow-control v-model="value5" range-separator="至" start-placeholder="开始时间" end-placeholder="结束时间" placeholder="选择时间范围">
         </el-time-picker>
       </el-row>
-      <div class="panel"></div>
-    </el-main>
-    <el-footer>
-      <div class="orderMoney">
+      <el-row class="orderMoney">
         <span>价格：</span>
         <strong>{{money}}</strong>
         <span> 元</span>
-      </div>
-      <div class="btns">
+      </el-row>
+    </el-main>
+    <el-footer>
+      <el-row class="btns">
         <el-button type="default" icon="el-icon-star-off" class="care">关注</el-button>
         <el-button type="primary" class="reserve">立即预定</el-button>
         <el-button type="success" class="together">约 球</el-button>
-      </div>
+      </el-row>
     </el-footer>
   </el-container>
 </template>
 <style>
 .container {
   text-align: left;
+  line-height: 24px;
 }
 .title {
   font-size: 20px;
@@ -59,16 +59,9 @@
 .date {
   margin-bottom: 20px;
 }
-.panel {
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  height: 150px;
-  width: 100%;
-}
 .orderMoney {
   border-bottom: 1px solid #ccc;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .orderMoney strong {
   font-size: 30px;

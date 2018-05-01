@@ -3,12 +3,12 @@
         <el-col :span="3" class="first-row">
             <img :src= 'imgSrc'>
         </el-col>
-        <el-col :span="18" class="message" :offset=1>
+        <el-col :span="16" class="message" :offset=1>
             <h2>{{h2Message}}</h2>
             <p>{{pMessage}}</p>
         </el-col>
-        <el-col :span="2">
-            <follow class="follow"></follow>
+        <el-col :offset=1 :span="2">
+            <el-button type="default" icon="el-icon-star-off" class="care">关注</el-button>
         </el-col>
     </el-row>
 </template>
@@ -25,18 +25,13 @@
 .message{
     text-align: left
 }
-.follow{
+.care{
     margin-top: 40px;
-    margin-right: 10px;
 }
 </style>
 
 <script>
-import follow from './follow'
 export default {
     props: ['imgSrc', 'h2Message', 'pMessage'],
-    components: {
-        follow
-    }
 };
 </script>

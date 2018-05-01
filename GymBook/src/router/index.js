@@ -14,7 +14,7 @@ const navigation = resolve => {
 import PingPangRoomDetails from "../components/showMoreDetailsByOrder/PingPangRoomDetails.vue";
 import SwimmingRoomDetails from "../components/showMoreDetailsByOrder/SwimmingRoomDetails.vue";
 import GymRoomDetails from "../components/showMoreDetailsByOrder/GymRoomDetails.vue";
-import BaseketballRoomDetails from "../components/showMoreDetailsByOrder/BaseketballRoomDetails.vue";
+import BasketballRoomDetails from "../components/showMoreDetailsByOrder/BasketballRoomDetails.vue";
 import TennisRoomDetails from "../components/showMoreDetailsByOrder/TennisRoomDetails.vue";
 import BadmintonRoomDetails from "../components/showMoreDetailsByOrder/BadmintonRoomDetails.vue";
 
@@ -47,9 +47,9 @@ const router = new Router({
             component: GymRoomDetails
         },
         {
-            path: "/showMoreDetailsByOrder/BaseketballRoom",
-            name: "BaseketballRoomDetails",
-            component: BaseketballRoomDetails
+            path: "/showMoreDetailsByOrder/BasketballRoom",
+            name: "BasketballRoomDetails",
+            component: BasketballRoomDetails
         },
         {
             path: "/showMoreDetailsByOrder/TennisRoom",
