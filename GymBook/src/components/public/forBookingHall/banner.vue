@@ -26,6 +26,6 @@
         /*height:100px;*/
     }
     .el-carousel__item img{
-        width:100%;
+        width:98.5%;
     }
 </style>

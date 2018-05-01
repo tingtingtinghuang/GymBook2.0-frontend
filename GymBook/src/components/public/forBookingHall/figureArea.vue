@@ -44,6 +44,8 @@
         .booking{
             width:50px;
             background:#fff;
+            color:#999;
+            font-weight:normal;
             padding:6px;
             border-radius:5px;
             position:absolute;
@@ -51,6 +53,7 @@
             right:10px;
             &:hover{
                 cursor:pointer;
+                color:#000;
             }
         }
     }

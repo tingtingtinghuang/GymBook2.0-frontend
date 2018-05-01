@@ -1,10 +1,10 @@
 <template>
     <div id="notice-container">
-        <slot name="head" class="head-box"></slot>
+        <slot name="head"> </slot>
         <div class="body">
             <ul>
                 <li v-for="(item, index) in noticeArr" :key="index">
-                    <i class="el-icon-arrow-right"></i>
+                    <i class="el-icon-arrow-right"> </i>
                     <span class="title">{{ item.title }}</span>
                     <span class="date">{{ item.date }}</span>
                 </li>
@@ -43,11 +43,11 @@
         margin:5px auto 15px auto;
         height:240px;
         border:solid 1px #ccc;
-        overflow-y: scroll;
+        overflow-y: auto;
         .body {
             ul {
                 margin: 0px auto;
-                padding-left: 0px;
+                padding:2px 10px;
             }
             ul li {
                 margin: 1px auto;

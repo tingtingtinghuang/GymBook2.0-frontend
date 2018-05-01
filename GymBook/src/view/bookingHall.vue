@@ -8,7 +8,7 @@
                    <span class="ballActivity"><span>
                        <img src="../assets/bookingHall/clock.svg" alt="#">
                    </span>约球活动</span>
-                   <span class="more">更多>></span>
+                   <span class="more" style="color:#069">更多>></span>
                </div>
            </Notice>
             <FigureArea placeName="南校区">
@@ -19,24 +19,25 @@
             </FigureArea>
             <Notice style="border-radius:5px;">
                 <div slot="head" class="notice-head-down">
-                    <span class="notice-content"><span>
-                        <img src="../assets/bookingHall/trumpet.svg" alt="#">
-                    </span>通知公告</span>
+                    <span class="notice-content">
+                        <span>
+                            <img src="../assets/bookingHall/trumpet.svg" alt="#">
+                        </span>
+                        通知公告
+                    </span>
                 </div>
             </Notice>
         </div>
         <div class="right">
             <Notice>
                 <div slot="head" class="notice-head-up">
-                    <DropDownMenu title="选择场馆" :options="['东校区','南校区','北校区']" class="fieldChoose"></DropDownMenu>
-                    <DropDownMenu title="运动类型" :options="['羽毛球','篮球','棒球','游泳']" class="sports"></DropDownMenu>
-                    <!--<el-row>-->
-                        <!--<el-button icon="el-icon-search" circle></el-button>-->
-                    <!--</el-row>-->
+                    <DropDownMenu title="选择场馆" :options="[{label:'东校区',value:'选项1'},{label:'南校区',value:'选项2'},{label:'北校区',value:'选项13'}]" class="fieldChoose"></DropDownMenu>
+                    <DropDownMenu title="运动类型" :options="[{label:'羽毛球',value:'选项1'},{label:'篮球',value:'选项2'},{label:'乒乓球',value:'选项3'},{label:'棒球',value:'选项4'}]" class="sports"></DropDownMenu>
+                    <el-button type="primary" icon="el-icon-search" style="width:40px;height:27px;margin-left:-45px;"></el-button>
                     <span class="more">更多场地>></span>
                 </div>
             </Notice>
-            <FigureArea placeName="北校区">
+            <FigureArea placeName="北校区" style="margin-top:-2px;">
                 <img src="../assets/bookingHall/100002.gif" alt="#" slot="imgContainer">
             </FigureArea>
             <FigureArea  placeName="珠海区">
@@ -95,8 +96,6 @@
     }
     .left,.right{
         width:49%;
-        /*height:800px;*/
-        /*border:solid 1px #ccc;*/
     }
     .left{
         float:left;
@@ -120,7 +119,6 @@
             }
             .more{
                 @include wh-common-style(80px,30px);
-                color: #069;
                 line-height:30px;
                 float:right;
                 @include font-common-style('');
@@ -138,12 +136,9 @@
             .notice-content{
                 float:left;
                 @include wh-common-style(80px,30px);
-                font-size:12px;
-                font-weight:bold;
-                text-indent:10px;
+                @include font-common-style('10px','#000');
                 line-height:30px;
                 position:relative;
-                color:#000;
                 img{
                     /*display:inline-block;*/
                     @include wh-common-style(20px,20px);
@@ -157,8 +152,9 @@
         margin-right:10px;
         .notice-head-up{
             margin:1px auto;
-            height:40px;
-            border-bottom:solid 1px #eee;
+            height:30px;
+            padding:3px 5px;
+            border-bottom:solid 1px #ccc;
             .fieldChoose, .sports{
                 display:inline-block;
                 float:left;
@@ -167,11 +163,9 @@
             }
             .more{
                 @include wh-common-style(80px,35px);
-                color: #069;
                 line-height:35px;
                 float:right;
-                font-size:12px;
-                font-weight:bold;
+                @include font-common-style('', #069);
                 text-align:right;
             }
             .more:hover{
