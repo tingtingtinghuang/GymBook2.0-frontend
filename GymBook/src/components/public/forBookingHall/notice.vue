@@ -56,6 +56,7 @@
                 list-style: none;
                 border-bottom: dashed 1px #ccc;
                 text-align: left;
+                color:#069;
                 .title {
 
                 }
