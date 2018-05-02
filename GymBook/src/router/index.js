@@ -17,6 +17,7 @@ import GymRoomDetails from "../components/showMoreDetailsByOrder/GymRoomDetails.
 import BasketballRoomDetails from "../components/showMoreDetailsByOrder/BasketballRoomDetails.vue";
 import TennisRoomDetails from "../components/showMoreDetailsByOrder/TennisRoomDetails.vue";
 import BadmintonRoomDetails from "../components/showMoreDetailsByOrder/BadmintonRoomDetails.vue";
+import BadmintonRoom from '../components/public/SouthCampus/badminton'
 
 const router = new Router({
     mode: "history",
@@ -25,6 +26,10 @@ const router = new Router({
             path: "/",
             name: "navigation",
             component: navigation
+        },
+        {
+            path:'/south/badminton',
+            component:BadmintonRoom
         },
         {
             path:'/filterBox',component:filterBox

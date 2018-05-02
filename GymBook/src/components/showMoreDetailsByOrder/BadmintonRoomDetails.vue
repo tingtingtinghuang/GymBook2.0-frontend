@@ -72,6 +72,9 @@ export default {
         SidebarOrder,
         stockList,
         tableByGymRoom,
+    },
+    mounted:function(){
+        console.log(this.imgSrc)
     }
 }
 </script>
