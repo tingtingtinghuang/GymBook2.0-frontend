@@ -33,26 +33,27 @@
 
 
 <script>
-import Breadcrumb from '../../../common/breadcrumb'
-import gymInfo from '../../../common/gymInfo'
-import stockList from '../../../common/stockList.vue'
-import sitesTable from '../../../common/sitesTable'
-import imgSrc from "./../../../assets/100001.jpg"
-import tabs from '../../../common/tabs/tabs'
-import tab from '../../../common/tabs/tab'
-import Navigation from '../../../common/navigation'
+import Breadcrumb from '../../common/breadcrumb'
+import gymInfo from '../../common/gymInfo'
+import stockList from '../../common/stockList.vue'
+import sitesTable from '../../common/sitesTable'
+import imgSrc from "./../../assets/100001.jpg"
+import tabs from '../../common/tabs/tabs'
+import tab from '../../common/tabs/tab'
+import Navigation from '../../common/navigation'
 
 export default {
     data(){
         return{
             imgSrc: imgSrc,
-            title:'南校园一号网球场',
-            info:'一号网球场共有4片场地，开放时间是：8：30-22：30，平常收费时段是：周一至周五18：30至22：30，周六、周日、节假日及寒暑假全天收费'
+            title:'南校园乒乓球室',
+            info:'南校园乒乓球室位于英东体育馆西侧二楼，与学校高水平击剑队共用，有12-15张乒乓球桌，开放时间是：8：00至18：00。周六、周日、节假日收费'
         }
     },
     components:{
         Breadcrumb,
         gymInfo,
+        // SidebarOrder,
         stockList,
         sitesTable,
         tabs,

@@ -36,13 +36,13 @@
 
 
 <script>
-import Breadcrumb from '../../../common/breadcrumb'
-import GymSideInfo from '../../../common/gymSideInfo'
-import Navigation from '../../../common/navigation'
-import ImageGallery from '../../../common/imageGallery'
-import imgSrc1 from "./../../../assets/100001.jpg";
-import imgSrc2 from "./../../../assets/100002.gif";
-import imgSrc3 from "./../../../assets/100003.jpg";
+import Breadcrumb from '../../common/breadcrumb'
+import GymSideInfo from '../../common/gymSideInfo'
+import Navigation from '../../common/navigation'
+import ImageGallery from '../../common/imageGallery'
+import imgSrc1 from "./../../assets/100001.jpg";
+import imgSrc2 from "./../../assets/100002.gif";
+import imgSrc3 from "./../../assets/100003.jpg";
 
 
 export default {
@@ -51,9 +51,13 @@ export default {
       shortMessage: "一些简介",
       address: "英东游泳场",
       descMessage:
-        "南校园健身房位于英东体育馆东侧一楼。开放时间：16:00-21:00。请锻炼人员自带毛巾。",
-      title: "南校园健身房",
-      money: 5
+        "南校园游泳池开放时间为：6：30-8：00，14：30-18：00，19：30-21：00。 可以网上预订和现场扣费预订，网上可提前一天预订。 建议先网上预订，现场验证可节省入场时间。如现场预订需输入校园卡密码，会增加入场时间。",
+      title: "南校园游泳池",
+      money: 3,
+    //   images:[]
+    //   imgSrc1: imgSrc1,
+    //   imgSrc2: imgSrc2,
+    //   imgSrc3: imgSrc3,
     };
   },
   computed:{

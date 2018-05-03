@@ -8,8 +8,8 @@
     -imageGallery.vue 预定详情中图片的展示
     -siteTable.vue 预定详情中场地预定情况的table（例如羽毛球场，和乒乓球场），（还没根据接口修改）
     -stockList.vue 显示可以预约的天数，需要根据后端的返回的数据做修改，还没做修改
-  -components 
-    -public 业务组件，一般跟router挂钩，common中的公共组件，供业务组件调用
+  -components 业务组件，一般跟router挂钩，common中的公共组件，供业务组件调用
+    
   -config 配置数据
   -router 路由组件
   -store

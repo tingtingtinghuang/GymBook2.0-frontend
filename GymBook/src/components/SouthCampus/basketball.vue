@@ -36,23 +36,23 @@
 
 
 <script>
-import Breadcrumb from '../../../common/breadcrumb'
-import GymSideInfo from '../../../common/gymSideInfo'
-import Navigation from '../../../common/navigation'
-import ImageGallery from '../../../common/imageGallery'
-import imgSrc1 from "./../../../assets/100001.jpg";
-import imgSrc2 from "./../../../assets/100002.gif";
-import imgSrc3 from "./../../../assets/100003.jpg";
+import Breadcrumb from '../../common/breadcrumb'
+import GymSideInfo from '../../common/gymSideInfo'
+import Navigation from '../../common/navigation'
+import ImageGallery from '../../common/imageGallery'
+import imgSrc1 from "./../../assets/100001.jpg";
+import imgSrc2 from "./../../assets/100002.gif";
+import imgSrc3 from "./../../assets/100003.jpg";
 
 
 export default {
   data() {
     return {
       shortMessage: "一些简介",
-      address: "英东游泳场",
+      address: "英东体育馆中心",
       descMessage:
-        "南校园游泳池开放时间为：6：30-8：00，14：30-18：00，19：30-21：00。 可以网上预订和现场扣费预订，网上可提前一天预订。 建议先网上预订，现场验证可节省入场时间。如现场预订需输入校园卡密码，会增加入场时间。",
-      title: "南校园游泳池",
+        "三号篮球场位于英东体育馆中心东侧，共有6片场地。周一至周五8:00-18:00免费。周一，周五18:00-22:00、周六、周日、节假日及寒暑假全天收费。个人到三号篮球场锻炼按次收费",
+      title: "南校园三号篮球场",
       money: 3,
     //   images:[]
     //   imgSrc1: imgSrc1,

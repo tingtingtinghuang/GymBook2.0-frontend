@@ -33,14 +33,14 @@
 
 
 <script>
-import Breadcrumb from '../../../common/breadcrumb'
-import gymInfo from '../../../common/gymInfo'
-import stockList from '../../../common/stockList.vue'
-import sitesTable from '../../../common/sitesTable'
-import imgSrc from "./../../../assets/100001.jpg"
-import tabs from '../../../common/tabs/tabs'
-import tab from '../../../common/tabs/tab'
-import Navigation from '../../../common/navigation'
+import Breadcrumb from '../../common/breadcrumb'
+import gymInfo from '../../common/gymInfo'
+import stockList from '../../common/stockList.vue'
+import sitesTable from '../../common/sitesTable'
+import imgSrc from "./../../assets/100001.jpg"
+import tabs from '../../common/tabs/tabs'
+import tab from '../../common/tabs/tab'
+import Navigation from '../../common/navigation'
 
 export default {
     data(){

@@ -1,15 +1,13 @@
 <template>
   <div>
-    <header>
-       <!-- <img src='../assets/images/logo.png'> -->
-       <div><router-link to='/login'>登录</router-link></div>
+    <header id="nav">
+        <img src='../../../assets/logo.png'>
+       <div><router-link to='#'>登录</router-link></div>
        <ul>
-
-         <li><router-link to='demo'>Demo</router-link></li>
-         <li><router-link to='/'>预定大厅</router-link></li>
-         <li><router-link to='/filterBox'>预订中心</router-link></li>
-         <li><router-link to=''>场馆简介</router-link></li>
-         <li><router-link to=''>管理制度</router-link></li>
+         <li><router-link to='#'>预定大厅</router-link></li>
+         <li><router-link to='#'>预订中心</router-link></li>
+         <li><router-link to='#'>场馆简介</router-link></li>
+         <li><router-link to='#'>管理制度</router-link></li>
        </ul>
     </header>
      
@@ -20,7 +18,7 @@ export default {
   
 }
 </script>
-<style lang="scss" scoped type="text/css">
+<style lang="scss" scoped type="text/scss">
   $greenColor: #005824;
   
   $lightGreenColor:#007731;
@@ -32,7 +30,6 @@ export default {
       height: $height;
       line-height: $height;
   }
-
   *{
     margin: 0;
     padding:0;
@@ -46,7 +43,7 @@ export default {
   }
   header{
     position: relative;
-    width: 1024px;
+    width: 98%;
     height: $height;
     margin:0 auto;
     a{
@@ -81,6 +78,10 @@ export default {
         @include verticalCenter(40px);
         padding:0 2em ;
       }
+        li:hover{
+            background:greenyellow;
+        }
+
     }
   }
   

@@ -54,11 +54,11 @@
     </div>
 </template>
 <script>
-    import Navigation from '../components/public/forBookingHall/navigation';
-    import Banner from '../components/public/forBookingHall/banner';
-    import Notice from  '../components/public/forBookingHall/notice';
-    import FigureArea from  '../components/public/forBookingHall/figureArea';
-    import DropDownMenu from '../components/public/forBookingHall/dropDownMenu';
+    import Navigation from '../common/navigation';
+    import Banner from '../common/forBookingHall/banner';
+    import Notice from  '../common/forBookingHall/notice';
+    import FigureArea from  '../common/forBookingHall/figureArea';
+    import DropDownMenu from '../common/forBookingHall/dropDownMenu';
     export default{
         components:{
             Navigation,

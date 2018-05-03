@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <img src="../../assets/logo.png" alt="">
+      <img src="../assets/logo.png" alt="">
     </div>
     <div class="green_bg">
       <div for="" class="title">中央身份验证服务(CAS)</div>

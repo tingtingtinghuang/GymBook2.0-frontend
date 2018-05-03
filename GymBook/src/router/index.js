@@ -1,29 +1,24 @@
 import Vue from "vue";
 import Router from "vue-router";
-import login from '../components/public/login.vue';
-import Demo from '../components/public/Demo.vue';
-import filterBox from '../components/public/filterBox.vue';
+import login from '../components/login.vue';
+import Demo from '../components/Demo.vue';
+import filterBox from '../components/filterBox.vue';
 
 Vue.use(Router);
 
 
-const navigation = resolve => {
-    require.ensure(["../components/public/navigation.vue"], () => {
-        resolve(require("../components/public/navigation.vue"));
-    });
-};
 const BookingHall=resolve=>{
-    require.ensure(['../components/public/bookingHall.vue'],()=>{
-      resolve(require('../components/public/bookingHall.vue'));
+    require.ensure(['../components/bookingHall.vue'],()=>{
+      resolve(require('../components/bookingHall.vue'));
     })
 };
 
-import SouthBadminton from '../components/public/SouthCampus/badminton'
-import SouthTennis from '../components/public/SouthCampus/tennis'
-import SouthBasketball from '../components/public/SouthCampus/basketball'
-import SouthPingpong from '../components/public/SouthCampus/pingpong'
-import SouthSwimmingPool from '../components/public/SouthCampus/swimmingpool'
-import Fitness from '../components/public/SouthCampus/fitness'
+import SouthBadminton from '../components/SouthCampus/badminton'
+import SouthTennis from '../components/SouthCampus/tennis'
+import SouthBasketball from '../components/SouthCampus/basketball'
+import SouthPingpong from '../components/SouthCampus/pingpong'
+import SouthSwimmingPool from '../components/SouthCampus/swimmingpool'
+import Fitness from '../components/SouthCampus/fitness'
 
 const router = new Router({
     mode: "history",
