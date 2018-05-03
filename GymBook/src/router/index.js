@@ -11,13 +11,13 @@ const navigation = resolve => {
         resolve(require("../components/public/navigation.vue"));
     });
 };
-import PingPangRoomDetails from "../components/showMoreDetailsByOrder/PingPangRoomDetails.vue";
-import SwimmingRoomDetails from "../components/showMoreDetailsByOrder/SwimmingRoomDetails.vue";
-import GymRoomDetails from "../components/showMoreDetailsByOrder/GymRoomDetails.vue";
-import BasketballRoomDetails from "../components/showMoreDetailsByOrder/BasketballRoomDetails.vue";
-import TennisRoomDetails from "../components/showMoreDetailsByOrder/TennisRoomDetails.vue";
-import BadmintonRoomDetails from "../components/showMoreDetailsByOrder/BadmintonRoomDetails.vue";
-import BadmintonRoom from '../components/public/SouthCampus/badminton'
+
+import SouthBadminton from '../components/public/SouthCampus/badminton'
+import SouthTennis from '../components/public/SouthCampus/tennis'
+import SouthBasketball from '../components/public/SouthCampus/basketball'
+import SouthPingpong from '../components/public/SouthCampus/pingpong'
+import SouthSwimmingPool from '../components/public/SouthCampus/swimmingpool'
+import Fitness from '../components/public/SouthCampus/fitness'
 
 const router = new Router({
     mode: "history",
@@ -29,43 +29,34 @@ const router = new Router({
         },
         {
             path:'/south/badminton',
-            component:BadmintonRoom
+            component:SouthBadminton
+        },
+        {
+            path:'/south/tennis',
+            component:SouthTennis
+        },
+        {
+            path:'/south/basketball',
+            component:SouthBasketball
+        },
+        {
+            path:'/south/pingpong',
+            component:SouthPingpong
+        },
+        {
+            path:'/south/swimmingpool',
+            component:SouthSwimmingPool
+        },
+        {
+            path:'/south/fitness',
+            component:Fitness
         },
         {
             path:'/filterBox',component:filterBox
         },
         { path: '/login', component: login },
-        { path: '/demo', component: Demo },
-        {
-            path: "/showMoreDetailsByOrder/PingPangRoom",
-            name: "PingPangRoomDetails",
-            component: PingPangRoomDetails
-        },
-        {
-            path: "/showMoreDetailsByOrder/SwimmingRoom",
-            name: "SwimmingRoomDetails",
-            component: SwimmingRoomDetails
-        },
-        {
-            path: "/showMoreDetailsByOrder/GymRoom",
-            name: "GymRoomDetails",
-            component: GymRoomDetails
-        },
-        {
-            path: "/showMoreDetailsByOrder/BasketballRoom",
-            name: "BasketballRoomDetails",
-            component: BasketballRoomDetails
-        },
-        {
-            path: "/showMoreDetailsByOrder/TennisRoom",
-            name: "TennisRoomDetails",
-            component: TennisRoomDetails
-        },
-        {
-            path: "/showMoreDetailsByOrder/BadmintonRoom",
-            name: "BadmintonRoomDetails",
-            component: BadmintonRoomDetails
-        }
+        { path: '/demo', component: Demo }
+      
     ]
 });
 export default router;

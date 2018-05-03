@@ -7,17 +7,17 @@
 
                 <el-table-column fixed label="场次" width="100" align="center">
                     <template slot-scope="scope">
-                    <span>￥{{ scope.row.money }}</span>
-                    <p>
-                        <i class="el-icon-time" style="margin-right: 10px"></i>{{ scope.row.time }}
-                    </p>
+                        <span>￥{{ scope.row.money }}</span>
+                        <p>
+                            <i class="el-icon-time" style="margin-right: 10px"></i>{{ scope.row.time }}
+                        </p>
                     </template>
                 </el-table-column>
 
                 <el-table-column align="center" v-for="{ prop, label } in colConfigs" :key="prop" :prop="prop" :label="label" width="120">
                     <template slot-scope="scope">
                     <div class="showIsEmpty" :class="{no:  scope.row[label]===0 ?false:true }">
-                        <!-- {{ scope.row[label] }}   -->
+                       
                     </div>
                     </template>
                 </el-table-column>
@@ -33,7 +33,7 @@
                 <ul class="orderDetailsList">
                     <li>
                     <span> 场地</span>
-                    <span> 南校圆二号网球场</span>
+                    <span> {{title}}</span>
                     </li>
                     <li>
                     <span> 类型</span>
@@ -106,6 +106,7 @@
         }
       }
     },
+    props:['title'],
     computed: {
       tableData3: function () {
         return this.ajaxData.map(item => {

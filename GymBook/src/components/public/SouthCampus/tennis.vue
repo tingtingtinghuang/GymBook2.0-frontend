@@ -46,14 +46,13 @@ export default {
     data(){
         return{
             imgSrc: imgSrc,
-            title:'南校园英东羽毛球场',
-            info:'中山大学英东体育馆羽毛球场位于英东体育馆内，共有8片球场，与排球共用。英东羽毛球场开放时间从8：00至22：00时，非排球训练和体育教学时段均可定场，全天收费。'
+            title:'南校园一号网球场',
+            info:'一号网球场共有4片场地，开放时间是：8：30-22：30，平常收费时段是：周一至周五18：30至22：30，周六、周日、节假日及寒暑假全天收费'
         }
     },
     components:{
         Breadcrumb,
         gymInfo,
-        // SidebarOrder,
         stockList,
         sitesTable,
         tabs,

@@ -8,14 +8,12 @@
       <span class="sub-title-desc">场地简介：</span>{{desc}}</el-row>
     <el-main class="order">
       <el-row class="date">
-        <span>预定日期：</span>
-        <el-date-picker v-model="value1" type="date" placeholder="选择日期">
-        </el-date-picker>
+        <span class='label'>预定日期：</span>
+       <span class='box'></span>
       </el-row>
       <el-row class="sequence">
-        <span>预定场次：</span>
-        <el-time-picker is-range="" arrow-control v-model="value5" range-separator="至" start-placeholder="开始时间" end-placeholder="结束时间" placeholder="选择时间范围">
-        </el-time-picker>
+        <span class='label'>预定场次：</span>
+        <span class='box'></span>
       </el-row>
       <el-row class="orderMoney">
         <span>价格：</span>
@@ -27,50 +25,11 @@
       <el-row class="btns">
         <el-button type="default" icon="el-icon-star-off" class="care">关注</el-button>
         <el-button type="primary" class="reserve">立即预定</el-button>
-        <el-button type="success" class="together">约 球</el-button>
       </el-row>
     </el-footer>
   </el-container>
 </template>
-<style>
-.container {
-  text-align: left;
-  line-height: 24px;
-}
-.title {
-  font-size: 20px;
-  font-weight: bold;
-  color: rgb(24, 23, 107);
-  padding: 5px;
-}
-.address {
-  padding: 10px;
-  background: rgb(245, 244, 244);
-  margin-bottom: 10px;
-}
-.desc {
-  padding: 10px;
-  background: rgb(245, 244, 244);
-}
-.sub-title-desc {
-  font-size: 16px;
-  font-weight: bold;
-}
-.date {
-  margin-bottom: 20px;
-}
-.orderMoney {
-  border-bottom: 1px solid #ccc;
-  margin-top: 20px;
-}
-.orderMoney strong {
-  font-size: 30px;
-  font-weight: bold;
-}
-.btns {
-  text-align: left;
-}
-</style>
+
 
 <script>
 export default {
@@ -89,7 +48,7 @@ export default {
     },
     money: {
       type: Number,
-      default: 3.0
+      default: 3.00
     }
   },
   data() {
@@ -101,3 +60,61 @@ export default {
 }
 </script>
 
+<style scoped>
+
+
+.container {
+    width:100%;
+    text-align: left;
+    line-height: 24px;
+    font-size: 16px;
+}
+.title {
+    color: #0b4b77;
+    font-weight: 400;
+    font-size: 24px;
+    margin: 0 16px 0 30px;
+}
+
+.address,.desc{
+    color: grey;
+    background-color: #fcfcfc;
+    padding: 15px;
+    margin: 10px 16px 10px 30px;
+}
+.date,.sequence {
+    padding: 15px;
+    margin: 10px 16px 10px 30px;
+}
+.box{
+    display: inline-block;
+    color: #1a1a1a;
+    border:1px solid #FF8F00;
+    border-width: 2px;
+    line-height: 38px;
+    height: 38px;
+    width:78px;
+    padding-left: 19px;
+    padding-right: 19px;
+}
+.label{
+  color: grey;
+    float: left;
+    /* width: 14%; */
+    padding-top: 8px;
+    /* padding-right: 1%; */
+    text-align: right;
+}
+
+.orderMoney {
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+}
+.orderMoney strong {
+  font-size: 40px;
+  font-weight: bold;
+}
+.btns {
+  text-align: left;
+}
+</style>
