@@ -6,10 +6,16 @@ import filterBox from '../components/public/filterBox.vue';
 
 Vue.use(Router);
 
+
 const navigation = resolve => {
     require.ensure(["../components/public/navigation.vue"], () => {
         resolve(require("../components/public/navigation.vue"));
     });
+};
+const BookingHall=resolve=>{
+    require.ensure(['../components/public/bookingHall.vue'],()=>{
+      resolve(require('../components/public/bookingHall.vue'));
+    })
 };
 
 import SouthBadminton from '../components/public/SouthCampus/badminton'
@@ -24,8 +30,8 @@ const router = new Router({
     routes: [
         {
             path: "/",
-            name: "navigation",
-            component: navigation
+            name:'bookingHall',
+            component:BookingHall
         },
         {
             path:'/south/badminton',
@@ -57,6 +63,7 @@ const router = new Router({
         { path: '/login', component: login },
         { path: '/demo', component: Demo }
       
+
     ]
 });
 export default router;
