@@ -1,7 +1,10 @@
 let path = require('path');
 let fs = require('fs');
 let app = require('express')();
-var mock = require("mockjs");
+
+
+let mock = require("mockjs");
+
 const glob = require('glob');
 
 let apiContArr = [];
