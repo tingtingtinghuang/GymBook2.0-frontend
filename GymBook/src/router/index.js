@@ -19,6 +19,7 @@ import SouthBasketball from '../components/SouthCampus/basketball'
 import SouthPingpong from '../components/SouthCampus/pingpong'
 import SouthSwimmingPool from '../components/SouthCampus/swimmingpool'
 import Fitness from '../components/SouthCampus/fitness'
+import ManageRule from '../components/manageRule'
 
 const router = new Router({
     mode: "history",
@@ -53,12 +54,21 @@ const router = new Router({
             component:Fitness
         },
         {
-            path:'/filterBox',component:filterBox
+            path:'/filterBox',
+            component:filterBox
         },
-        { path: '/login', component: login },
-        { path: '/demo', component: Demo }
-      
-
+        {
+            path: '/login',
+            component: login
+        },
+        {
+            path: '/demo',
+            component: Demo
+        },
+        {
+            path:'/manageRule',
+            component:ManageRule
+        }
     ]
 });
 export default router;

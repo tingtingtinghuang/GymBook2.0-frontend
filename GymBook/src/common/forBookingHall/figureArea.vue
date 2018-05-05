@@ -1,7 +1,7 @@
 <template>
     <div id="figureArea">
         <div class="figure"><slot name="imgContainer"></slot><span>{{ placeName }}</span></div>
-        <div class="booking">在线预订</div>
+        <div class="booking" @click = "bookingOnline()">在线预订</div>
     </div>
 
 </template>
@@ -14,6 +14,12 @@
             imgUrl:'',
             placeName:''
         },
+        methods:{
+            // 点击“场馆预定”跳到“预定中心”
+            bookingOnline:function(){
+                window.location.href = '/filterBox'
+            }
+        }
 
     }
 </script>
