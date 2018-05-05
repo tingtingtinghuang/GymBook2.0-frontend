@@ -1,23 +1,75 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue";
+import Router from "vue-router";
+import login from '../components/login.vue';
+import Demo from '../components/Demo.vue';
+import filterBox from '../components/filterBox.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
-const navigation=resolve=>{
-    require.ensure(['../components/public/navigation.vue'],()=>{
-      resolve(require('../components/public/navigation.vue'));
+
+const BookingHall=resolve=>{
+    require.ensure(['../components/bookingHall.vue'],()=>{
+      resolve(require('../components/bookingHall.vue'));
     })
-  }
+};
 
-const router= new Router({
-    mode:'history',
-    routes:[
+import SouthBadminton from '../components/SouthCampus/badminton'
+import SouthTennis from '../components/SouthCampus/tennis'
+import SouthBasketball from '../components/SouthCampus/basketball'
+import SouthPingpong from '../components/SouthCampus/pingpong'
+import SouthSwimmingPool from '../components/SouthCampus/swimmingpool'
+import Fitness from '../components/SouthCampus/fitness'
+import ManageRule from '../components/manageRule'
+
+const router = new Router({
+    mode: "history",
+    routes: [
         {
-            path:'/',
-            name:'navigation',
-            component:navigation
+            path: "/",
+            name:'bookingHall',
+            component:BookingHall
+        },
+        {
+            path:'/south/badminton',
+            component:SouthBadminton
+        },
+        {
+            path:'/south/tennis',
+            component:SouthTennis
+        },
+        {
+            path:'/south/basketball',
+            component:SouthBasketball
+        },
+        {
+            path:'/south/pingpong',
+            component:SouthPingpong
+        },
+        {
+            path:'/south/swimmingpool',
+            component:SouthSwimmingPool
+        },
+        {
+            path:'/south/fitness',
+            component:Fitness
+        },
+        {
+            path:'/filterBox',
+            component:filterBox
+        },
+        {
+            path: '/login',
+            component: login
+        },
+        {
+            path: '/demo',
+            component: Demo
+        },
+        {
+            path:'/manageRule',
+            component:ManageRule
         }
     ]
-})
+});
 export default router;
 

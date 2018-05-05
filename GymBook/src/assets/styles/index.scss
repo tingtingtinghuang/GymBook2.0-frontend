@@ -1,0 +1,43 @@
+@import './vars';
+
+// global styles
+
+:global {
+  html {
+    font-size: 1vw;
+    touch-action: manipulation;
+  }
+
+  body {
+    background: #fff;
+    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media all and (max-width: $break-point) {
+    html {
+      font-size: 4vw;
+    }
+  }
+
+  input,
+  button,
+  submit {
+    border: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
