@@ -18,14 +18,12 @@
 </template>
 
 <style>
-    #banner-container{
-        margin:10px auto;
-    }
-    .el-carousel__item{
-        width:1448px;
-        height:180px;
-    }
-    .el-carousel__item img{
-        height:100%;
-    }
+
+    /*.el-carousel__item{*/
+        /*width:1448px;*/
+        /*height:180px;*/
+    /*}*/
+    /*.el-carousel__item img{*/
+        /*height:100%;*/
+    /*}*/
 </style>

@@ -9,8 +9,9 @@
             <nav class="left">
                 <ul class="nav">
                     <li>相关信息</li>
-                    <li>通知公告</li>
-                    <li>管理制度</li>
+                    <!--点击后，右侧表格呈现出不同的内容-->
+                    <li @click = 'showNotice()' :class="{li_active:bg}">通知公告</li>
+                    <li @click = 'showRule()' :class="{li_active:!bg}">管理制度</li>
                 </ul>
             </nav>
                 <div class="right">
@@ -43,7 +44,14 @@
         },
         data(){
             return{
-                tableData:[
+                tableData:[],
+                noticeData:[
+                    {title:'通知1',date:'2018-5-5 15:29:30',scan:'318'},
+                    {title:'通知2',date:'2018-5-4 15:29:30',scan:'318'},
+                    {title:'通知3',date:'2018-5-3 15:29:30',scan:'318'},
+                    {title:'通知4',date:'2018-5-2 15:29:30',scan:'318'},
+                ],
+                ruleData:[
                     {title:'运动经费登记补发通知4',date:'2018-5-5 15:29:30',scan:'318'},
                     {title:'运动经费登记补发通知5',date:'2018-5-4 15:29:30',scan:'318'},
                     {title:'运动经费登记补发通知6',date:'2018-5-3 15:29:30',scan:'318'},
@@ -55,10 +63,24 @@
                     {title:'运动经费登记补发通知',date:'2018-3-15 15:29:30',scan:'318'},
                     {title:'关于运动经费补登的说明',date:'2017-10-16 12:00:00',scan:'1772'},
                     {title:'关于运动经费补登的说明',date:'2017-9-16 12:00:11',scan:'1772'},
-                    ]
+                ],
+                bg:false,
             }
         },
         props:[],
+        mounted(){
+            this.tableData = this.ruleData;
+        },
+        methods:{
+            showNotice(){
+                this.bg = true;
+                this.tableData = this.noticeData;
+            },
+            showRule(){
+                this.bg = false;
+                this.tableData = this.ruleData;
+            }
+        }
     }
 
 </script>
@@ -92,7 +114,7 @@
             }
         }
         .left{
-            ul{
+            ul.nav{
                 border:solid 1px #ccc;
                 @include wh-common-style(15%,140px);
                 float:left;
@@ -104,15 +126,21 @@
                     line-height:47px;
                     @include font-common-style('','',bold);
                 }
-                li:last-child{
-                    border-bottom:none;
+                .li_active{
+                    background:#336;
+                    color:#fff;
                 }
+                li:hover{
+                     cursor:pointer;
+                   }
                 li:first-child{
                     text-align:left;
                     text-indent:8px;
-                    @include font-common-style('',#069,bold);
+                    @include font-common-style(14px,#069,normal);
                 }
-
+                li:last-child {
+                    border-bottom: none;
+                }
             }
         }
             .right{
@@ -121,9 +149,9 @@
                 border:1px solid #ccc;
                 box-shadow:0 0 5px #ccc;
                 padding:45px 15px 15px 28px;
+                margin-bottom:40px;
                 input.search-input{
-                    width:250px;
-                    height:22px;
+                    @include wh-common-style(250px,22px);
                     border:1px solid #ccc;
                 }
                 input::-webkit-input-placeholder{
@@ -162,6 +190,7 @@
                         /*表格第一列*/
                         td:first-child{
                             color:#369;
+                            width:30%;
                         }
                     }
                     tr:nth-child(2n+1){
@@ -175,8 +204,7 @@
                 /*分页器样式*/
                 .el-pagination, .el-pagination--small{
                     margin:10px 0px 10px 0;
-                    width:95.5%;
-                    height:27px;
+                    @include wh-common-style(95.5%,27px);
                     border:1px solid #ccc;
                     .el-pagination__total{
                         float:right;
