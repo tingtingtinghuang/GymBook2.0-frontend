@@ -33,7 +33,7 @@
                 <div slot="head" class="notice-head-up">
                     <DropDownMenu title="选择场馆" :options="[{label:'东校区',value:'选项1'},{label:'南校区',value:'选项2'},{label:'北校区',value:'选项13'}]" class="fieldChoose"></DropDownMenu>
                     <DropDownMenu title="运动类型" :options="[{label:'羽毛球',value:'选项1'},{label:'篮球',value:'选项2'},{label:'乒乓球',value:'选项3'},{label:'棒球',value:'选项4'}]" class="sports"></DropDownMenu>
-                    <el-button type="primary" icon="el-icon-search" style="width:40px;height:27px;margin-left:-45px;"></el-button>
+                    <el-button type="primary" icon="el-icon-search" style="width:40px;height:27px;margin-left:0;background:#036;border:none"></el-button>
                     <span class="more">更多场地>></span>
                 </div>
             </Notice>
@@ -66,6 +66,18 @@
             Notice,
             FigureArea,
             DropDownMenu
+        },
+        data(){
+            return{
+
+            }
+        },
+        mounted(){
+            this.$ajax.get('/news?id=1&pi=0&ps=10').then( response => {
+                console.log(response);
+            }).catch( error => {
+                console.log(error);
+            })
         }
     }
 
@@ -94,6 +106,14 @@
         bottom:$bottom;
         right:$right;
     }
+    #banner-container{
+        margin:10px auto;
+        .el-carousel__item, .is-active, .is-animating{
+            height:200px;
+            width:1448px !important;
+        }
+    }
+
     .left,.right{
         width:49%;
     }
@@ -107,7 +127,7 @@
             .ballActivity{
                 float:left;
                 @include wh-common-style(80px,30px);
-                @include font-common-style(12px,#fff);
+                @include font-common-style(20px,#fff);
                 line-height:30px;
                 @include position-common-style(relative,'','','','');
                 background:green;
@@ -136,7 +156,7 @@
             .notice-content{
                 float:left;
                 @include wh-common-style(80px,30px);
-                @include font-common-style('10px','#000');
+                @include font-common-style(20px,'#000');
                 line-height:30px;
                 position:relative;
                 img{
@@ -180,7 +200,7 @@
             .notice-content{
                 float:left;
                 @include wh-common-style(80px,30px);
-                @include font-common-style(10px);
+                @include font-common-style(20px);
                 line-height:30px;
                 @include position-common-style(relative,'','','','');
                 img{

@@ -25,3 +25,9 @@
 -axios.js
 -main.js
 -App.vue
+
+# 运行接口文档
+```
+npm i docsify-cli -g
+docsify serve docs
+```
