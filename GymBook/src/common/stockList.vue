@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <ul>
-            <li class="card" v-for="(store) in storeList" :key="store.id">   
+            <li class="card" v-for="(store ,index) in storeList" :key="store.id" :class="{active: activeIndex === index}" @click="toggle(index,store.number)">   
                 <div class="week">
                     <span >{{store.weekday}}</span>
                 </div>
                  <div class="stock">
                      <span >剩余{{store.number}}</span>
                 </div>
-                <div class="date">{{store.date}}</div>
+                <div class="date" :class="{activeDate: activeIndex === index}">{{store.date}}</div>
             </li>
         </ul>
 
@@ -31,6 +31,7 @@
 export default {
     data() {
         return {
+            activeIndex: 0,
             storeList: [
                 {
                     id: 1,
@@ -45,14 +46,15 @@ export default {
                     date:'2018-5-2',
                 }
             ],
-            addClass:""
+            addClass:"",
+            changerBoder: 0
         };
     },
     methods:{
-        toggleClass:function(index){
-            this.addClass = index
-            console.log(this.addClass)
-        }
+       toggle(index, number) {
+            this.activeIndex = index;
+            this.$emit('number', number);
+       }
     }
 };
 </script>
@@ -81,7 +83,7 @@ export default {
 }
 
 .card{
-    width: 112px;
+    width: 113px;
     height: 72px;
     text-align: center;
     margin: 0 5px;
@@ -89,10 +91,9 @@ export default {
     border: 1px solid #999;
     list-style:none;
     display: inline-block;
-    cursor: default;
-    .active{
-        border: 1px solid orange;
-    }
+    overflow: hidden;
+    cursor: pointer;
+
     .week{
         color: #818181;
         height: 18px;
@@ -107,14 +108,17 @@ export default {
     .date{
         background-color: #e6e6e6;
         color: #818181;
-        padding: 2px 0;
-        .active{
+        line-height: 20px;
+    }
+    .activeDate{
             background-color: orange;
             color: #fff;
-        }
-    }
-    
-
+        
+}    
 }
+.active{
+        border: 1px solid orange;
+}
+
 
 </style>

@@ -14,15 +14,15 @@
                     </template>
                 </el-table-column>
 
-                <el-table-column align="center" v-for="{ prop, label } in colConfigs" :key="prop" :prop="prop" :label="label" width="120">
+                <el-table-column class="item" align="center" v-for="{ prop, label } in colConfigs" :key="prop" :prop="prop" :label="label" width="120" >
                     <template slot-scope="scope">
-                    <div class="showIsEmpty" :class="{no:  scope.row[label]===0 ?false:true }">
-                       
+                    <div class="showIsEmpty" :class="{no:  scope.row[label]===0 ?false:true }" @click="toggle($event)">
                     </div>
                     </template>
                 </el-table-column>
                 </el-table>
         </el-col>
+
         <el-col :span="5">
             <div class="container">
                 <div class="orderDetails">
@@ -103,10 +103,16 @@
             session:'请选择场次',//场次
             price:'0.00',
             number:0//选择的场次个数
-        }
+        },
+        count: [
+          {
+            money: 0,
+            number: 0,
+          }
+        ]
       }
     },
-    props:['title'],
+    props:['title','number'],
     computed: {
       tableData3: function () {
         return this.ajaxData.map(item => {
@@ -131,25 +137,42 @@
           }
         })
       }
+    },
+    methods: {
+      toggle(event) {
+      var el = event.target;
+      console.log(el)
+      if(!this._hasClass(el, "no")) {
+        return  el.className += " no"
+      }
+      },
+      _hasClass(element, cls) {
+        return (''+element.className + '').indexOf(''+cls+'') > -1
+      }
     }
   }
 </script>
 
 <style scoped>
-
   .showIsEmpty {
     width: 100px;
     height:80px;
-    background: green;
     color: #000;
-    background: url('../assets/images/reservation_true.png') no-repeat center center;
+    background-image: url('../assets/images/reservation_true.png');
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: 80px 50px;
+    cursor: pointer;
   }
 
   .showIsEmpty.no {
-    background: url('../assets/images/reservation_false.png') no-repeat center center;
+    background-image: url('../assets/images/reservation_false.png');
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: 80px 50px;
+    cursor:default;
   }
+
 
     .container {
     font-size: 14px;

@@ -3,15 +3,16 @@ import Router from "vue-router";
 import login from '../components/login.vue';
 import Demo from '../components/Demo.vue';
 import filterBox from '../components/filterBox.vue';
+import BookingHall from '../components/bookingHall.vue';
 
-Vue.use(Router);
 
 
-const BookingHall=resolve=>{
-    require.ensure(['../components/bookingHall.vue'],()=>{
-      resolve(require('../components/bookingHall.vue'));
-    })
-};
+
+// const BookingHall=resolve=>{
+//     require.ensure(['../components/bookingHall.vue'],()=>{
+//       resolve(require('../components/bookingHall.vue'));
+//     })
+// };
 
 import SouthBadminton from '../components/SouthCampus/badminton'
 import SouthTennis from '../components/SouthCampus/tennis'
@@ -20,6 +21,8 @@ import SouthPingpong from '../components/SouthCampus/pingpong'
 import SouthSwimmingPool from '../components/SouthCampus/swimmingpool'
 import Fitness from '../components/SouthCampus/fitness'
 import ManageRule from '../components/manageRule'
+
+Vue.use(Router);
 
 const router = new Router({
     mode: "history",
