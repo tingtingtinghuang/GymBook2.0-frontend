@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <ul>
-            <li class="card" v-for="(store ,index) in storeList" :key="store.id" :class="{active: activeIndex === index}" @click="toggle(index,store.number)">   
+            <li class="card" v-for="(store ,index) in storeList" :key="store.id" :class="{active: activeIndex === index}" @click="toggle(index,store.number)">
                 <div class="week">
                     <span >{{store.weekday}}</span>
                 </div>
@@ -15,14 +15,14 @@
         <div class="box">
             <el-date-picker
                 type="date"
-                class="storeData" 
+                class="storeData"
                 placeholder="库存日历"
                 >
             </el-date-picker>
         </div>
     </div>
-          
-  
+
+
 </template>
 
 
@@ -47,7 +47,7 @@ export default {
                 }
             ],
             addClass:"",
-            changerBoder: 0
+            changerBorder: 0
         };
     },
     methods:{
@@ -61,7 +61,7 @@ export default {
 <style lang="scss" scoped>
 @mixin clearFloat {
     content:"";
-    display:block; 
+    display:block;
     clear:both;
 }
 .container{
@@ -70,10 +70,10 @@ export default {
     overflow:hidden;
     height: 74px;;
     ul{
-       
+
         position: absolute;
         left: 0;
-       
+
     }
     .box{
         position: absolute;
@@ -113,8 +113,8 @@ export default {
     .activeDate{
             background-color: orange;
             color: #fff;
-        
-}    
+
+}
 }
 .active{
         border: 1px solid orange;

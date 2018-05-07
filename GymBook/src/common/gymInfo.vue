@@ -8,7 +8,8 @@
             </dt>
             <dd>{{info}}</dd>
         </dl>
-        <el-button type="default" icon="heart" class="el-icon-start-off" @click="toggleCare">关注</el-button>
+        <el-button type="default" icon="el-icon-star-off" @click="toggleCare" v-if="follow === false">关注</el-button>
+        <el-button type="default" @click="toggleCare" v-if="follow === true">取消关注</el-button>
     </div>
 </template>
 
@@ -17,6 +18,11 @@
 // import {mapGetters, mapMutations, mapActions} from 'vuex'
 
 export default {
+    data(){
+      return{
+         follow : false
+      }
+    },
     // computed: {
     //     mapGetters(['careId'])
     // },
@@ -25,12 +31,8 @@ export default {
        console.log(this.imgSrc)
     },
     methods: {
-        toggleCare(id) {
-            if (this.id === 1) {
-                this.id = 0
-            }else {
-                this.id = 1
-            }
+        toggleCare() {
+          this.follow = !this.follow
         }
     }
 };

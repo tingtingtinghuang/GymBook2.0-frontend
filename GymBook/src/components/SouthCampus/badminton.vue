@@ -7,9 +7,9 @@
                     <Breadcrumb></Breadcrumb>
                 </el-col>
             </el-row>
-            <el-row class="seconed-line">
+            <el-row class="second-line">
                 <el-col :span="24">
-                    <gymInfo :imgSrc='imgSrc' :title='title' :info='info' class="imgBox"/> 
+                    <gymInfo :imgSrc='imgSrc' :title='title' :info='info' class="imgBox"/>
                 </el-col>
             </el-row>
             <el-row class="third-line">
@@ -17,7 +17,7 @@
                     <tabs>
                         <tab name="预定" selected="true">
                             <stockList/>
-                            <el-row class="fourth-line">  
+                            <el-row class="fourth-line">
                                 <sitesTable :title='title'></sitesTable>
                             </el-row>
                         </tab>
@@ -26,9 +26,9 @@
                 </el-col>
             </el-row>
         </div>
-        
+
     </div>
-    
+
 </template>
 
 
@@ -78,7 +78,7 @@ export default {
     line-height: 50px;
     border-bottom: 1px solid #999;
 }
-.seconed-line{
+.second-line{
     height: 150px;
 }
 .fourth-line{
