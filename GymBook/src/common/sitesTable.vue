@@ -41,7 +41,7 @@
                     </li>
                     <li>
                     <span> 日期</span>
-                    <span> {{orderData.date}}</span>
+                    <span> {{date}}</span>
                     </li>
 
                 </ul>
@@ -112,7 +112,7 @@
         ]
       }
     },
-    props:['title','number'],
+    props:['title','number', 'date'],
     computed: {
       tableData3: function () {
         return this.ajaxData.map((item, index) => {

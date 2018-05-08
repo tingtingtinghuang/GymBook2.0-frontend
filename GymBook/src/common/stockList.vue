@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <ul>
-            <li class="card" v-for="(store ,index) in storeList" :key="store.id" :class="{active: activeIndex === index}" @click="toggle(index,store.number)">
+            <li class="card" v-for="(store ,index) in storeList" :key="store.id" :class="{active: activeIndex === index}" @click="toggle(index,store)">
                 <div class="week">
                     <span >{{store.weekday}}</span>
                 </div>
@@ -21,7 +21,6 @@
             </el-date-picker>
         </div>
     </div>
-
 
 </template>
 
@@ -50,10 +49,16 @@ export default {
             changerBorder: 0
         };
     },
+    beforeMount: function() {
+      this.$emit('sessionDateChange', this.getDateString(this.storeList[0]));
+    },
     methods:{
-       toggle(index, number) {
+       toggle(index, store) {
             this.activeIndex = index;
-            this.$emit('number', number);
+            this.$emit('sessionDateChange', this.getDateString(store));
+       },
+       getDateString(store) {
+         return store.date + " " + store.weekday;
        }
     }
 };
@@ -66,18 +71,17 @@ export default {
 }
 .container{
     font-size: 14px;
-    display: relative;
+    position: relative;
     overflow:hidden;
-    height: 74px;;
+    height: 74px;
+    margin-top: 20px;
     ul{
-
-        position: absolute;
-        left: 0;
-
+        margin:0;
+        padding:0;
     }
     .box{
         position: absolute;
-        top:120px;
+        top:20px;
         right:30px;
     }
 }
@@ -114,7 +118,7 @@ export default {
             background-color: orange;
             color: #fff;
 
-}
+    }
 }
 .active{
         border: 1px solid orange;

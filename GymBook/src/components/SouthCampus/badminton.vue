@@ -16,9 +16,9 @@
                 <el-col :span="24">
                     <tabs>
                         <tab name="预定" selected="true">
-                            <stockList/>
+                            <stockList @sessionDateChange="onSessionDateChange"/>
                             <el-row class="fourth-line">
-                                <sitesTable :title='title'></sitesTable>
+                                <sitesTable :title='title' :date='date'></sitesTable>
                             </el-row>
                         </tab>
                         <tab name="场馆介绍" ></tab>
@@ -45,6 +45,7 @@ import Navigation from '../../common/navigation'
 export default {
     data(){
         return{
+            date:'',
             imgSrc: imgSrc,
             title:'南校园英东羽毛球场',
             info:'中山大学英东体育馆羽毛球场位于英东体育馆内，共有8片球场，与排球共用。英东羽毛球场开放时间从8：00至22：00时，非排球训练和体育教学时段均可定场，全天收费。'
@@ -62,6 +63,11 @@ export default {
     },
     mounted:function(){
        console.log(this.imgSrc)
+    },
+    methods: {
+      onSessionDateChange: function(date) {
+       this.date = date;
+      }
     }
 
 }
