@@ -8,8 +8,10 @@
             </dt>
             <dd>{{info}}</dd>
         </dl>
-        <el-button type="default" icon="el-icon-star-off" @click="toggleCare" v-if="follow === false">关注</el-button>
-        <el-button type="default" @click="toggleCare" v-if="follow === true">取消关注</el-button>
+        <el-button class="btn" type="default" @click="toggleCare">
+          <i class="el-icon-star-off" v-if="follow == false"></i>
+          {{follow ? "取消关注": "关注"}}
+        </el-button>
     </div>
 </template>
 
