@@ -2,13 +2,13 @@
     <div>
         <Navigation/>
         <div class="container">
-            
+
             <el-row class="first-line">
                 <el-col :span="24">
                     <Breadcrumb></Breadcrumb>
                 </el-col>
             </el-row>
-           
+
             <el-row class="second-line">
                 <el-col :span="12" class="imgBox">
                     <ImageGallery :images='images' />
@@ -30,7 +30,7 @@
             </el-row>
         </div>
     </div>
-    
+
 </template>
 
 
@@ -43,7 +43,6 @@ import ImageGallery from '../../common/imageGallery'
 import imgSrc1 from "./../../assets/100001.jpg";
 import imgSrc2 from "./../../assets/100002.gif";
 import imgSrc3 from "./../../assets/100003.jpg";
-
 
 export default {
   data() {
@@ -62,7 +61,7 @@ export default {
   },
   computed:{
       images:function(){
-          
+
           return [imgSrc1,imgSrc2,imgSrc3]
       }
   },
@@ -87,9 +86,6 @@ export default {
 }
 .first-line {
   margin-bottom: 20px;
-}
-.first-line {
-  height: 20px;
   border-bottom: 1px solid #ccc;
 }
 .imgBox > img {
