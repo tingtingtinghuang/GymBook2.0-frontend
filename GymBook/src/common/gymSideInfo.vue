@@ -9,15 +9,21 @@
     <el-main class="order">
       <el-row class="date">
         <span class='label'>预定日期：</span>
-       <span class='box'></span>
+       <span v-for="(item, id) in sessions" class='box' :class="{selected:item.isSelected}"
+        @click="dateToggle(item, id)">
+        {{item.date}}
+       </span>
       </el-row>
       <el-row class="sequence">
         <span class='label'>预定场次：</span>
-        <span class='box'></span>
+        <span v-for="(item, id) in sessions[dateId].timeSlot" class='box' :class="{selected:item.isSelected}"
+        @click="sessionToggle(item, id)">
+        {{item.time}}
+       </span>
       </el-row>
       <el-row class="orderMoney">
         <span>价格：</span>
-        <strong>{{money}}</strong>
+        <strong>{{order.money}}</strong>
         <span> 元</span>
       </el-row>
     </el-main>
@@ -51,17 +57,67 @@ export default {
       default: 3.00
     }
   },
+  methods: {
+    dateToggle: function (item, id) {
+      item.isSelected = !item.isSelected;
+      if (item.isSelected) {
+        this.sessions.forEach((session, i) => {
+          if (i === id) {
+            return;
+          }
+          session.isSelected = false;
+          session.timeSlot.forEach((slot) => {
+            if (slot.isSelected)  {
+              this.order.money  -= this.money;
+            }
+            slot.isSelected = false;
+          });
+        });
+        this.dateId = id;
+      }
+    },
+    sessionToggle(item, id) {
+      item.isSelected = !item.isSelected;
+      this.order.money  += this.money * (item.isSelected ? 1 : -1);
+    }
+  },
   data() {
     return {
-      value1: '',
-      value5: [new Date(2016, 9, 10, 8, 0), new Date(2016, 9, 10, 22, 0)]
+      dateId: 0,
+      order: {
+        money: this.money
+      },
+      follow: false,
+      sessions: [
+        {
+          date: "2018-05-08",
+          timeSlot: [
+            {
+              time: "08:00-12:00",
+              isSelected: true
+            }],
+          isSelected: true
+        },
+        {
+          date: "2018-05-09",
+          timeSlot: [
+            {
+              time: "14:00-18:00",
+              isSelected: false
+            },
+            {
+              time: "18:00-20:00",
+              isSelected: false
+            }],
+          isSelected: false
+        }
+      ]
     }
   }
 }
 </script>
 
 <style scoped>
-
 
 .container {
     width:100%;
@@ -87,16 +143,21 @@ export default {
     margin: 10px 16px 10px 30px;
 }
 .box{
+    font-size: 14px;
     display: inline-block;
     color: #1a1a1a;
-    border:1px solid #FF8F00;
-    border-width: 2px;
+    border:1px solid lightgray;
     line-height: 38px;
     height: 38px;
     width:78px;
     padding-left: 19px;
     padding-right: 19px;
+    margin-right: 10px;
 }
+.box.selected {
+  border-color: #FF8F00;
+}
+
 .label{
   color: grey;
     float: left;
