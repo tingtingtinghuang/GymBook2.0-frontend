@@ -10,14 +10,14 @@
       <el-row class="date">
         <span class='label'>预定日期：</span>
        <span v-for="(item, id) in sessions" class='box' :class="{selected:item.isSelected}"
-        @click="dateToggle(item, id)">
+        @click="dateToggle(item, id)" :key="id">
         {{item.date}}
        </span>
       </el-row>
       <el-row class="sequence">
         <span class='label'>预定场次：</span>
         <span v-for="(item, id) in sessions[dateId].timeSlot" class='box' :class="{selected:item.isSelected}"
-        @click="sessionToggle(item, id)">
+        @click="sessionToggle(item)" :key="id">
         {{item.time}}
        </span>
       </el-row>
@@ -29,7 +29,10 @@
     </el-main>
     <el-footer>
       <el-row class="btns">
-        <el-button type="default" icon="el-icon-star-off" class="care">关注</el-button>
+        <el-button class="care" type="default" @click="careToggle">
+          <i :class="follow ? 'el-icon-star-on' : 'el-icon-star-off'"></i>
+          {{follow ? "取消关注": "关注"}}
+        </el-button>
         <el-button type="primary" class="reserve">立即预定</el-button>
       </el-row>
     </el-footer>
@@ -55,9 +58,12 @@ export default {
     money: {
       type: Number,
       default: 3.00
-    }
+    },
   },
   methods: {
+    careToggle: function() {
+      this.follow = !this.follow;
+    },
     dateToggle: function (item, id) {
       item.isSelected = !item.isSelected;
       if (item.isSelected) {
@@ -76,7 +82,7 @@ export default {
         this.dateId = id;
       }
     },
-    sessionToggle(item, id) {
+    sessionToggle(item) {
       item.isSelected = !item.isSelected;
       this.order.money  += this.money * (item.isSelected ? 1 : -1);
     }
