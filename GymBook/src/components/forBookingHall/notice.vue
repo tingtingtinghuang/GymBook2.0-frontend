@@ -6,8 +6,7 @@
                 <li v-for="(item, index) in noticeArr" :key="index">
                     <i class="el-icon-arrow-right"> </i>
                     <span class="title">{{ item.title }}</span>
-                    <span class="date">{{ item.date }}</span>
-                    <slot name="reserve"> </slot>
+                    <span class="date">{{ item.createdAt }}</span>
                 </li>
             </ul>
         </div>
@@ -16,23 +15,12 @@
 <script>
     export default{
         components:{
-        },
-        props:{
 
         },
+        props:['noticeArr'],
         data(){
             return{
-                // 获取到后台数据后将内容换掉
-                noticeArr:[
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'}
-                ]
+        
             }
         }
     }
@@ -58,9 +46,6 @@
                 border-bottom: dashed 1px #ccc;
                 text-align: left;
                 color:#069;
-                .title {
-
-                }
                 .date {
                     float: right;
                 }

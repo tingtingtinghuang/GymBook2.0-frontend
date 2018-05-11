@@ -3,7 +3,7 @@
         <Navigation> </Navigation>
         <Banner> </Banner>
         <div class="left">
-           <Notice style="border:none">
+           <Notice style="border:none" :noticeArr='newsListOne'>
                <div slot="head" class="notice-head-up">
                    <span class="ballActivity"><span>
                        <img src="../assets/bookingHall/clock.svg" alt="#">
@@ -17,7 +17,7 @@
             <FigureArea  placeName="东校区">
                 <img src="../assets/bookingHall/100003.jpg" alt="#" slot="imgContainer">
             </FigureArea>
-            <Notice style="border-radius:5px;">
+            <Notice style="border-radius:5px;" :noticeArr='newsListTwo'>
                 <div slot="head" class="notice-head-down">
                     <span class="notice-content">
                         <span>
@@ -29,14 +29,14 @@
             </Notice>
         </div>
         <div class="right">
-            <Notice>
+            <Notice :noticeArr='newsListThree'>
                 <div slot="head" class="notice-head-up">
                     <DropDownMenu title="选择场馆" :options="[{label:'东校区',value:'选项1'},{label:'南校区',value:'选项2'},{label:'北校区',value:'选项13'}]" class="fieldChoose"></DropDownMenu>
                     <DropDownMenu title="运动类型" :options="[{label:'羽毛球',value:'选项1'},{label:'篮球',value:'选项2'},{label:'乒乓球',value:'选项3'},{label:'棒球',value:'选项4'}]" class="sports"></DropDownMenu>
                     <el-button type="primary" icon="el-icon-search" style="width:40px;height:27px;margin-left:0;background:#036;border:none"></el-button>
                     <span class="more">更多场地>></span>
                 </div>
-                <div style="display:inline-block" class="bread"><span class="reserve" @click="reserve()">预</span></div>
+                <!-- <div style="display:inline-block" class="bread"><span class="reserve">预</span></div> -->
             </Notice>
             <FigureArea placeName="北校区" style="margin-top:-2px;">
                 <img src="../assets/bookingHall/100002.gif" alt="#" slot="imgContainer">
@@ -44,7 +44,7 @@
             <FigureArea  placeName="珠海区">
                 <img src="../assets/bookingHall/100004.jpg" alt="#" slot="imgContainer">
             </FigureArea>
-            <Notice style="border-radius:5px;">
+            <Notice style="border-radius:5px;" :noticeArr='newsListFour'>
                 <div slot="head" class="notice-head-down">
                     <span class="notice-content"><span>
                         <img src="../assets/bookingHall/trumpet.svg" alt="#">
@@ -70,20 +70,24 @@
         },
         data(){
             return{
-
+                newsListOne:[],
+                newsListTwo:[],
+                newsListThree:[],
+                newsListFour:[],
             }
         },
         mounted(){
-            this.$ajax.get('/news?id=1&pi=0&ps=10').then( response => {
-                console.log(response);
+            this.$ajax.get('http://127.0.0.1:2618/newsList/home/two').then( response => {
+                this.newsListTwo = response.data.data.list;
+                console.log(this.newsListTwo)
             }).catch( error => {
                 console.log(error);
             })
         },
         methods:{
-            reserve(){
-                window.location.href = '/filterBox'
-            }
+            // reserve(){
+            //     window.location.href = '/filterBox'
+            // }
         }
     }
 
@@ -178,19 +182,19 @@
         margin-right:10px;
         .bread{
             margin-left:33%;
-            .reserve{
-                float:right;
-                margin-right:20px;
-                text-align:center;
-                width:30px;
-                height:20px;
-                border-radius:6px;
-                color:#fff;
-                background:rgb(0, 51, 102);
-            }
-            .reserve:hover{
-                cursor:pointer;
-            }
+            // .reserve{
+            //     float:right;
+            //     margin-right:20px;
+            //     text-align:center;
+            //     width:30px;
+            //     height:20px;
+            //     border-radius:6px;
+            //     color:#fff;
+            //     background:rgb(0, 51, 102);
+            //     &:hover{
+            //         cursor:pointer;
+            //     }
+            // }  
         }
 
         .notice-head-up{
@@ -210,10 +214,11 @@
                 float:right;
                 @include font-common-style('', #069);
                 text-align:right;
+                &:hover{
+                    cursor:pointer;
             }
-            .more:hover{
-                cursor:pointer;
             }
+           
         }
         .notice-head-down{
             margin:1px auto;
