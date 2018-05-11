@@ -7,6 +7,7 @@
                     <i class="el-icon-arrow-right"> </i>
                     <span class="title">{{ item.title }}</span>
                     <span class="date">{{ item.date }}</span>
+                    <slot> </slot>
                 </li>
             </ul>
         </div>
@@ -16,9 +17,7 @@
     export default{
         components:{
         },
-        props:{
-
-        },
+        props:['reserve'],
         data(){
             return{
                 // 获取到后台数据后将内容换掉
@@ -33,6 +32,9 @@
             }
         },
         mounted(){
+
+        },
+        methods:{
 
         }
     }
@@ -64,6 +66,7 @@
                 .date {
                     float: right;
                 }
+
             }
             ul li:hover {
                 background: #ccc;

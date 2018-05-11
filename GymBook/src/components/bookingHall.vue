@@ -36,6 +36,7 @@
                     <el-button type="primary" icon="el-icon-search" style="width:40px;height:27px;margin-left:0;background:#036;border:none"></el-button>
                     <span class="more">更多场地>></span>
                 </div>
+                <div style="display:inline-block" class="bread"><span class="reserve" @click="reserve()">预</span></div>
             </Notice>
             <FigureArea placeName="北校区" style="margin-top:-2px;">
                 <img src="../assets/bookingHall/100002.gif" alt="#" slot="imgContainer">
@@ -78,6 +79,11 @@
             }).catch( error => {
                 console.log(error);
             })
+        },
+        methods:{
+            reserve(){
+                window.location.href = '/filterBox'
+            }
         }
     }
 
@@ -170,6 +176,23 @@
     .right{
         float:right;
         margin-right:10px;
+        .bread{
+            margin-left:33%;
+            .reserve{
+                float:right;
+                margin-right:20px;
+                text-align:center;
+                width:30px;
+                height:20px;
+                border-radius:6px;
+                color:#fff;
+                background:rgb(0, 51, 102);
+            }
+            .reserve:hover{
+                cursor:pointer;
+            }
+        }
+
         .notice-head-up{
             margin:1px auto;
             height:30px;

@@ -14,8 +14,8 @@
                     <li @click = 'showRule()' :class="{li_active:!bg}">管理制度</li>
                 </ul>
             </nav>
-                <div class="right" v-show='!show'>
-                    <input type="text" class="searchName" placeholder="输入标题关键字..." v-model="inputContent"> <button class="search" @click="search()">搜索</button>
+                <div class="right">
+                       <input type="text" class="searchName" placeholder="输入标题关键字..." v-model="inputContent"> <button class="search" @click="search()">搜索</button>
                     <table class="content">
                         <tr>
                             <th>标题</th>
@@ -31,12 +31,6 @@
                     <!--分页器组件-->
                     <Pagination> </Pagination>
                 </div>
-                <!-- 这各页面用来渲染新闻（制度的）详细内容 -->
-                 <div class="right newsDetail" v-show='show'>
-                     <h2 v-html = title class='newsTitle'> </h2>
-                     <i v-html = date class='date'> </i>
-                     <p v-html = content class='newsContent'> </p>
-                 </div>
         </div>
     </div>
 </template>
@@ -56,10 +50,6 @@
                 bg:false,
                 countArr:[],
                 inputContent:'',
-                show:false,
-                title:'',
-                content:'',
-                date:'',
             }
         },
         props:[],
@@ -77,19 +67,22 @@
             },
             // 关键字搜索
             search(){
-               
+                if(this.inputContent !==''&&this.inputContent !==' '){
+                    this.$ajax.get('',{}).then( res => {
+                        this.tableData = res.data.data.list;
+                    }).catch( err =>{
+                        console.log(err);
+                    })
+                } else {
+                        this.showNotice()
+                    }
 
             },
             newsDetail(item, index){
-            // 不进入新页面。
-                this.title = item.title;
-                this.date = item.createdAt;
-                this.content = item.description;
-                this.show = true;
+            // 不进入新页面。只是将右部分作为新闻详情展示
                 
             },
             showNotice(){
-                this.show = false;
                 this.bg = true;
                 this.$ajax.get('http://127.0.0.1:2618/newsList/notice',{}).then( res => {
                     this.tableData = res.data.data.list;
@@ -98,7 +91,6 @@
                 })
             },
             showRule(){
-                 this.show = false;
                 this.bg = false;
                 this.init();
             }
@@ -172,18 +164,6 @@
                 box-shadow:0 0 5px #ccc;
                 padding:45px 15px 15px 28px;
                 margin-bottom:40px;
-                // 新闻内容样式
-                .newsTitle{
-                    margin:0 auto;
-                    padding-bottom:30px;
-                }
-                .date{
-                    display:block;
-                    margin-bottom:15px;
-                }
-                .newsContent{
-                    text-align:left;
-                }
                 input.search-input{
                     @include wh-common-style(250px,22px);
                     border:1px solid #ccc;
@@ -235,23 +215,8 @@
                         background:#699;
                     }
                 }
-                /*分页器样式*/
-                .el-pagination, .el-pagination--small{
-                    margin:10px 0px 10px 0;
-                    @include wh-common-style(95.5%,27px);
-                    border:1px solid #ccc;
-                    .el-pagination__total{
-                        float:right;
-                    }
-                    .el-input--suffix{
-                        width:100px;
-                    }
-                    .el-input__inner:last-child{
-                        width:50px !important;
-                    }
-                }
+            
             }
-
     }
 
 </style>

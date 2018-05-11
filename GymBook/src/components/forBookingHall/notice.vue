@@ -7,6 +7,7 @@
                     <i class="el-icon-arrow-right"> </i>
                     <span class="title">{{ item.title }}</span>
                     <span class="date">{{ item.date }}</span>
+                    <slot name="reserve"> </slot>
                 </li>
             </ul>
         </div>
