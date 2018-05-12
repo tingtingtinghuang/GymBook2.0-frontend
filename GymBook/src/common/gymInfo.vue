@@ -30,7 +30,7 @@ export default {
     // },
     props:  ['gymId','imgSrc', 'title', 'info','like'],
     mounted:function(){
-       console.log(this.imgSrc)
+       this.focusState();
     },
     methods: {
       focusState () {
@@ -49,9 +49,6 @@ export default {
         console.log(this.$store.getters.getUserLike.like)
       }
     },
-    mounted:function(){
-       this.focusState();
-    }
 };
 </script>
 
