@@ -20,6 +20,7 @@ import SouthPingpong from '../components/SouthCampus/pingpong'
 import SouthSwimmingPool from '../components/SouthCampus/swimmingpool'
 import Fitness from '../components/SouthCampus/fitness'
 
+import test from '../common/forBookCenter/filterBox'
 const router = new Router({
     mode: "history",
     routes: [
@@ -56,7 +57,10 @@ const router = new Router({
             path:'/filterBox',component:filterBox
         },
         { path: '/login', component: login },
-        { path: '/demo', component: Demo }
+        { path: '/demo', component: Demo },
+        {
+            path:'/test',component:test
+        }
       
 
     ]
