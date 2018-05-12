@@ -21,13 +21,11 @@ const state = {
     // "ref_sport": 1,
   }
 };
-
 const mutations = {
   [types.GYM_DETAIL](state, data) {
     state.gymDetail = data;
   }
 }
-
 export default {
   state,
   mutations

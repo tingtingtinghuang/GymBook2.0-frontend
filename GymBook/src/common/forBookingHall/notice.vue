@@ -2,17 +2,19 @@
     <div id="notice-container">
         <slot name="head" class="head"> </slot>
         <div class="body">
-            <ul :class="{blackStyle:'colorStyle'}">
-                <li v-for="(item, index) in noticeArr" :key="index">
+            <ul>
+                <li v-for="(item, index) in noticeArr" :key="index" @click="home_newsDetail(item,index)">
                     <i class="el-icon-arrow-right"> </i>
-                    <span class="title">{{ item.title }}</span>
+                    <!--场馆列表该字段是content,其他列表为title-->
+                    <span class="title">{{ item.content || item.title }}</span>
                     <div class="useTime" v-show="usetime">
-                        <span class="start">{{ item.start }}</span>
+                        <span class="start">{{ item.startTime }}</span>
                         <span>---></span>
-                        <span class="end">{{ item.end }}</span>
+                        <span class="end">{{ item.endTime }}</span>
                     </div>
+                    <span class="reserve" v-show="reserve" @click = 'fieldReserve(item)'>预</span>
+                    <span class="rest" v-show="rest">剩余{{item.remainingTime}}</span>
                     <span class="date" v-show="date">{{ item.createdAt }}</span>
-                    <slot> </slot>
                 </li>
             </ul>
         </div>
@@ -24,15 +26,17 @@
         },
 // 要是显示的场馆信息，则不显示日期
         props:{
-            reserve:'',
-            noticeArr:'',
+            noticeArr:"",
             date:{
                 default:true
             },
             usetime:{
                 default:false
             },
-            colorStyle:{
+            reserve:{
+                default:false
+            },
+            rest:{
                 default:false
             }
         },
@@ -45,7 +49,12 @@
 
         },
         methods:{
+            home_newsDetail(){
 
+            },
+            fieldReserve(item,index){
+                window.location.href = `/${item.id}`
+            }
         }
     }
 
@@ -91,6 +100,26 @@
                     }
                     .date {
                         float: right;
+                    }
+                    .useTime{
+                        margin-right:10px;
+                    }
+                    .reserve{
+                        display:inline-block;
+                        margin-right:20px;
+                        text-align:center;
+                        width:30px;
+                        height:20px;
+                        border-radius:6px;
+                        color:#fff;
+                        background:rgb(0, 51, 102);
+                         &:hover{
+                               cursor:pointer;
+                         }
+                     }
+                    .rest{
+                        float:right;
+                        color:#f93;
                     }
                 }
             }

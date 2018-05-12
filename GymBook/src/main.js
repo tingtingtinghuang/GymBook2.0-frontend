@@ -9,9 +9,7 @@ import axios from 'axios'
 import styles from './assets/styles/index.scss'
 Vue.prototype.$ajax = axios;
 Vue.use(ElementUI);
-
 Vue.config.productionTip = false;
-
 
 new Vue({
   router,
