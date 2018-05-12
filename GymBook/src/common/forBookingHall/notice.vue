@@ -1,12 +1,17 @@
 <template>
     <div id="notice-container">
-        <slot name="head"> </slot>
+        <slot name="head" class="head"> </slot>
         <div class="body">
-            <ul>
+            <ul :class="{blackStyle:'colorStyle'}">
                 <li v-for="(item, index) in noticeArr" :key="index">
                     <i class="el-icon-arrow-right"> </i>
                     <span class="title">{{ item.title }}</span>
-                    <span class="date">{{ item.date }}</span>
+                    <div class="useTime" v-show="usetime">
+                        <span class="start">{{ item.start }}</span>
+                        <span>---></span>
+                        <span class="end">{{ item.end }}</span>
+                    </div>
+                    <span class="date" v-show="date">{{ item.createdAt }}</span>
                     <slot> </slot>
                 </li>
             </ul>
@@ -17,18 +22,23 @@
     export default{
         components:{
         },
-        props:['reserve'],
+// 要是显示的场馆信息，则不显示日期
+        props:{
+            reserve:'',
+            noticeArr:'',
+            date:{
+                default:true
+            },
+            usetime:{
+                default:false
+            },
+            colorStyle:{
+                default:false
+            }
+        },
         data(){
             return{
-                // 获取到后台数据后将内容换掉
-                noticeArr:[
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                    {title:"《中山大学体育激励项目载解读》",date:'2018-3-25'},
-                ]
+
             }
         },
         mounted(){
@@ -46,31 +56,43 @@
         margin:5px auto 15px auto;
         height:240px;
         border:solid 1px #ccc;
-        overflow-y: auto;
         .body {
             ul {
-                margin: 0px auto;
+                margin: 0 auto;
+                width:97%;
+                height:200px;
                 padding:2px 10px;
-            }
-            ul li {
-                margin: 1px auto;
-                font-size: 13px;
-                padding: 4px;
-                list-style: none;
-                border-bottom: dashed 1px #ccc;
-                text-align: left;
-                color:#069;
-                .title {
-
+                overflow-y: auto;
+                .blackStyle{
+                    color:#000 !important;
                 }
-                .date {
-                    float: right;
+                li{
+                    margin: 1px auto;
+                    font-size: 14px;
+                    padding: 4px;
+                    list-style: none;
+                    border-bottom: dashed 1px #ccc;
+                    text-align: left;
+                    color:#069;
+                    &:hover {
+                        background: #ccc;
+                        color:#000;
+                        cursor: pointer;
+                    }
+                    .useTime{
+                        display:inline-block;
+                    }
+                    span.title{
+                        display:inline-block;
+                        width:55%;
+                        white-space:nowrap;
+                        overflow:hidden;
+                        text-overflow:ellipsis;
+                    }
+                    .date {
+                        float: right;
+                    }
                 }
-
-            }
-            ul li:hover {
-                background: #ccc;
-                cursor: pointer;
             }
         }
     }

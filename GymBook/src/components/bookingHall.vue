@@ -29,7 +29,7 @@
             </Notice>
         </div>
         <div class="right">
-            <Notice :noticeArr='newsListThree'>
+            <Notice :noticeArr='newsListThree' :date = 'dateControl' :usetime="usetimeControl" :colorStyle="colorControl">
                 <div slot="head" class="notice-head-up">
                     <DropDownMenu title="选择场馆" :options="[{label:'东校区',value:'选项1'},{label:'南校区',value:'选项2'},{label:'北校区',value:'选项13'}]" class="fieldChoose"></DropDownMenu>
                     <DropDownMenu title="运动类型" :options="[{label:'羽毛球',value:'选项1'},{label:'篮球',value:'选项2'},{label:'乒乓球',value:'选项3'},{label:'棒球',value:'选项4'}]" class="sports"></DropDownMenu>
@@ -74,20 +74,36 @@
                 newsListTwo:[],
                 newsListThree:[],
                 newsListFour:[],
+                dateControl:true,
+                usetimeControl:false,
+                colorControl:false
             }
         },
         mounted(){
             this.$ajax.get('http://127.0.0.1:2618/newsList/home/two').then( response => {
                 this.newsListTwo = response.data.data.list;
-                console.log(this.newsListTwo)
+            }).catch( error => {
+                console.log(error);
+            });
+            this.$ajax.get('http://127.0.0.1:2618/newsList/home/four').then( response => {
+                this.newsListFour = response.data.data.list;
+            }).catch( error => {
+                console.log(error);
+            });
+            this.$ajax.get('http://127.0.0.1:2618/newsList/home/three').then( response => {
+                this.newsListThree = response.data.data.list;
+                // 模块3不显示日期, 显示可使用的起始时间
+                this.dateControl = false;
+                this.usetimeControl = true;
+                this.colorControl = true;
             }).catch( error => {
                 console.log(error);
             })
         },
         methods:{
-            // reserve(){
-            //     window.location.href = '/filterBox'
-            // }
+//             reserve(){
+//                 window.location.href = '/filterBox'
+//             }
         }
     }
 

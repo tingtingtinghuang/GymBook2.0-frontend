@@ -80,7 +80,7 @@
                
 
             },
-            newsDetail(item, index){
+            newsDetail(item){
             // 不进入新页面。
                 this.title = item.title;
                 this.date = item.createdAt;

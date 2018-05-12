@@ -17,11 +17,14 @@
         components:{
 
         },
-        props:['noticeArr'],
+        // props:['noticeArr'],
         data(){
             return{
-        
+                noticeArr:[]
             }
+        },
+        mounted(){
+            this.noticeArr = []
         }
     }
 
