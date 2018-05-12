@@ -46,10 +46,11 @@
     export default{
         components:{
             Navigation,
-            Pagination
+            Pagination,
         },
         data(){
             return{
+                showControl:'false',
                 tableData:[],
                 noticeData:[],
                 ruleData:[],
@@ -194,6 +195,7 @@
                 button.search{
                     @include wh-common-style(50px,22px);
                     color:#fff;
+                    text-align:center;
                     border-radius:5px;
                     background:#f60;
                     margin-left:10px;

@@ -29,14 +29,13 @@
             </Notice>
         </div>
         <div class="right">
-            <Notice :noticeArr='newsListThree' :date = 'dateControl' :usetime="usetimeControl" :colorStyle="colorControl">
+            <Notice :noticeArr='newsListThree' :date = 'dateControl' :usetime="usetimeControl" :reserve="reserveControl" :rest="restControl">
                 <div slot="head" class="notice-head-up">
                     <DropDownMenu title="选择场馆" :options="[{label:'东校区',value:'选项1'},{label:'南校区',value:'选项2'},{label:'北校区',value:'选项13'}]" class="fieldChoose"></DropDownMenu>
                     <DropDownMenu title="运动类型" :options="[{label:'羽毛球',value:'选项1'},{label:'篮球',value:'选项2'},{label:'乒乓球',value:'选项3'},{label:'棒球',value:'选项4'}]" class="sports"></DropDownMenu>
                     <el-button type="primary" icon="el-icon-search" style="width:40px;height:27px;margin-left:0;background:#036;border:none"></el-button>
                     <span class="more">更多场地>></span>
                 </div>
-                <!-- <div style="display:inline-block" class="bread"><span class="reserve">预</span></div> -->
             </Notice>
             <FigureArea placeName="北校区" style="margin-top:-2px;">
                 <img src="../assets/bookingHall/100002.gif" alt="#" slot="imgContainer">
@@ -76,7 +75,8 @@
                 newsListFour:[],
                 dateControl:true,
                 usetimeControl:false,
-                colorControl:false
+                reserveControl:false,
+                restControl:false
             }
         },
         mounted(){
@@ -92,10 +92,11 @@
             });
             this.$ajax.get('http://127.0.0.1:2618/newsList/home/three').then( response => {
                 this.newsListThree = response.data.data.list;
-                // 模块3不显示日期, 显示可使用的起始时间
+                // 模块3不显示日期, 显示可预定时间段、预定按钮和剩余数量
                 this.dateControl = false;
                 this.usetimeControl = true;
-                this.colorControl = true;
+                this.reserveControl = true;
+                this.restControl = true;
             }).catch( error => {
                 console.log(error);
             })
@@ -198,19 +199,6 @@
         margin-right:10px;
         .bread{
             margin-left:33%;
-            // .reserve{
-            //     float:right;
-            //     margin-right:20px;
-            //     text-align:center;
-            //     width:30px;
-            //     height:20px;
-            //     border-radius:6px;
-            //     color:#fff;
-            //     background:rgb(0, 51, 102);
-            //     &:hover{
-            //         cursor:pointer;
-            //     }
-            // }  
         }
 
         .notice-head-up{
