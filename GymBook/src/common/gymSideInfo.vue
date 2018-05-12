@@ -29,9 +29,9 @@
     </el-main>
     <el-footer>
       <el-row class="btns">
-        <el-button class="care" type="default" @click="careToggle">
-          <i :class="follow ? 'el-icon-star-on' : 'el-icon-star-off'"></i>
-          {{follow ? "取消关注": "关注"}}
+        <el-button class="care" type="default" @click="focusChange()">
+          <i :class="focusFlag ? 'el-icon-star-on' : 'el-icon-star-off'"></i>
+          {{focusFlag ? "取消关注": "关注"}}
         </el-button>
         <el-button type="primary" class="reserve">立即预定</el-button>
       </el-row>
@@ -59,10 +59,28 @@ export default {
       type: Number,
       default: 3.00
     },
+    gymId: {
+      type: Number
+    },
+    like:{
+      type:Array
+    }
   },
   methods: {
-    careToggle: function() {
-      this.follow = !this.follow;
+    focusState () {
+      this.like.includes(this.gymId)?this.focusFlag=true:this.focusFlag=false;
+    },
+    focusChange () {
+      if(this.focusFlag){
+        let i = this.like.indexOf(this.gymId)
+        this.like.splice(i,1)
+        this.focusFlag = false
+      }else{
+        this.like.push(this.gymId)
+        this.focusFlag = true
+      }
+      this.$store.dispatch('changeUserLike',this.like)//修改用户的关注信息
+      console.log(this.$store.getters.getUserLike.like)
     },
     dateToggle: function (item, id) {
       item.isSelected = !item.isSelected;
@@ -93,7 +111,7 @@ export default {
       order: {
         money: this.money
       },
-      follow: false,
+      focusFlag:false,
       sessions: [
         {
           date: "2018-05-08",
@@ -119,6 +137,9 @@ export default {
         }
       ]
     }
+  },
+  mounted:function(){
+   this.focusState();
   }
 }
 </script>

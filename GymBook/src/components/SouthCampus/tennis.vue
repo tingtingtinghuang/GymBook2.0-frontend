@@ -9,7 +9,7 @@
             </el-row>
             <el-row class="seconed-line">
                 <el-col :span="24">
-                    <gymInfo :imgSrc='imgSrc' :title='title' :info='info' class="imgBox" />
+                     <gymInfo :like='like' :gymId='gymId' :imgSrc='imgSrc' :title='title' :info='info'  class="imgBox"/> 
                 </el-col>
             </el-row>
             <el-row class="third-line">
@@ -49,6 +49,8 @@ export default {
       title: '南校园一号网球场',
       info:
         '一号网球场共有4片场地，开放时间是：8：30-22：30，平常收费时段是：周一至周五18：30至22：30，周六、周日、节假日及寒暑假全天收费',
+      gymId:2,
+      like:this.$store.getters.getUserLike.like//取得该用户的关注信息
     
     }
    

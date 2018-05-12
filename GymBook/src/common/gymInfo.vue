@@ -8,9 +8,9 @@
             </dt>
             <dd>{{info}}</dd>
         </dl>
-        <el-button class="btn" type="default" @click="toggleCare">
-          <i class="el-icon-star-off" v-if="follow == false"></i>
-          {{follow ? "取消关注": "关注"}}
+        <el-button class="btn" type="default" @click="focusChange()">
+          <i class="el-icon-star-off" v-if="focusFlag == false"></i>
+          {{focusFlag ? "取消关注": "关注"}}
         </el-button>
     </div>
 </template>
@@ -22,20 +22,35 @@
 export default {
     data(){
       return{
-         follow : false
+         focusFlag : false
       }
     },
     // computed: {
     //     mapGetters(['careId'])
     // },
-    props: ['imgSrc', 'title', 'info'],
+    props:  ['gymId','imgSrc', 'title', 'info','like'],
     mounted:function(){
        console.log(this.imgSrc)
     },
     methods: {
-        toggleCare() {
-          this.follow = !this.follow
+      focusState () {
+        this.like.includes(this.gymId)?this.focusFlag=true:this.focusFlag=false;
+      },
+      focusChange () {
+        if(this.focusFlag){
+            let i = this.like.indexOf(this.gymId)
+            this.like.splice(i,1)
+            this.focusFlag = false
+        }else{
+            this.like.push(this.gymId)
+            this.focusFlag = true
         }
+        this.$store.dispatch('changeUserLike',this.like)//修改用户的关注信息
+        console.log(this.$store.getters.getUserLike.like)
+      }
+    },
+    mounted:function(){
+       this.focusState();
     }
 };
 </script>

@@ -19,16 +19,33 @@ const state = {
     "ref_type": 1,
     "ref_area": 1,
     "ref_sport": 1,
+  },
+  userLike: {
+    "userId":1,
+    "like":[5,6,7,8]
   }
 };
+
+const getters = {
+  getUserLike (state) {
+    return state.userLike
+  }
+}
 
 const mutations = {
   [types.GYM_DETAIL](state, data) {
     state.gymDetail = data;
+  },
+  [types.GET_USERLIKE](state, data) {
+    state.userLike = data;
+  },
+  [types.CHANGE_USERLIKE](state,data) {
+    state.userLike.like = data
   }
 }
 
 export default {
   state,
+  getters,
   mutations
 }

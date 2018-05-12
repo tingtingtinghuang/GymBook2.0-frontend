@@ -9,7 +9,7 @@
             </el-row>
             <el-row class="second-line">
                 <el-col :span="24">
-                    <gymInfo :imgSrc='imgSrc' :title='title' :info='info' class="imgBox"/>
+                    <gymInfo :like='like' :gymId='gymId' :imgSrc='imgSrc' :title='title' :info='info'  class="imgBox"/> 
                 </el-col>
             </el-row>
             <el-row class="third-line">
@@ -48,7 +48,9 @@ export default {
             date:'',
             imgSrc: imgSrc,
             title:'南校园英东羽毛球场',
-            info:'中山大学英东体育馆羽毛球场位于英东体育馆内，共有8片球场，与排球共用。英东羽毛球场开放时间从8：00至22：00时，非排球训练和体育教学时段均可定场，全天收费。'
+            info:'中山大学英东体育馆羽毛球场位于英东体育馆内，共有8片球场，与排球共用。英东羽毛球场开放时间从8：00至22：00时，非排球训练和体育教学时段均可定场，全天收费。',
+            gymId:3,
+            like:this.$store.getters.getUserLike.like//取得该用户的关注信息
         }
     },
     components:{
