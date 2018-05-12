@@ -6,92 +6,122 @@
                     <el-input v-model="searchInput" placeholder="请输入内容"></el-input>
                 </el-col>
                 <el-col :span="2">
-                    <el-button class='btn'>默认按钮</el-button>
+                    <el-button class='btn' @click='filter'>默认按钮</el-button>
                 </el-col>
                 
             </el-row>
             <el-row class='row'>
-            <el-col :span="2" class='col-5'>预定类型</el-col>
-            <el-col :span="1" class='col-5'>全部</el-col>
-            <el-col :span="1" class='col-5'>场地</el-col>
+                <el-col :span="2" class='col-5'>预定类型</el-col>
+                <el-col :span="1" :class="{'active': activeIndex1===0,'col-5':true}" ><span @click='activeIndex1=0'>全部</span></el-col>
+                <el-col :span="1" :class="{'active': activeIndex1===1,'col-5':true}" ><span @click='activeIndex1=1'>场地</span></el-col>
             </el-row>
             <el-row class='row' >
-            <el-col :span="2" class='col-5'>所属校区</el-col>
-            <el-col :span="1" class='col-5'>全部</el-col>
-            <el-col :span="1" class='col-5'>南校区</el-col>
-            <el-col :span="1" class='col-5'>北校区</el-col>
-            <el-col :span="1" class='col-5'>东校区</el-col>
-            <el-col :span="1" class='col-5'>珠海校区</el-col>
+                <el-col :span="2" class='col-5'>所属校区</el-col>
+                <el-col :span="1" :class="{'active': activeIndex2===0,'col-5':true}"><span @click='changeActive(0)'>全部</span></el-col>
+                <el-col :span="1" :class="{'active': activeIndex2===1,'col-5':true}" ><span @click='changeActive(1)'>南校区</span></el-col>
+                <el-col :span="1" :class="{'active': activeIndex2===2,'col-5':true}" ><span @click='changeActive(2)'>北校区</span></el-col>
+                <el-col :span="1" :class="{'active': activeIndex2===3,'col-5':true}" ><span @click='changeActive(3)'>东校区</span></el-col>
+                <el-col :span="1" :class="{'active': activeIndex2===4,'col-5':true}" ><span @click='changeActive(4)'>珠海校区</span></el-col>
             </el-row>
         </div>
-        <Collect :gymList="gymList"/>
+        <Collect :gymList="currentGymList" :directionArray='directionArray'/>
     </div>
    
 </template>
 <script>
 import Collect from './collect';
+import { mapActions, mapState } from 'vuex';
+
     export default {
        
         data() {
             return {
                 searchInput:'',
-                
-                gymList:{
-                    "B": [
-                        {
-                            "id": 1,
-                            "title": "波动球馆",
-                            "description": "111",
-                            "html": "11",
-                            "addr": "11",
-                            "rank": 11,
-                            "time_type": 11,
-                            "status": 11,
-                            "logo": "11",
-                            "price": "11",
-                            "limit_num": 11,
-                            "buy_limit_num": 11,
-                            "open_time": "11",
-                            "limit_time": "11",
-                            "ref_type": 1,
-                            "ref_area": 1,
-                            "ref_sport": 1,
-                            "createdAt": "2018-04-17T21:09:52.000Z",
-                            "updatedAt": "2018-05-24T21:09:56.000Z"
-                        }
-                    ],
-                    "Y": [
-                        {
-                            "id": 2,
-                            "title": "羽毛球馆",
-                            "description": "谈恋爱的好地方",
-                            "html": "12",
-                            "addr": "12",
-                            "rank": 12,
-                            "time_type": 0,
-                            "status": 12,
-                            "logo": "12",
-                            "price": "12",
-                            "limit_num": 12,
-                            "buy_limit_num": 12,
-                            "open_time": "12",
-                            "limit_time": "12",
-                            "ref_type": 1,
-                            "ref_area": 1,
-                            "ref_sport": 1,
-                            "createdAt": "2018-04-26T21:12:15.000Z",
-                            "updatedAt": "2018-04-26T21:12:18.000Z"
-                        }
-                    ]
-                }
+                activeIndex1:0,
+                activeIndex2:0,
+                currentGymList:{}
+               
             }
         },
-        methods: {
-            
+        mounted:function() {
+            console.log(this.currentGymList);
         },
         components:{
             Collect
+        },
+        computed: {
+            ...mapState({
+                // 注意这里的demo和模块名相对应
+                gymList: ({
+                  bookCenter
+                }) => bookCenter.gymList
+            }),
+            directionArray:function(){
+                let arr=[];
+                for(let key in this.gymList){
+                    arr.push(key);
+                }
+                return arr;
+            }
+        },
+        beforeMount() {
+            this.getGymList().then(() => {
+                this.currentGymList=JSON.parse(JSON.stringify(this.gymList));
+            })
+        },
+        methods: {
+            ...mapActions([
+                'getGymList'
+            ]),
+            changeActive:function(index){
+                this.activeIndex2=index;
+                switch(index){
+                    case 1:
+                        this.currentGymList={S:this.gymList.S};
+                        break;
+                    case 2:
+                        this.currentGymList={B:this.gymList.B};
+                        break;
+                   
+                    case 3:
+                        this.currentGymList={E:this.gymList.E};
+                        break;
+                   
+                    case 4:
+                        this.currentGymList={Z:this.gymList.Z};
+                        break;
+                    
+                    default:
+                        this.currentGymList=this.gymList;
+                    break;
+                } 
+            },
+            filter:function(){
+                if(this.searchInput.length===0){
+                    this.currentGymList=this.gymList;
+                    return ;
+                } 
+                let res={};
+                for(let area in this.currentGymList){
+                    
+                    let isEmpty=true;
+                    for(let gym of this.currentGymList[area]){
+                        
+                        if(gym.title.indexOf(this.searchInput)!==-1){
+                            if(isEmpty){
+                                isEmpty=false;
+                                res[area]=[];
+                            }
+                            res[area].push(gym);
+
+                        }
+                    }
+                }
+                // console.log(res);
+                this.currentGymList=res;
+            }
         }
+
     }
 
    
@@ -109,5 +139,13 @@ import Collect from './collect';
 
 .col-5{
     width:5em;
+    text-align: center;
+    color:$deep-blue;
+    line-height: 2em;
+    cursor: pointer;
+}
+.active{
+    background-color: $deep-blue;
+    color:$white;
 }
 </style>

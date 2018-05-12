@@ -47,6 +47,7 @@
     width:230px;
     margin-right: 20px;
     display: inline-block;
+    border: 1px solid transparent;
     &:hover{
         border: 1px solid $deep-blue;
         border-radius: 5px;

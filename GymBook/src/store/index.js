@@ -7,5 +7,5 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     actions: actions,
     modules: modules,
-    strict: false,
+    strict: false
 })

@@ -2,7 +2,6 @@ import Vue from "vue";
 import Router from "vue-router";
 import login from '../components/login.vue';
 import Demo from '../components/Demo.vue';
-import filterBox from '../components/filterBox.vue';
 
 Vue.use(Router);
 
@@ -19,10 +18,20 @@ import SouthBasketball from '../components/SouthCampus/basketball'
 import SouthPingpong from '../components/SouthCampus/pingpong'
 import SouthSwimmingPool from '../components/SouthCampus/swimmingpool'
 import Fitness from '../components/SouthCampus/fitness'
+import ManageRule from '../components/manageRule'
+import BookCenter from '../components/bookCenter'
 
-import test from '../common/forBookCenter/filterBox'
+import test from '../components/bookCenter'
 const router = new Router({
     mode: "history",
+    scrollBehavior(to,from,savedPosition){
+        if(to.hash){
+            
+            return {
+                selector: to.hash
+            }
+        }
+    },
     routes: [
         {
             path: "/",
@@ -54,14 +63,19 @@ const router = new Router({
             component:Fitness
         },
         {
-            path:'/filterBox',component:filterBox
+            path:'/bookcenter',
+            component:BookCenter
         },
+
         { path: '/login', component: login },
         { path: '/demo', component: Demo },
         {
             path:'/test',component:test
+        },
+        {
+            path:'/manageRule',
+            component:ManageRule
         }
-      
 
     ]
 });

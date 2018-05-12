@@ -4,10 +4,7 @@
         <div class="container">
             <Breadcrumb/>
             <FilterBox/>
-            <div class='leftBar'>
-                <GymBlock star=3.7 name='北校园乒乓球' address='地址：乒乓球室' :image='image'/>
-            </div>
-            
+            <!-- <Collect/> -->
         </div>
     </div>
 </template>
@@ -17,13 +14,14 @@ import FilterBox from '../common/forBookCenter/filterBox';
 import GymBlock from '../common/forBookCenter/gymBlock';
 import Breadcrumb from '../common/breadcrumb'
 import swimmingSvg from '../assets/images/swimming.svg'
-
+import Collect from '../common/forBookCenter/collect'
     export default{
         components:{
             Navigation,
             GymBlock,
             FilterBox,
-            Breadcrumb
+            Breadcrumb,
+            Collect
         },
         data(){
             return {
