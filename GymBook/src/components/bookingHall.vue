@@ -90,9 +90,10 @@
             }).catch( error => {
                 console.log(error);
             });
-            this.$ajax.get('http://127.0.0.1:2618/newsList/home/three').then( response => {
-                this.newsListThree = response.data.data.list;
-                // 模块3不显示日期, 显示可预定时间段、预定按钮和剩余数量
+            this.$ajax.get('http://127.0.0.1:2618/fieldList').then( response => {
+                console.log(response);
+                this.newsListThree = response.data.data;
+                // 场馆列表模块不显示日期, 显示可开放时间段、预定按钮和剩余数量
                 this.dateControl = false;
                 this.usetimeControl = true;
                 this.reserveControl = true;
@@ -102,9 +103,6 @@
             })
         },
         methods:{
-//             reserve(){
-//                 window.location.href = '/filterBox'
-//             }
         }
     }
 

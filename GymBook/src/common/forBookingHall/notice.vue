@@ -5,13 +5,14 @@
             <ul>
                 <li v-for="(item, index) in noticeArr" :key="index" @click="home_newsDetail(item,index)">
                     <i class="el-icon-arrow-right"> </i>
-                    <span class="title">{{ item.title }}</span>
+                    <!--场馆列表该字段是content,其他列表为title-->
+                    <span class="title">{{ item.content || item.title }}</span>
                     <div class="useTime" v-show="usetime">
                         <span class="start">{{ item.startTime }}</span>
                         <span>---></span>
                         <span class="end">{{ item.endTime }}</span>
                     </div>
-                    <span class="reserve" v-show="reserve">预</span>
+                    <span class="reserve" v-show="reserve" @click = 'fieldReserve(item)'>预</span>
                     <span class="rest" v-show="rest">剩余{{item.remainingTime}}</span>
                     <span class="date" v-show="date">{{ item.createdAt }}</span>
                 </li>
@@ -25,7 +26,7 @@
         },
 // 要是显示的场馆信息，则不显示日期
         props:{
-            noticeArr:'',
+            noticeArr:"",
             date:{
                 default:true
             },
@@ -50,6 +51,9 @@
         methods:{
             home_newsDetail(){
 
+            },
+            fieldReserve(item,index){
+                window.location.href = `/${item.id}`
             }
         }
     }
