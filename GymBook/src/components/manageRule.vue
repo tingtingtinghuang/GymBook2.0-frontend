@@ -123,7 +123,7 @@
         font-weight:$weight;
     }
     #manageRule{
-        width:95%;
+        width:1024px;
         margin:10px auto;
         .header{
             @include wh-common-style(100%,50px);
