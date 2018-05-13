@@ -4,15 +4,12 @@
 - 场馆列表查询接口
 
 **请求URL：**
-- /gymSearchList?typeId=1&areaId=1&searchKey=球
+- /gymlist
 
 **请求方式：**
 - GET
 
 **参数：**
-- typeId  场地类型id     不限制时   传入空字符串''
-- areaId  场地所属区域id   不限制时   传入空字符串''
-- searchKey 搜索关键字     不限制时   传入空字符串''
 
 **返回示例**
 

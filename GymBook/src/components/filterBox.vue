@@ -1,5 +1,6 @@
 <template>
     <div id="filterM">
+        <Navigation></Navigation>
         <div id="filterTop">
             <span id="colorBlack">首页</span>
             <span>></span>
@@ -47,9 +48,11 @@
 </template>
 <script>
     import collect from './collect.vue';
+    import Navigation from './navigation.vue';
     export default {
         components: {
             collect,
+            Navigation
         },
         data() {
             return {

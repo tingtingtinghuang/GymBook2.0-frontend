@@ -32,5 +32,6 @@ const API = (url, method) => params => fetch(development + url, params, method);
 export default {
   //获取用户信息
   getGymAPI: API('/gym', 'post'),
+  getGymListAPI:API('/list','get')
 }
 

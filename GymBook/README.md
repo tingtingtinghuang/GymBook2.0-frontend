@@ -1,5 +1,3 @@
-# GYMBook
-
 - src
   - assets 静态资源
     - images 图片

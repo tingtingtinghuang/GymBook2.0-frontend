@@ -3,7 +3,7 @@
         <Navigation> </Navigation>
         <Banner> </Banner>
         <div class="left">
-           <Notice style="border:none">
+           <Notice style="border:none" :noticeArr='newsListOne'>
                <div slot="head" class="notice-head-up">
                    <span class="ballActivity"><span>
                        <img src="../assets/bookingHall/clock.svg" alt="#">
@@ -17,7 +17,7 @@
             <FigureArea  placeName="东校区">
                 <img src="../assets/bookingHall/100003.jpg" alt="#" slot="imgContainer">
             </FigureArea>
-            <Notice style="border-radius:5px;">
+            <Notice style="border-radius:5px;" :noticeArr='newsListTwo'>
                 <div slot="head" class="notice-head-down">
                     <span class="notice-content">
                         <span>
@@ -29,7 +29,7 @@
             </Notice>
         </div>
         <div class="right">
-            <Notice>
+            <Notice :noticeArr='newsListThree' :date = 'dateControl' :usetime="usetimeControl" :reserve="reserveControl" :rest="restControl">
                 <div slot="head" class="notice-head-up">
                     <DropDownMenu title="选择场馆" :options="[{label:'东校区',value:'选项1'},{label:'南校区',value:'选项2'},{label:'北校区',value:'选项13'}]" class="fieldChoose"></DropDownMenu>
                     <DropDownMenu title="运动类型" :options="[{label:'羽毛球',value:'选项1'},{label:'篮球',value:'选项2'},{label:'乒乓球',value:'选项3'},{label:'棒球',value:'选项4'}]" class="sports"></DropDownMenu>
@@ -43,7 +43,7 @@
             <FigureArea  placeName="珠海区">
                 <img src="../assets/bookingHall/100004.jpg" alt="#" slot="imgContainer">
             </FigureArea>
-            <Notice style="border-radius:5px;">
+            <Notice style="border-radius:5px;" :noticeArr='newsListFour'>
                 <div slot="head" class="notice-head-down">
                     <span class="notice-content"><span>
                         <img src="../assets/bookingHall/trumpet.svg" alt="#">
@@ -69,15 +69,40 @@
         },
         data(){
             return{
-
+                newsListOne:[],
+                newsListTwo:[],
+                newsListThree:[],
+                newsListFour:[],
+                dateControl:true,
+                usetimeControl:false,
+                reserveControl:false,
+                restControl:false
             }
         },
         mounted(){
-            this.$ajax.get('/news?id=1&pi=0&ps=10').then( response => {
+            this.$ajax.get('http://127.0.0.1:2618/newsList/home/two').then( response => {
+                this.newsListTwo = response.data.data.list;
+            }).catch( error => {
+                console.log(error);
+            });
+            this.$ajax.get('http://127.0.0.1:2618/newsList/home/four').then( response => {
+                this.newsListFour = response.data.data.list;
+            }).catch( error => {
+                console.log(error);
+            });
+            this.$ajax.get('http://127.0.0.1:2618/fieldList').then( response => {
                 console.log(response);
+                this.newsListThree = response.data.data;
+                // 场馆列表模块不显示日期, 显示可开放时间段、预定按钮和剩余数量
+                this.dateControl = false;
+                this.usetimeControl = true;
+                this.reserveControl = true;
+                this.restControl = true;
             }).catch( error => {
                 console.log(error);
             })
+        },
+        methods:{
         }
     }
 
@@ -170,6 +195,10 @@
     .right{
         float:right;
         margin-right:10px;
+        .bread{
+            margin-left:33%;
+        }
+
         .notice-head-up{
             margin:1px auto;
             height:30px;
@@ -187,10 +216,11 @@
                 float:right;
                 @include font-common-style('', #069);
                 text-align:right;
+                &:hover{
+                    cursor:pointer;
             }
-            .more:hover{
-                cursor:pointer;
             }
+           
         }
         .notice-head-down{
             margin:1px auto;

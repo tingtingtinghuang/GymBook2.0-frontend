@@ -7,7 +7,7 @@
 
          <li><router-link to='demo'>Demo</router-link></li>
          <li><router-link to='/'>预定大厅</router-link></li>
-         <li><router-link to='/filterBox'>预订中心</router-link></li>
+         <li><router-link to='/bookcenter'>预订中心</router-link></li>
          <li><router-link to=''>场馆简介</router-link></li>
          <li><router-link to='/manageRule'>管理制度</router-link></li>
        </ul>

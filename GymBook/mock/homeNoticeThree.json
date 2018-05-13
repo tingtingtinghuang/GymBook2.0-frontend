@@ -1,0 +1,47 @@
+[
+  {
+    "url": "/fieldList",
+    "mock":true,
+    "msg": "response message",
+    "res":{
+      "code": 1,
+      "data":[
+        {
+          "id":"south/basketball",
+          "content": "南校区新体育馆篮球场",
+          "startTime": "16:22",
+          "endTime": "17:11",
+          "remainingTime":"25"
+        },
+        {
+          "id":"south/badminton",
+          "content": "南校区羽毛球场",
+          "startTime": "12:11",
+          "endTime": "14:22",
+          "remainingTime":"65"
+        },
+        {
+          "id":"south/tennis",
+          "content": "南校区网球馆",
+          "startTime": "12:13",
+          "endTime": "14:22",
+          "remainingTime":"23"
+        },
+        {
+          "id":"south/pingpong",
+          "content": "南校区乒乓球场",
+          "startTime": "12:11",
+          "endTime": "14:22",
+          "remainingTime":"45"
+        },
+        {
+          "id":"south/swimmingpool",
+          "content": "南校区游泳馆",
+          "startTime": "10:11",
+          "endTime": "13:22",
+          "remainingTime":"5"
+        }
+      ]
+    }
+    }
+]

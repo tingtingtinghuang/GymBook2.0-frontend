@@ -14,23 +14,29 @@
                     <li @click = 'showRule()' :class="{li_active:!bg}">管理制度</li>
                 </ul>
             </nav>
-                <div class="right">
-                       <input type="text" class="search-input" placeholder="输入标题关键字..."> <button class="search">搜索</button>
+                <div class="right" v-show='!show'>
+                    <input type="text" class="searchName" placeholder="输入标题关键字..." v-model="inputContent"> <button class="search" @click="search()">搜索</button>
                     <table class="content">
                         <tr>
                             <th>标题</th>
                             <th>发布日期</th>
                             <th>浏览次数</th>
                         </tr>
-                        <tr v-for="(item,index) in tableData" :key="index">
+                        <tr v-for="(item,index) in tableData" :key="index" @click="newsDetail(item,index)">
                             <td>{{ item.title }}</td>
-                            <td>{{ item.date }}</td>
-                            <td>{{ item.scan }}</td>
+                            <td>{{ item.createdAt }}</td>
+                            <td>{{ item.view}}</td>
                         </tr>
                     </table>
-                    <!--<table> </table>-->
+                    <!--分页器组件-->
                     <Pagination> </Pagination>
                 </div>
+                <!-- 这各页面用来渲染新闻（制度的）详细内容 -->
+                 <div class="right newsDetail" v-show='show'>
+                     <h2 v-html = title class='newsTitle'> </h2>
+                     <i v-html = date class='date'> </i>
+                     <p v-html = content class='newsContent'> </p>
+                 </div>
         </div>
     </div>
 </template>
@@ -40,45 +46,62 @@
     export default{
         components:{
             Navigation,
-            Pagination
+            Pagination,
         },
         data(){
             return{
+                showControl:'false',
                 tableData:[],
-                noticeData:[
-                    {title:'通知1',date:'2018-5-5 15:29:30',scan:'318'},
-                    {title:'通知2',date:'2018-5-4 15:29:30',scan:'318'},
-                    {title:'通知3',date:'2018-5-3 15:29:30',scan:'318'},
-                    {title:'通知4',date:'2018-5-2 15:29:30',scan:'318'},
-                ],
-                ruleData:[
-                    {title:'运动经费登记补发通知4',date:'2018-5-5 15:29:30',scan:'318'},
-                    {title:'运动经费登记补发通知5',date:'2018-5-4 15:29:30',scan:'318'},
-                    {title:'运动经费登记补发通知6',date:'2018-5-3 15:29:30',scan:'318'},
-                    {title:'运动经费登记补发通知4',date:'2018-5-2 15:29:30',scan:'318'},
-                    {title:'运动经费登记补发通知5',date:'2018-5-2 15:29:30',scan:'318'},
-                    {title:'运动经费登记补发通知6',date:'2018-5-2 15:29:30',scan:'318'},
-                    {title:'运动经费登记补发通知3',date:'2018-4-17 15:29:30',scan:'318'},
-                    {title:'运动经费登记补发通知2',date:'2018-3-16 15:29:30',scan:'318'},
-                    {title:'运动经费登记补发通知',date:'2018-3-15 15:29:30',scan:'318'},
-                    {title:'关于运动经费补登的说明',date:'2017-10-16 12:00:00',scan:'1772'},
-                    {title:'关于运动经费补登的说明',date:'2017-9-16 12:00:11',scan:'1772'},
-                ],
+                noticeData:[],
+                ruleData:[],
                 bg:false,
+                countArr:[],
+                inputContent:'',
+                show:false,
+                title:'',
+                content:'',
+                date:'',
             }
         },
         props:[],
         mounted(){
-            this.tableData = this.ruleData;
+           this.init()
         },
         methods:{
+            init(){
+                 //进入该页面时展示管理制度页
+                this.$ajax.get('http://127.0.0.1:2618/newsList/rules',{}).then( res => {
+                    this.tableData = res.data.data.list;
+                }).catch( err => {
+                    alert(err)
+                })
+            },
+            // 关键字搜索
+            search(){
+               
+
+            },
+            newsDetail(item){
+            // 不进入新页面。
+                this.title = item.title;
+                this.date = item.createdAt;
+                this.content = item.description;
+                this.show = true;
+                
+            },
             showNotice(){
+                this.show = false;
                 this.bg = true;
-                this.tableData = this.noticeData;
+                this.$ajax.get('http://127.0.0.1:2618/newsList/notice',{}).then( res => {
+                    this.tableData = res.data.data.list;
+                }).catch( err => {
+                    alert(err)
+                })
             },
             showRule(){
+                 this.show = false;
                 this.bg = false;
-                this.tableData = this.ruleData;
+                this.init();
             }
         }
     }
@@ -150,6 +173,18 @@
                 box-shadow:0 0 5px #ccc;
                 padding:45px 15px 15px 28px;
                 margin-bottom:40px;
+                // 新闻内容样式
+                .newsTitle{
+                    margin:0 auto;
+                    padding-bottom:30px;
+                }
+                .date{
+                    display:block;
+                    margin-bottom:15px;
+                }
+                .newsContent{
+                    text-align:left;
+                }
                 input.search-input{
                     @include wh-common-style(250px,22px);
                     border:1px solid #ccc;
@@ -160,6 +195,7 @@
                 button.search{
                     @include wh-common-style(50px,22px);
                     color:#fff;
+                    text-align:center;
                     border-radius:5px;
                     background:#f60;
                     margin-left:10px;
@@ -217,6 +253,7 @@
                     }
                 }
             }
+
     }
 
 </style>

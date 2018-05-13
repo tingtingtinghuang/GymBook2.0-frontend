@@ -5,7 +5,7 @@ const actions = {
   //获取getGym列表
   getGym: ({ commit }, params) => {
     return API.getGymAPI(params).then(res => {
-      commit(types.GYM_DETAIL, res.data);
+      commit(types.GYM_DETAIL, res.data.data);
     }, err => {
       if (err) {
         commit(types.GYM_DETAIL, {});

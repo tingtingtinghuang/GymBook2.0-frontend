@@ -32,6 +32,7 @@ const getters = {
   }
 }
 
+
 const mutations = {
   [types.GYM_DETAIL](state, data) {
     state.gymDetail = data;
@@ -43,7 +44,6 @@ const mutations = {
     state.userLike.like = data
   }
 }
-
 export default {
   state,
   getters,
