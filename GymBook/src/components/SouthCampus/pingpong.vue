@@ -9,7 +9,7 @@
             </el-row>
             <el-row class="seconed-line">
                 <el-col :span="24">
-                    <gymInfo :imgSrc='imgSrc' :title='title' :info='info' class="imgBox"/> 
+                    <gymInfo :like='like' :gymId='gymId' :imgSrc='imgSrc' :title='title' :info='info'  class="imgBox"/> 
                 </el-col>
             </el-row>
             <el-row class="third-line">
@@ -47,7 +47,9 @@ export default {
         return{
             imgSrc: imgSrc,
             title:'南校园乒乓球室',
-            info:'南校园乒乓球室位于英东体育馆西侧二楼，与学校高水平击剑队共用，有12-15张乒乓球桌，开放时间是：8：00至18：00。周六、周日、节假日收费'
+            info:'南校园乒乓球室位于英东体育馆西侧二楼，与学校高水平击剑队共用，有12-15张乒乓球桌，开放时间是：8：00至18：00。周六、周日、节假日收费',
+            gymId:6,
+            like:this.$store.getters.getUserLike.like//取得该用户的关注信息
         }
     },
     components:{

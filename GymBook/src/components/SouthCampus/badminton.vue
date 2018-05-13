@@ -7,18 +7,18 @@
                     <Breadcrumb></Breadcrumb>
                 </el-col>
             </el-row>
-            <el-row class="seconed-line">
+            <el-row class="second-line">
                 <el-col :span="24">
-                    <gymInfo :imgSrc='imgSrc' :title='title' :info='info' class="imgBox"/> 
+                    <gymInfo :like='like' :gymId='gymId' :imgSrc='imgSrc' :title='title' :info='info'  class="imgBox"/> 
                 </el-col>
             </el-row>
             <el-row class="third-line">
                 <el-col :span="24">
                     <tabs>
                         <tab name="预定" selected="true">
-                            <stockList/>
-                            <el-row class="fourth-line">  
-                                <sitesTable :title='title'></sitesTable>
+                            <stockList @sessionDateChange="onSessionDateChange"/>
+                            <el-row class="fourth-line">
+                                <sitesTable :title='title' :date='date'></sitesTable>
                             </el-row>
                         </tab>
                         <tab name="场馆介绍" ></tab>
@@ -26,9 +26,9 @@
                 </el-col>
             </el-row>
         </div>
-        
+
     </div>
-    
+
 </template>
 
 
@@ -45,9 +45,12 @@ import Navigation from '../../common/navigation'
 export default {
     data(){
         return{
+            date:'',
             imgSrc: imgSrc,
             title:'南校园英东羽毛球场',
-            info:'中山大学英东体育馆羽毛球场位于英东体育馆内，共有8片球场，与排球共用。英东羽毛球场开放时间从8：00至22：00时，非排球训练和体育教学时段均可定场，全天收费。'
+            info:'中山大学英东体育馆羽毛球场位于英东体育馆内，共有8片球场，与排球共用。英东羽毛球场开放时间从8：00至22：00时，非排球训练和体育教学时段均可定场，全天收费。',
+            gymId:3,
+            like:this.$store.getters.getUserLike.like//取得该用户的关注信息
         }
     },
     components:{
@@ -62,6 +65,11 @@ export default {
     },
     mounted:function(){
        console.log(this.imgSrc)
+    },
+    methods: {
+      onSessionDateChange: function(date) {
+       this.date = date;
+      }
     }
 
 }
@@ -78,7 +86,7 @@ export default {
     line-height: 50px;
     border-bottom: 1px solid #999;
 }
-.seconed-line{
+.second-line{
     height: 150px;
 }
 .fourth-line{
