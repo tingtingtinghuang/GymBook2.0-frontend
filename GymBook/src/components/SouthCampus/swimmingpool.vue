@@ -14,7 +14,7 @@
                     <ImageGallery :images='images' />
                 </el-col>
                 <el-col :span="12">
-                    <GymSideInfo :title="title" :desc="descMessage" :address="address" :money="money"></GymSideInfo>
+                    <GymSideInfo :like='like' :gymId='gymId' :title="title" :desc="descMessage" :address="address" :money="money"></GymSideInfo>
                 </el-col>
             </el-row>
             <el-row>
@@ -54,6 +54,8 @@ export default {
         "南校园游泳池开放时间为：6：30-8：00，14：30-18：00，19：30-21：00。 可以网上预订和现场扣费预订，网上可提前一天预订。 建议先网上预订，现场验证可节省入场时间。如现场预订需输入校园卡密码，会增加入场时间。",
       title: "南校园游泳池",
       money: 3,
+       gymId:3,
+      like:this.$store.getters.getUserLike.like//取得该用户的关注信息
     //   images:[]
     //   imgSrc1: imgSrc1,
     //   imgSrc2: imgSrc2,

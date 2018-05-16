@@ -2,16 +2,19 @@ import Vue from "vue";
 import Router from "vue-router";
 import login from '../components/login.vue';
 import Demo from '../components/Demo.vue';
-import filterBox from '../components/filterBox.vue';
-
-Vue.use(Router);
 
 
-const BookingHall=resolve=>{
-    require.ensure(['../components/bookingHall.vue'],()=>{
-      resolve(require('../components/bookingHall.vue'));
-    })
-};
+import BookingHall from '../components/bookingHall.vue';
+
+
+
+
+
+// const BookingHall=resolve=>{
+//     require.ensure(['../components/bookingHall.vue'],()=>{
+//       resolve(require('../components/bookingHall.vue'));
+//     })
+// };
 
 import SouthBadminton from '../components/SouthCampus/badminton'
 import SouthTennis from '../components/SouthCampus/tennis'
@@ -20,9 +23,22 @@ import SouthPingpong from '../components/SouthCampus/pingpong'
 import SouthSwimmingPool from '../components/SouthCampus/swimmingpool'
 import Fitness from '../components/SouthCampus/fitness'
 import ManageRule from '../components/manageRule'
+import BookCenter from '../components/bookCenter'
+
+
+Vue.use(Router);
+
 
 const router = new Router({
     mode: "history",
+    scrollBehavior(to,from,savedPosition){
+        if(to.hash){
+
+            return {
+                selector: to.hash
+            }
+        }
+    },
     routes: [
         {
             path: "/",
@@ -54,21 +70,18 @@ const router = new Router({
             component:Fitness
         },
         {
-            path:'/filterBox',
-            component:filterBox
+            path:'/bookcenter',
+            component:BookCenter
         },
-        {
-            path: '/login',
-            component: login
-        },
-        {
-            path: '/demo',
-            component: Demo
-        },
+
+        { path: '/login', component: login },
+        { path: '/demo', component: Demo },
+
         {
             path:'/manageRule',
             component:ManageRule
         }
+
     ]
 });
 export default router;

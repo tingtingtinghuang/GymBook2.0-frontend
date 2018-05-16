@@ -14,7 +14,7 @@
                     <ImageGallery :images='images' />
                 </el-col>
                 <el-col :span="12">
-                    <GymSideInfo :title="title" :desc="descMessage" :address="address" :money="money"></GymSideInfo>
+                    <GymSideInfo :like='like' :gymId='gymId' :title="title" :desc="descMessage" :address="address" :money="money"></GymSideInfo>
                 </el-col>
             </el-row>
             <el-row>
@@ -53,7 +53,9 @@ export default {
       descMessage:
         "南校园健身房位于英东体育馆东侧一楼。开放时间：16:00-21:00。请锻炼人员自带毛巾。",
       title: "南校园健身房",
-      money: 5
+      money: 5,
+      gymId:5,
+      like:this.$store.getters.getUserLike.like//取得该用户的关注信息
     };
   },
   computed:{

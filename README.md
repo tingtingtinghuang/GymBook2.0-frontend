@@ -1,4 +1,4 @@
 # GymBook2.0-frontend
 
-- mock server的使用
-npm start之后，通过`localhost:2618/gym`访问端口，数据规则参考mockjs
+初步添加了webpack和gulp
+在使用时 gulp 即可进行webpack打包，同时也会启动mock sever。

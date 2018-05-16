@@ -14,15 +14,15 @@
                     </template>
                 </el-table-column>
 
-                <el-table-column align="center" v-for="{ prop, label } in colConfigs" :key="prop" :prop="prop" :label="label" width="120">
+                <el-table-column class="item" align="center" v-for="{ prop, label } in colConfigs" :key="prop" :prop="prop" :label="label" width="120" >
                     <template slot-scope="scope">
-                    <div class="showIsEmpty" :class="{no:  scope.row[label]===0 ?false:true }">
-                       
+                    <div class="showIsEmpty" :class="{no:  scope.row[label]===0 ?false:true }" @click="toggle(scope.row, label)">
                     </div>
                     </template>
                 </el-table-column>
                 </el-table>
         </el-col>
+
         <el-col :span="5">
             <div class="container">
                 <div class="orderDetails">
@@ -41,7 +41,7 @@
                     </li>
                     <li>
                     <span> 日期</span>
-                    <span> {{orderData.date}}</span>
+                    <span> {{date}}</span>
                     </li>
 
                 </ul>
@@ -64,8 +64,8 @@
     </div>
         </el-col>
       </el-row>
-    
-    
+
+
   </div>
 
 </template>
@@ -101,16 +101,22 @@
         orderData:{
             date:'',//日期
             session:'请选择场次',//场次
-            price:'0.00',
+            price:0,
             number:0//选择的场次个数
-        }
+        },
+        count: [
+          {
+            money: 0,
+            number: 0,
+          }
+        ]
       }
     },
-    props:['title'],
+    props:['title','number', 'date'],
     computed: {
       tableData3: function () {
-        return this.ajaxData.map(item => {
-          let data = {}
+        return this.ajaxData.map((item, index) => {
+          let data = {};
           item.isHaveEnd.forEach((element, index) => {
             data[index + 1] = element
           });
@@ -118,7 +124,8 @@
           return {
             ...data,
             time: item.time,
-            money: item.money
+            money: item.money,
+            id: index
           }
 
         })
@@ -131,25 +138,46 @@
           }
         })
       }
+    },
+    methods: {
+      toggle(row, label) {
+        let colId = label -1, selected = row[label] === 1 ;
+        // console.log(row, label);
+         // check if it's valid to select.
+         if (this.ajaxData[row.id].isHaveEnd[colId] === 1) {
+           return;
+         }
+         row[label] = (selected ? 0 : 1);
+         this.sessionToggle(row, !selected);
+      },
+      sessionToggle(session, selected) {
+        this.orderData.price += selected ? session.money : -session.money;
+        this.orderData.number += selected ? 1 : -1;
+      }
     }
   }
 </script>
 
 <style scoped>
-
   .showIsEmpty {
     width: 100px;
     height:80px;
-    background: green;
     color: #000;
-    background: url('../assets/images/reservation_true.png') no-repeat center center;
+    background-image: url('../assets/images/reservation_true.png');
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: 80px 50px;
+    cursor: pointer;
   }
 
   .showIsEmpty.no {
-    background: url('../assets/images/reservation_false.png') no-repeat center center;
+    background-image: url('../assets/images/reservation_false.png');
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: 80px 50px;
+    cursor:default;
   }
+
 
     .container {
     font-size: 14px;
