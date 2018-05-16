@@ -3,7 +3,7 @@ import Router from "vue-router";
 import login from '../components/login.vue';
 import Demo from '../components/Demo.vue';
 
-import filterBox from '../components/filterBox.vue';
+
 import BookingHall from '../components/bookingHall.vue';
 
 
@@ -33,7 +33,7 @@ const router = new Router({
     mode: "history",
     scrollBehavior(to,from,savedPosition){
         if(to.hash){
-            
+
             return {
                 selector: to.hash
             }
@@ -76,9 +76,7 @@ const router = new Router({
 
         { path: '/login', component: login },
         { path: '/demo', component: Demo },
-        {
-            path:'/test',component:test
-        },
+
         {
             path:'/manageRule',
             component:ManageRule
