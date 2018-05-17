@@ -55,6 +55,7 @@ export default {
 <style scoped lang='scss'>
 .container {
   position: relative;
+  width:100%;
   img {
     width: 90px;
     height: 90px;

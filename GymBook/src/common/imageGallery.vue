@@ -1,15 +1,14 @@
-// 预定详情的图片展示
 <template>
   <div class="imgBox" id="imgBox">
     <el-row>
       <el-col>
-        <img :src='images[activeImgIndex]' class="big-img">
+        <img :src="'../'+images[activeImgIndex]" class="big-img">
       </el-col>
     </el-row>
     <el-row class="small-img-list" >
       <!-- <a v-on:click="preImg" class="Btn button--info"><i class="el-icon-arrow-left"></i></a> -->
       <div  class="small-img" v-for="(img,index) in images" v-bind:key="img" v-on:click="activeImg(index)">
-        <img :src= 'img'>
+        <img :src= "'../'+img">
       </div>
       <a v-on:click="nextImg" class="Btn button--info"><i class="el-icon-arrow-right"></i></a>
     </el-row>
@@ -36,20 +35,20 @@ export default {
             console.log(this.activeImgIndex)
         },
         nextImg: function () {
-            
+
            this.activeImgIndex=(this.activeImgIndex+1)>=this.len?0:(this.activeImgIndex+1);
-           
+
         },
         activeImg:function(index){
-            
+
            this.activeImgIndex=index;
-           
+
         }
-        
+
     },
     mounted:function()
     {
-        
+        console.log(this.images);
     }
 }
 </script>

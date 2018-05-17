@@ -1,7 +1,15 @@
 //webpack.config.js
 const ExtractTextWebapckPlugin = require('extract-text-webpack-plugin');  //引入插件
+const path = require('path') ;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    entry:'./src/index.js',
+    output:{
+      filename:'main.js',
+      path:path.resolve(__dirname,'./dist'),
+      publicPath: '/'
+    },
     module:{
         rules:[
             {
@@ -20,7 +28,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|gif)$/,
-                use: [{ loader: 'url-loader',options: { limit: 8192 } }]
+                loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]'
             },
             {
                 test:/\.(sass|scss)$/,
@@ -33,7 +41,13 @@ module.exports = {
         ]
     },
     plugins:[
-        new ExtractTextWebapckPlugin('style.css')
+        new ExtractTextWebapckPlugin('style.css'),
+        new HtmlWebpackPlugin({
+          title:'gymbook',
+          inject:'body',
+          filename:'index.html',
+          template:path.resolve(__dirname, "index.html")
+        }),
     ],
     resolve: {  //导入的时候不用写拓展名
         extensions: [' ', '.js', '.json', '.vue', '.scss', '.css']

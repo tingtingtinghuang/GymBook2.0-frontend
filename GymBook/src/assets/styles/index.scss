@@ -4,7 +4,7 @@
 
 :global {
   html {
-    font-size: 1vw;
+    font-size: 16px;
     touch-action: manipulation;
   }
 
@@ -15,11 +15,11 @@
     padding: 0;
   }
 
-  @media all and (max-width: $break-point) {
-    html {
-      font-size: 4vw;
-    }
-  }
+  // @media all and (max-width: $break-point) {
+  //   html {
+  //     font-size: 4vw;
+  //   }
+  // }
 
   input,
   button,

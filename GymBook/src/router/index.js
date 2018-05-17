@@ -6,10 +6,6 @@ import Demo from '../components/Demo.vue';
 
 import BookingHall from '../components/bookingHall.vue';
 
-
-
-
-
 // const BookingHall=resolve=>{
 //     require.ensure(['../components/bookingHall.vue'],()=>{
 //       resolve(require('../components/bookingHall.vue'));
@@ -21,9 +17,23 @@ import SouthTennis from '../components/SouthCampus/tennis'
 import SouthBasketball from '../components/SouthCampus/basketball'
 import SouthPingpong from '../components/SouthCampus/pingpong'
 import SouthSwimmingPool from '../components/SouthCampus/swimmingpool'
-import Fitness from '../components/SouthCampus/fitness'
+import SouthFitness from '../components/SouthCampus/fitness'
+import SouthFootball from '../components/SouthCampus/football'
+
 import ManageRule from '../components/manageRule'
 import BookCenter from '../components/bookCenter'
+
+import EastPingpong from '../components/EastCampus/pingpong'
+import EastSwimming from '../components/EastCampus/swimming'
+import EastFitness from '../components/EastCampus/fitness'
+import EastBadminton from '../components/EastCampus/badminton'
+import EastTennis from '../components/EastCampus/tennis'
+
+import NorthPingpong from '../components/NorthCampus/pingpong'
+
+import ZhuhaiSwimming from '../components/ZhuhaiCampus/swimming'
+
+
 
 
 Vue.use(Router);
@@ -67,7 +77,11 @@ const router = new Router({
         },
         {
             path:'/south/fitness',
-            component:Fitness
+            component:SouthFitness
+        },
+        {
+          path:'/south/football',
+          component:SouthFootball
         },
         {
             path:'/bookcenter',
@@ -76,11 +90,17 @@ const router = new Router({
 
         { path: '/login', component: login },
         { path: '/demo', component: Demo },
-
         {
             path:'/manageRule',
             component:ManageRule
-        }
+        },
+        {path:'/east/badminton',component:EastBadminton},
+        {path:'/east/fitness',component:EastFitness},
+        {path:'/east/pingpong',component:EastPingpong},
+        {path:'/east/swimming',component:EastSwimming},
+        {path:'/east/tennis',component:EastTennis},
+        {path:'/north/pingpong',component:NorthPingpong},
+        {path:'/zhuhai/swimming',component:ZhuhaiSwimming}
 
     ]
 });

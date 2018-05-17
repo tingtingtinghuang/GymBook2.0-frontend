@@ -8,7 +8,7 @@
       <div class='gymList'>
           <div v-for='(gymArray,gymArraykey) in gymList' v-bind:key='gymArraykey'>
             <h3><a :name='gymArraykey'>{{gymArraykey}}</a></h3>
-            <GymBlock v-for='(gym,gymkey) in gymArray'  v-bind:key='gymkey' star=3.7 :name='gym.title' :address='gym.addr' :image='image'/>
+            <GymBlock v-for='(gym,gymkey) in gymArray'  v-bind:key='gymkey' star=3.7 :name='gym.title' :address='gym.addr' :image='image' :url='gym.html'/>
           </div>
       </div>
   </div>
@@ -24,18 +24,25 @@ export default {
             star:0,
             name:'',
             address:'',
-            image:swimmingSvg
+            image:swimmingSvg,
+            url:''
         }
-        
+
     },
     computed:{
-      
+
     },
     props:['gymList','directionArray'],
-        
+
     created:function(){
         // console.log(this.gymList);
         // this.gymList=JSON.parse(JSON.stringify(this.gymList))
+    },
+    methods:{
+      route:function(url){
+        console.log('hello'+url);
+
+      }
     },
     components:{
         GymBlock
@@ -69,6 +76,6 @@ ul{
 .gymList{
     margin-left: 50px;
     padding-top: 18px;
-    
+
 }
 </style>

@@ -8,7 +8,7 @@
                 <el-col :span="2">
                     <el-button class='btn' @click='filter'>默认按钮</el-button>
                 </el-col>
-                
+
             </el-row>
             <el-row class='row'>
                 <el-col :span="2" class='col-5'>预定类型</el-col>
@@ -26,21 +26,21 @@
         </div>
         <Collect :gymList="currentGymList" :directionArray='directionArray'/>
     </div>
-   
+
 </template>
 <script>
 import Collect from './collect';
 import { mapActions, mapState } from 'vuex';
 
     export default {
-       
+
         data() {
             return {
                 searchInput:'',
                 activeIndex1:0,
                 activeIndex2:0,
                 currentGymList:{}
-               
+
             }
         },
         mounted:function() {
@@ -77,36 +77,36 @@ import { mapActions, mapState } from 'vuex';
                 this.activeIndex2=index;
                 switch(index){
                     case 1:
-                        this.currentGymList={S:this.gymList.S};
+                        this.currentGymList={N:this.gymList.N};
                         break;
                     case 2:
                         this.currentGymList={B:this.gymList.B};
                         break;
-                   
+
                     case 3:
-                        this.currentGymList={E:this.gymList.E};
+                        this.currentGymList={D:this.gymList.D};
                         break;
-                   
+
                     case 4:
                         this.currentGymList={Z:this.gymList.Z};
                         break;
-                    
+
                     default:
                         this.currentGymList=this.gymList;
                     break;
-                } 
+                }
             },
             filter:function(){
                 if(this.searchInput.length===0){
                     this.currentGymList=this.gymList;
                     return ;
-                } 
+                }
                 let res={};
                 for(let area in this.currentGymList){
-                    
+
                     let isEmpty=true;
                     for(let gym of this.currentGymList[area]){
-                        
+
                         if(gym.title.indexOf(this.searchInput)!==-1){
                             if(isEmpty){
                                 isEmpty=false;
@@ -124,13 +124,13 @@ import { mapActions, mapState } from 'vuex';
 
     }
 
-   
+
 </script>
 <style scoped lang='scss'>
 @import '../../assets/styles/vars.scss';
 .row{
     margin:10px 0;
-   
+
 }
 .btn{
     background-color: $deep-blue;
