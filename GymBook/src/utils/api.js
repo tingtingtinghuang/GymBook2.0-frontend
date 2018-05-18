@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import store from '../store';
 
-const fetch = (url, params, method) => {
+export const fetch = (url, params, method) => {
   return new Promise((resolve, reject) => {
     let ajx;
     if (method === 'get') {
@@ -32,6 +32,6 @@ const API = (url, method) => params => fetch(development + url, params, method);
 export default {
   //获取用户信息
   getGymAPI: API('/gym', 'post'),
-  getGymListAPI:API('/list','get')
+  getGymListAPI: API('/list', 'get'),
 }
 
