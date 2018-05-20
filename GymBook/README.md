@@ -1,3 +1,4 @@
+```
 - src
   - assets 静态资源
     - images 图片
@@ -24,3 +25,4 @@
 - axios.js
 - main.js
 - App.vue
+```
