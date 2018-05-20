@@ -42,22 +42,18 @@
         },
         data(){
             return{
-
             }
         },
         mounted(){
-
         },
         methods:{
             home_newsDetail(){
-
             },
             fieldReserve(item,index){
                 window.location.href = `/${item.id}`
             }
         }
     }
-
 </script>
 <style lang="scss">
     #notice-container{
@@ -125,5 +121,4 @@
             }
         }
     }
-
 </style>
