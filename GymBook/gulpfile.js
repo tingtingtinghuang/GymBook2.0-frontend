@@ -33,7 +33,7 @@ gulp.task('clean', function () {
 //redist任务：先执行clean，然后再重建dist
 gulp.task('default',function(){
     //先运行clean，然后并行运行webpack等
-    runSequence('clean',['webpack']);
+    runSequence(['webpack']);
 });
 
 

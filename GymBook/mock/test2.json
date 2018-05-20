@@ -1,7 +1,8 @@
-[
+
   {
     "url": "/list1",
     "desc": "获取场馆列表",
+    "filename":"test2",
     "mock": true,
     "res": {
       "code": 1,
@@ -58,4 +59,4 @@
       }
     }
   }
-]
+

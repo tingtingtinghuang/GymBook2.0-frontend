@@ -1,7 +1,8 @@
-[
+
   {
     "url": "/newsList/notice",
     "desc": "管理制度-->通知公告页",
+    "filename":"newsList_notice",
     "mock": true,
     "res":{
       "code": 1,
@@ -94,4 +95,3 @@
     }
   }
 
-]

@@ -1,7 +1,8 @@
-[
+
   {
     "url": "/gym",
     "desc": "获取篮球体育馆列表",
+    "filename":"test",
     "mock": true,
     "res": {
       "code": 1,
@@ -29,4 +30,4 @@
       }
     }
   }
-]
+

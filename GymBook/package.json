@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "start": "npm run mock | webpack-dev-server --mode development --open",
-    "mock": "node ./mock/server/app.js"
+    "mock": "node ./mock/server/index.js"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -35,7 +35,11 @@
     "gulp-plumber": "^1.2.0",
     "gulp-run-sequence": "^0.3.2",
     "gulp-shell": "^0.6.5",
-    "gulp-zip": "^4.1.0"
+    "gulp-zip": "^4.1.0",
+    "koa": "2.4.1",
+    "koa-router": "7.3.0",
+    "koa-bodyparser": "4.2.0",
+    "koa2-cors": "2.0.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.6",

@@ -12,6 +12,7 @@ let apiContArr = [];
 async function init() {
   const apiPath = path.join(__dirname, '../*.json');
   let apiPathArr = await getPath(apiPath);
+  // console.log(apiPathArr);
   await getApis();
 
   // 监听JSON文件的变化
@@ -25,6 +26,7 @@ async function init() {
   function getApis() {
     apiPathArr.forEach(async val => {
       await fs.readFile(val, 'utf-8', (err, cont) => {
+        // console.log(cont);
         if (err) throw err;
         if (!cont) throw 'content must exsit.';
 
@@ -52,6 +54,7 @@ app.use((req, res) => {
       var apiRes = reqData.res;
       data = reqData.mock ? mock.mock(apiRes) : apiRes;
       delay = reqData.delay || 0;
+      // mock.mock(reqData.url,reqData.res);
       return true;
 
     })

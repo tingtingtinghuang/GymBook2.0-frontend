@@ -1,7 +1,8 @@
-[
+
     {
-      "url": "/list",
+      "url": "/gymlist",
       "desc": "获取场馆列表",
+      "filename":"bookCenter",
       "mock": true,
       "res": {
         "code": 1,
@@ -232,4 +233,4 @@
             }
     }
     }
-]
+
