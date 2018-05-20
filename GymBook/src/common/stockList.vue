@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <ul>
-            <li class="card" v-for="(store ,index) in storeList" :key="store.id" :class="{active: activeIndex === index}" @click="toggle(index,store)">
+            <li class="card" v-for="(store ,index) in storeList" :key="index" :class="{active: activeIndex === index}" @click="toggle(index,store)">
                 <div class="week">
                     <span >{{store.weekday}}</span>
                 </div>
@@ -33,13 +33,11 @@ export default {
             activeIndex: 0,
             storeList: [
                 {
-                    id: 1,
                     weekday: "星期二",
                     number: 0,
                     date: '2018-5-1',
                 },
                 {
-                    id: 2,
                     weekday: "星期三",
                     number: 2,
                     date:'2018-5-2',

@@ -1,4 +1,3 @@
-// 预定详情中的体育馆信息
 <template>
     <div class="container">
         <img :src='imgSrc'>
@@ -28,26 +27,26 @@ export default {
     // computed: {
     //     mapGetters(['careId'])
     // },
-    props:  ['gymId','imgSrc', 'title', 'info','like'],
+    props:  ['gymId','imgSrc', 'title', 'info'],
     mounted:function(){
-       this.focusState();
+     console.log(this.gymId,this.title,this.info)
     },
     methods: {
-      focusState () {
-        this.like.includes(this.gymId)?this.focusFlag=true:this.focusFlag=false;
-      },
-      focusChange () {
-        if(this.focusFlag){
-            let i = this.like.indexOf(this.gymId)
-            this.like.splice(i,1)
-            this.focusFlag = false
-        }else{
-            this.like.push(this.gymId)
-            this.focusFlag = true
-        }
-        this.$store.dispatch('changeUserLike',this.like)//修改用户的关注信息
-        console.log(this.$store.getters.getUserLike.like)
-      }
+      // focusState () {
+      //   this.like.includes(this.gymId)?this.focusFlag=true:this.focusFlag=false;
+      // },
+      // focusChange () {
+      //   if(this.focusFlag){
+      //       let i = this.like.indexOf(this.gymId)
+      //       this.like.splice(i,1)
+      //       this.focusFlag = false
+      //   }else{
+      //       this.like.push(this.gymId)
+      //       this.focusFlag = true
+      //   }
+      //   this.$store.dispatch('changeUserLike',this.like)//修改用户的关注信息
+      //   console.log(this.$store.getters.getUserLike.like)
+      // }
     },
 };
 </script>

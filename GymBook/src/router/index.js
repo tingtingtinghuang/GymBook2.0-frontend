@@ -16,7 +16,6 @@ import SouthBadminton from '../components/SouthCampus/badminton'
 import SouthTennis from '../components/SouthCampus/tennis'
 import SouthBasketball from '../components/SouthCampus/basketball'
 import SouthPingpong from '../components/SouthCampus/pingpong'
-import SouthSwimmingPool from '../components/SouthCampus/swimmingpool'
 import SouthFitness from '../components/SouthCampus/fitness'
 import SouthFootball from '../components/SouthCampus/football'
 
@@ -34,7 +33,7 @@ import NorthPingpong from '../components/NorthCampus/pingpong'
 import ZhuhaiSwimming from '../components/ZhuhaiCampus/swimming'
 
 
-
+import test from '../common/gymSideInfo.vue'
 
 Vue.use(Router);
 
@@ -72,10 +71,6 @@ const router = new Router({
             component:SouthPingpong
         },
         {
-            path:'/south/swimmingpool',
-            component:SouthSwimmingPool
-        },
-        {
             path:'/south/fitness',
             component:SouthFitness
         },
@@ -100,7 +95,9 @@ const router = new Router({
         {path:'/east/swimming',component:EastSwimming},
         {path:'/east/tennis',component:EastTennis},
         {path:'/north/pingpong',component:NorthPingpong},
-        {path:'/zhuhai/swimming',component:ZhuhaiSwimming}
+        {path:'/zhuhai/swimming',component:ZhuhaiSwimming},
+        {path:'/test',component:test}
+
 
     ]
 });

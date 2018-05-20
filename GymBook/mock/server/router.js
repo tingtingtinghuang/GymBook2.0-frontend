@@ -55,8 +55,6 @@ async function init() {
 
 init();
 
-
-
 router.get('/gymlist',async(ctx,next)=>{
   ctx.response.body=apiContArr.bookCenter;
 })
@@ -75,8 +73,16 @@ router.get('/newsList/notice',async(ctx,next)=>{
 router.get('/newsList/rules',async(ctx,next)=>{
   ctx.response.body=apiContArr.newsList_rules;
 })
-router.get('gym',async(ctx,next)=>{
+router.get('/gym',async(ctx,next)=>{
   ctx.response.body=apiContArr.test;
 })
-
+router.get('/reserve',async(ctx,next)=>{
+  ctx.response.body=apiContArr.reserveByDay;
+})
+router.post('/reserve',async(ctx,next)=>{
+  ctx.response.body= {
+    "code": 1,
+    "msg": "success",
+  };
+})
 module.exports = router;

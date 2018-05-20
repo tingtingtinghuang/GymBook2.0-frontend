@@ -66,7 +66,7 @@ import { mapActions, mapState } from 'vuex';
         },
         beforeMount() {
             this.getGymList().then(() => {
-                console.log(this.gymList);
+                // console.log(this.gymList);
                 this.currentGymList=JSON.parse(JSON.stringify(this.gymList));
             })
         },

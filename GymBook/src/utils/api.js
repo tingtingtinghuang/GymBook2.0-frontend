@@ -29,9 +29,15 @@ export const fetch = (url, params, method) => {
 const development = 'http://localhost:2618';
 const API = (url, method) => params => fetch(development + url, params, method);
 
+
+
+
 export default {
   //获取用户信息
   getGymAPI: API('/gym', 'post'),
   getGymListAPI: API('/gymlist', 'get'),
+  getReserveAPI:API('/reserve','get'),
+  postReserveAPI:API('/reserve','post'),
+
 }
 
