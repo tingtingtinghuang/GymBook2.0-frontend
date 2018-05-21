@@ -2,22 +2,22 @@
     <div>
         <Navigation/>
         <div class="container">
-            
+
             <el-row class="first-line">
                 <el-col :span="24">
                     <Breadcrumb></Breadcrumb>
                 </el-col>
             </el-row>
-           
+
             <el-row class="second-line">
                 <el-col :span="12" class="imgBox">
                     <ImageGallery :images='images' />
                 </el-col>
                 <el-col :span="12">
-                    <GymSideInfo :like='like' :gymId='gymId' :title="title" :desc="descMessage" :address="address" :money="money"></GymSideInfo>
+                    <GymSideInfo :like='like' :gymId=gymId :title="title" :desc="description" :address="addr" :money="money" :sessions='sessions'></GymSideInfo>
                 </el-col>
             </el-row>
-            <el-row>
+            <!-- <el-row>
                 <el-col :span="24">
                     <el-tabs type="border-card">
                         <el-tab-pane label="简介">
@@ -27,10 +27,10 @@
                         </el-tab-pane>
                     </el-tabs>
                 </el-col>
-            </el-row>
+            </el-row> -->
         </div>
     </div>
-    
+
 </template>
 
 
@@ -44,29 +44,61 @@ import imgSrc1 from "./../../assets/100001.jpg";
 import imgSrc2 from "./../../assets/100002.gif";
 import imgSrc3 from "./../../assets/100003.jpg";
 
-
+import API from '../../utils/api';
+import TimeApi from '../../utils/timeApi';
+import { mapState } from 'vuex';
 export default {
+
   data() {
     return {
-      shortMessage: "一些简介",
-      address: "英东游泳场",
-      descMessage:
-        "南校园健身房位于英东体育馆东侧一楼。开放时间：16:00-21:00。请锻炼人员自带毛巾。",
-      title: "南校园健身房",
-      money: 5,
-      gymId:5,
-      like:this.$store.getters.getUserLike.like//取得该用户的关注信息
+      gymId:3,
+      // shortMessage: "一些简介",
+      addr: "",
+      description:"",
+      status:1,
+      title: "",
+      money: 0,
+      like:true,
+      sessions:[]
+      // like:this.$store.getters.getUserLike.like//取得该用户的关注信息
     };
   },
   computed:{
       images:function(){
-          
+
           return [imgSrc1,imgSrc2,imgSrc3]
       }
+
+
   },
-  mounted:function()
-  {
-    //   console.log(this.images)
+  beforeMount:function(){
+    // id=3
+      let date=new Date();
+      API.getReserveAPI({
+        id:3,
+        date:TimeApi.now()
+      }).then(res=>{
+        console.log(res.data.data.sessions);
+        if(res.data.code===1)
+        {
+          this.title=res.data.data.title;
+          this.addr=res.data.data.addr;
+          this.sessions=res.data.data.sessions;
+          this.money=res.data.data.money;
+          this.description=res.data.data.description;
+        }
+
+
+      },err=>{
+        console.log(err);
+      });
+
+  },
+  mounted:function(){
+    // console.log(this.sessions)
+  },
+  methods:{
+
   },
   components: {
     Breadcrumb,
