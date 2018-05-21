@@ -27,21 +27,21 @@
 |:----    |:---|:----- |-----   |
 |time_type |是  |Number |预约类型   |
 |gymId |是  |Number |场馆id   |
+|reservedDate |是  |String |预约日期   |
 |userid |是  |String |用户id   |
 |reservedTimeLists |是  |List |预约场次集合   |
 |buy_num |是  |Number |预约场地数   |
 |totalPrice |是  |Number |总共价格   |
 
 **参数说明：** 
-reservedTimeLists: {
-"site":{"id": Num1 },
-"reservedTime":["StartTime ~ EndTime" ]
-,
-"site":{"id": Num2 },
-"reservedTime":["StartTime ~ EndTime" ]
-,
-......
-}
+ reservedTimeLists: [
+  {
+              
+  "site":{"id": Num1 },
+  "reservedTime":["18:00 - 19:00",
+                  "09:00 - 10:00" ]
+   }
+]
 
  **返回示例**
 

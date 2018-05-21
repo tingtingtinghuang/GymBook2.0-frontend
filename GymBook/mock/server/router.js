@@ -77,9 +77,11 @@ router.get('/gym',async(ctx,next)=>{
   ctx.response.body=apiContArr.test;
 })
 router.get('/reserve',async(ctx,next)=>{
-  ctx.response.body=apiContArr.reserveByDay;
+ 
+  ctx.response.body=apiContArr.ReserveByTime;
 })
 router.post('/reserve',async(ctx,next)=>{
+  console.log(ctx.request.body);
   ctx.response.body= {
     "code": 1,
     "msg": "success",

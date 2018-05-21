@@ -18,7 +18,7 @@
                         <tab name="预定" selected="true">
                             <stockList @sessionDateChange="onSessionDateChange"/>
                             <el-row class="fourth-line">
-                                <sitesTable :title='title' :date='date'></sitesTable>
+                                <sitesTable :title='title' :sites='sites' :money='money'></sitesTable>
                             </el-row>
                         </tab>
                         <tab name="场馆介绍" ></tab>
@@ -53,7 +53,10 @@ export default {
             title:'',
             description:'',
             gymId:7,
-            timeInterval:[]
+            timeInterval:[],
+            sites:[],
+            money:0
+            
             // like:this.$store.getters.getUserLike.like//取得该用户的关注信息
         }
     },
@@ -73,16 +76,69 @@ export default {
         id:3,
         date:TimeApi.now()
       }).then(res=>{
-        console.log(res);
+        // console.log(res);
         if(res.data.code===1)
         {
-          this.title=res.data.data.title;
-          this.money=res.data.data.money;
+          this.title=res.data.data.gym.title;
+          this.money=res.data.data.gym.money;
           this.description=res.data.data.description;
-          //  "09:00-21:00"
-          let startTime=res.data.data.open_time.substring(0,5);
-          let endTime=res.data.data.open_time.substring(6);
-          // 通过startTime和endTime处理出时段数组
+          //  "09:00 - 21:00"
+          let startTime=res.data.data.gym.open_time.substring(0,2);
+        //   let test=moment(startTime).add(1,'hours');
+          let endTime=res.data.data.gym.open_time.substring(8,10);
+          let sitesnum=res.data.data.count;
+          
+          let list=res.data.data.list;
+            // sites=[
+            //     {
+            //          time,
+            //         money:this.money,
+            //         isReserved:[]
+            //     }
+            // ]
+        //"list":[
+            //   {
+            //       "site":{"id": 1 },
+            //       "reservedTime":[
+            //           "2018-05-02 14:00 - 2018-05-02 15:00"
+            //       ]
+            //   }]
+          let sites=[];
+          let siteIndex=0;
+          while(startTime<endTime){
+              let time=startTime+':00-'+(parseInt(startTime)+1)+':00';
+              let isReserved=[];
+              
+              for(let i=0;i<sitesnum;i++)
+              {
+                  isReserved.push(0);
+              }
+              sites.push({
+                  time,
+                  isReserved,
+                  money:this.money,
+                  siteIndex
+              });
+              siteIndex++;
+              startTime=(parseInt(startTime)+1);
+          }
+        //   console.log(list)
+        //   list是预定信息的list
+            for(let item of list){
+                // console.log(item);
+                for(let time of item.reservedTime){
+                    let reserveStart=time.substring(11,13);
+                    let reservedTime=reserveStart+':00-'+(parseInt(reserveStart)+1)+':00';
+                    for(let site of sites){
+                        if(site.time===reservedTime){
+                            site.isReserved[item.site.id]=1;
+                        }
+                    } 
+                }
+               
+            }
+            this.sites=sites;
+            console.log(sites);
         }
 
 

@@ -3,24 +3,24 @@
   <div>
       <el-row>
         <el-col :span="19">
-            <el-table :data="tableData3" border max-height="500" style="width: 100%">
+            <el-table :data="sites" border max-height="500" style="width: 100%">
 
-                <el-table-column fixed label="场次" width="100" align="center">
+              <el-table-column fixed label="场次" width="120" align="center">
                     <template slot-scope="scope">
-                        <span>￥{{ scope.row.money }}</span>
+                        <span>￥ {{scope.row.money}}</span>
                         <p>
-                            <i class="el-icon-time" style="margin-right: 10px"></i>{{ scope.row.time }}
+                           {{ scope.row.time }}
                         </p>
                     </template>
                 </el-table-column>
 
-                <el-table-column class="item" align="center" v-for="{ prop, label } in colConfigs" :key="prop" :prop="prop" :label="label" width="120" >
-                    <template slot-scope="scope">
-                    <div class="showIsEmpty" :class="{no:  scope.row[label]===0 ?false:true }" @click="toggle(scope.row, label)">
-                    </div>
-                    </template>
+                <el-table-column class="item" align="center"  width="120" v-for="(site,index) in sites" :key='index' v-if='index < site.isReserved.length'>
+                  <template slot-scope="scope" >
+                    <div class="showIsEmpty" :class="{no:scope.row.isReserved[index]===0 ?false:true }" @click='toggle(scope.row.siteIndex,index)'></div>
+                  </template>
                 </el-table-column>
-                </el-table>
+                
+            </el-table>
         </el-col>
 
         <el-col :span="5">
@@ -41,7 +41,7 @@
                     </li>
                     <li>
                     <span> 日期</span>
-                    <span> {{date}}</span>
+                    <span> {{orderData.date}}</span>
                     </li>
 
                 </ul>
@@ -59,7 +59,7 @@
                     </div>
 
                 </div>
-                <button class="submitBtn"> 确认预定</button>
+                <button class="submitBtn" @click="addReserve"> 确认预定</button>
         </div>
     </div>
         </el-col>
@@ -72,88 +72,113 @@
 
 
 <script>
-
-  export default {
+import API from '../utils/api.js'
+import TimeAPI from '../utils/timeApi.js'
+export default {
     data() {
       return {
-
-        ajaxData: [{
-          time: '05:00',
-          money: 15,
-          isHaveEnd: [0, 0, 0, 1, 0, 0, 0, 0, 0]
-        }, {
-          time: '05:00',
-          money: 15,
-          isHaveEnd: [1, 0, 0, 0, 0, 0, 0, 0, 0]
-        }, {
-          time: '05:00',
-          money: 15,
-          isHaveEnd: [0, 1, 0, 0, 0, 0, 0, 0, 0]
-        }, {
-          time: '05:00',
-          money: 15,
-          isHaveEnd: [0, 1, 0, 0, 0, 0, 0, 0, 0]
-        }, {
-          time: '05:00',
-          money: 15,
-          isHaveEnd: [0, 1, 0, 0, 0, 0, 0, 0, 0]
-        }],
+        reservedTimeLists:[],
         orderData:{
-            date:'',//日期
+            date:'10086',//日期
             session:'请选择场次',//场次
             price:0,
             number:0//选择的场次个数
-        },
-        count: [
-          {
-            money: 0,
-            number: 0,
-          }
-        ]
+        }
+       
       }
     },
-    props:['title','number', 'date'],
+    props:['title','money', 'sites','gymId'],
     computed: {
-      tableData3: function () {
-        return this.ajaxData.map((item, index) => {
-          let data = {};
-          item.isHaveEnd.forEach((element, index) => {
-            data[index + 1] = element
-          });
-
-          return {
-            ...data,
-            time: item.time,
-            money: item.money,
-            id: index
-          }
-
-        })
-      },
-      colConfigs: function () {
-        return this.ajaxData[0].isHaveEnd.map((item, index) => {
-          return {
-            prop: String(index + 1),
-            label: String(index + 1)
-          }
-        })
-      }
+    
     },
     methods: {
-      toggle(row, label) {
-        let colId = label -1, selected = row[label] === 1 ;
-        // console.log(row, label);
-         // check if it's valid to select.
-         if (this.ajaxData[row.id].isHaveEnd[colId] === 1) {
-           return;
-         }
-         row[label] = (selected ? 0 : 1);
-         this.sessionToggle(row, !selected);
+      toggle(siteIndex,siteId) {
+        // 1代表不能预约，2代表当前选中，提交订单后变成1,0表示没有预约
+        if(this.sites[siteIndex].isReserved[siteId]===1) return ;
+        else if(this.sites[siteIndex].isReserved[siteId]===2){
+           this.$set(this.sites[siteIndex].isReserved, siteId, 0);
+           this.orderData.number--;
+           this.orderData.price-=this.money;
+        }
+        else{
+            this.$set(this.sites[siteIndex].isReserved, siteId, 2);
+            this.orderData.number++;
+            this.orderData.price+=this.money;
+        }
+       
       },
-      sessionToggle(session, selected) {
-        this.orderData.price += selected ? session.money : -session.money;
-        this.orderData.number += selected ? 1 : -1;
-      }
+      // reservedTimeLists: [
+      //   {
+              
+      //     "site":{"id": Num1 },
+      //     "reservedTime":["18:00 - 19:00",
+      //                     "09:00 - 10:00" ]
+      //   }
+      // ]
+      addReserve:function(){
+        if(this.orderData.number>0){
+             let reservedTimeLists=[];
+              for(let period of this.sites){
+                period.isReserved.forEach((site,siteId) => {
+                  
+                  if(site===1 || site===2){
+                    
+                    
+                    let isPeriodPush=false;
+                    reservedTimeLists.forEach(record=>{
+                      if(record.site.id===siteId){
+                        isPeriodPush=true;
+                        record.reservedTime.push(period.time);
+                      }
+                    })
+                    if(!isPeriodPush){
+                        reservedTimeLists.push({
+                          site:{id:siteId},
+                          reservedTime:[period.time]
+                        })
+                    }
+                  
+                  }      
+                });
+              
+              }
+              API.postReserveAPI({
+                time_type:0,
+                gymId:this.gymId,
+                userid:10086,
+                reservedTimeLists,
+                reservedDate:TimeAPI.now(),
+                buy_num:this.orderData.number,
+                totalPrice:this.orderData.price,
+              }).then(res=>{
+                  if(res.data.code===1) {
+                    const h = this.$createElement;
+
+                    this.$notify({
+                      title: '消息',
+                      message: h('i', { style: 'color: teal'}, '恭喜你，预定成功'),
+                      type: 'success',
+                      offset: 100
+                    });
+                    // 下单后将2改为1，代表不可取消
+                    for(let record of this.sites){
+                      record.isReserved.forEach((site,siteId)=>{
+                        if(site===2) {
+                          record.isReserved[siteId]=1;
+                          
+                        }
+                      })
+                    }
+                   
+                  }
+              },err=>{
+                console.log(err);
+              })
+            }
+        }
+       
+    },
+    mounted:function(){
     }
   }
 </script>
@@ -179,8 +204,8 @@
   }
 
 
-    .container {
-    font-size: 14px;
+  .container {
+    font-size: 12px;
     text-align: center;
   }
 
