@@ -1,6 +1,7 @@
 {
 
   "filename":"ReserveByTime",
+  "url":"/reserve",
   "res":{
     "code": 1,
     "msg": "success",

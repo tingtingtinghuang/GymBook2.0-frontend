@@ -77,8 +77,8 @@ router.get('/gym',async(ctx,next)=>{
   ctx.response.body=apiContArr.test;
 })
 router.get('/reserve',async(ctx,next)=>{
- 
-  ctx.response.body=apiContArr.ReserveByTime;
+
+  ctx.response.body=apiContArr.reserveByDay;
 })
 router.post('/reserve',async(ctx,next)=>{
   console.log(ctx.request.body);

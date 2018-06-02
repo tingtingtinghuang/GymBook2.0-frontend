@@ -50,7 +50,7 @@ export default {
         // order: {
         //   money: this.money
         // },
-        like:false
+
       }
   },
   props: {
@@ -81,9 +81,9 @@ export default {
     },
   },
   methods: {
-    like:function () {
-      // this.like.includes(this.gymId)?this.focusFlag=true:this.focusFlag=false;
-    },
+    // like:function () {
+    //   // this.like.includes(this.gymId)?this.focusFlag=true:this.focusFlag=false;
+    // },
     likeChange :function() {
       // if(this.focusFlag){
       //   let i = this.like.indexOf(this.gymId)

@@ -78,7 +78,7 @@ export default {
         id:3,
         date:TimeApi.now()
       }).then(res=>{
-        console.log(res.data.data.sessions);
+        console.log(res.data);
         if(res.data.code===1)
         {
           this.title=res.data.data.title;

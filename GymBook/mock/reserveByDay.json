@@ -1,6 +1,7 @@
 {
   "msg": "success",
   "filename":"reserveByDay",
+  "url":"/reserve",
   "res":{
     "code": 1,
     "msg": "获得按天预定的订单信息",
