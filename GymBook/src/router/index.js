@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import login from '../components/login.vue';
+import register from '../components/register.vue';
 import Demo from '../components/Demo.vue';
 
 
@@ -84,6 +85,7 @@ const router = new Router({
         },
 
         { path: '/login', component: login },
+        { path: '/register', component: register },
         { path: '/demo', component: Demo },
         {
             path:'/manageRule',

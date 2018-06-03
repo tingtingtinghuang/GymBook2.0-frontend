@@ -6,7 +6,7 @@
             <header class="header">
                 <div class="flow"><span class="flow1">首页</span> > <span class="flow2">管理制度</span></div>
             </header>
-            <nav class="left">
+            <nav class="rule-left">
                 <ul class="nav">
                     <li>相关信息</li>
                     <!--点击后，右侧表格呈现出不同的内容-->
@@ -14,19 +14,23 @@
                     <li @click = 'showRule()' :class="{li_active:!bg}">管理制度</li>
                 </ul>
             </nav>
-                <div class="right" v-show='!show'>
+                <div class="rule-right" v-show='!show'>
                     <input type="text" class="searchName" placeholder="输入标题关键字..." v-model="inputContent"> <button class="search" @click="search()">搜索</button>
                     <table class="content">
-                        <tr>
+                      <thead>
+                          <tr class='header'>
                             <th>标题</th>
                             <th>发布日期</th>
                             <th>浏览次数</th>
                         </tr>
-                        <tr v-for="(item,index) in tableData" :key="index" @click="newsDetail(item,index)">
+                      </thead>
+                      <tbody>
+                          <tr class='body-item' height='47' v-for="(item,index) in tableData" :key="index" @click="newsDetail(item,index)">
                             <td>{{ item.title }}</td>
                             <td>{{ item.createdAt }}</td>
                             <td>{{ item.view}}</td>
                         </tr>
+                      </tbody>
                     </table>
                     <!--分页器组件-->
                     <Pagination> </Pagination>
@@ -44,6 +48,7 @@
 import Navigation from "../common/navigation";
 import Pagination from "../common/forManageRule/pagination";
 import { fetch } from "../utils/api.js";
+import axios from 'axios'
 export default {
   components: {
     Navigation,
@@ -71,12 +76,12 @@ export default {
   methods: {
     init() {
       //进入该页面时展示管理制度页
-      fetch("http://localhost:2618/newsList/rules", {}, "get")
+      axios.get("/newsList/rules")
         .then(res => {
           this.tableData = res.data.data.list;
         })
         .catch(err => {
-          alert(err);
+          console.log(err);
         });
     },
     // 关键字搜索
@@ -91,7 +96,7 @@ export default {
     showNotice() {
       this.show = false;
       this.bg = true;
-      fetch("http://127.0.0.1:2618/newsList/notice", {}, "get")
+      axios.get("http://localhost:3000/newsList/notice")
         .then(res => {
           this.tableData = res.data.data.list;
         })
@@ -136,7 +141,7 @@ export default {
       bottom: 6px;
     }
   }
-  .left {
+  .rule-left {
     ul.nav {
       border: solid 1px #ccc;
       @include wh-common-style(15%, 140px);
@@ -166,14 +171,15 @@ export default {
       }
     }
   }
-  .right {
+  .rule-right {
     float: right;
     width: 1024px;
     height: auto;
     border: 1px solid #ccc;
     box-shadow: 0 0 5px #ccc;
-    padding: 45px 15px 15px 28px;
-    margin-bottom: 40px;
+    // padding: 45px 15px 15px 28px;
+    margin: auto 5px 40px auto;
+    padding: 10px;
     // 新闻内容样式
     .newsTitle {
       margin: 0 auto;
@@ -205,7 +211,8 @@ export default {
       }
     }
     table.content {
-      height: 47 * 8px;
+      max-height: 47 * 8px;
+      width: 100%;
       margin-top: 25px;
       text-align: left;
       text-indent: 8px;
@@ -213,13 +220,15 @@ export default {
       border-top: none;
       /* 合并边框 */
       border-collapse: collapse;
-      tr {
-        height: 30px;
+      .header {
         th {
+          height: 30px !important;
           background: #ccc;
           font-weight: normal;
-          border-right: 1px solid #99c;
+          border: 1px solid #99c;
         }
+      }
+      .body-item {
         td {
           border-right: 1px solid #99c;
           text-indent: 8px;
@@ -238,11 +247,11 @@ export default {
         background: #699;
       }
     }
-    /*分页器样式*/
+    /*----分页器样式----*/
     .el-pagination,
     .el-pagination--small {
       margin: 10px 0px 10px 0;
-      @include wh-common-style(95.5%, 27px);
+      @include wh-common-style(1024, 27px);
       border: 1px solid #ccc;
       .el-pagination__total {
         float: right;

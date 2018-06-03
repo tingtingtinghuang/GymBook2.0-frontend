@@ -60,6 +60,7 @@ import Notice from "../common/forBookingHall/notice";
 import FigureArea from "../common/forBookingHall/figureArea";
 import DropDownMenu from "../common/forBookingHall/dropDownMenu";
 import { fetch } from "../utils/api.js";
+import axios from 'axios'
 
 export default {
   components: {
@@ -82,7 +83,7 @@ export default {
     };
   },
   created() {
-    fetch("http://127.0.0.1:2618/newsList/home/two", {}, "get")
+    axios.get("http://127.0.0.1:2618/newsList/home/two")
       .then(response => {
         this.newsListTwo = response.data.data.list;
       })
@@ -99,7 +100,6 @@ export default {
     fetch("http://127.0.0.1:2618/fieldList", {}, "get")
       .then(response => {
         this.newsListThree = response.data.data;
-        console.log(this.newsListThree)
         // 场馆列表模块不显示日期, 显示可开放时间段、预定按钮和剩余数量
         this.dateControl = false;
         this.usetimeControl = true;
