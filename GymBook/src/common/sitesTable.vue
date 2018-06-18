@@ -3,23 +3,23 @@
   <div>
       <el-row>
         <el-col :span="19">
-            <el-table :data="sites" border max-height="500" style="width: 100%">
+            <el-table :data="periods" border max-height="500" style="width: 100%">
 
               <el-table-column fixed label="场次" width="120" align="center">
                     <template slot-scope="scope">
-                        <span>￥ {{scope.row.money}}</span>
+                        <span>￥ {{price}}</span>
                         <p>
                            {{ scope.row.time }}
                         </p>
                     </template>
                 </el-table-column>
 
-                <el-table-column class="item" align="center"  width="120" v-for="(site,index) in sites" :key='index' v-if='index < site.isReserved.length'>
+                <el-table-column class="item" align="center"  width="120" v-for="(site,index) in periods" :key='index' v-if='index < site.isReserved.length'>
                   <template slot-scope="scope" >
-                    <div class="showIsEmpty" :class="{no:scope.row.isReserved[index]===0 ?false:true }" @click='toggle(scope.row.siteIndex,index)'></div>
+                    <div class="showIsEmpty" :class="{no:scope.row.isReserved[index]===0 ?false:true }" @click='toggle(scope.row.siteIndex-1,index)'></div>
                   </template>
                 </el-table-column>
-                
+
             </el-table>
         </el-col>
 
@@ -82,48 +82,61 @@ export default {
             date:'10086',//日期
             session:'请选择场次',//场次
             price:0,
-            number:0//选择的场次个数
+            siteId:0,
+            isSeleted:false,
+            time:''
         }
-       
+
       }
     },
-    props:['title','money', 'sites','gymId'],
+    props:['title', 'periods','gymId','price'],
     computed: {
-    
+
     },
+    //  periods.push({
+    //               time,
+    //               isReserved,
+    //
+    //           });
     methods: {
       toggle(siteIndex,siteId) {
         // 1代表不能预约，2代表当前选中，提交订单后变成1,0表示没有预约
-        if(this.sites[siteIndex].isReserved[siteId]===1) return ;
-        else if(this.sites[siteIndex].isReserved[siteId]===2){
-           this.$set(this.sites[siteIndex].isReserved, siteId, 0);
-           this.orderData.number--;
-           this.orderData.price-=this.money;
+        if(this.periods[siteIndex].isReserved[siteId]===1) return ;
+        else if(this.periods[siteIndex].isReserved[siteId]===2){
+          // 点击当前选中，则取消当前选中
+           this.$set(this.periods[siteIndex].isReserved, siteId, 0);
+           this.orderData.price-=this.price;
+           this.orderData.siteId=-1;
+           this.orderData.isSeleted=false;
+           this.orderData.time='';
         }
-        else{
-            this.$set(this.sites[siteIndex].isReserved, siteId, 2);
-            this.orderData.number++;
-            this.orderData.price+=this.money;
+        else if(!this.isSeleted){
+          // 选中当前点击
+            this.$set(this.periods[siteIndex].isReserved, siteId, 2);
+            this.orderData.price+=this.price;
+            this.orderData.sizeId=siteId;
+            this.orderData.isSeleted=true;
+            this.orderData.time=this.periods[siteIndex].time;
         }
-       
+
       },
       // reservedTimeLists: [
       //   {
-              
+
       //     "site":{"id": Num1 },
       //     "reservedTime":["18:00 - 19:00",
       //                     "09:00 - 10:00" ]
       //   }
       // ]
       addReserve:function(){
-        if(this.orderData.number>0){
+        if(this.orderData.siteId!==-1){
              let reservedTimeLists=[];
-              for(let period of this.sites){
+              for(let period of this.periods){
                 period.isReserved.forEach((site,siteId) => {
-                  
+
                   if(site===1 || site===2){
-                    
-                    
+
+
                     let isPeriodPush=false;
                     reservedTimeLists.forEach(record=>{
                       if(record.site.id===siteId){
@@ -137,19 +150,18 @@ export default {
                           reservedTime:[period.time]
                         })
                     }
-                  
-                  }      
+
+                  }
                 });
-              
+
               }
+              console.log(this.gymId,this.orderData.siteId+1,this.orderData.time)
               API.postReserveAPI({
-                time_type:0,
-                gymId:this.gymId,
-                userid:10086,
-                reservedTimeLists,
-                reservedDate:TimeAPI.now(),
-                buy_num:this.orderData.number,
-                totalPrice:this.orderData.price,
+                id:this.gymId,
+                userId:1,
+                siteId:this.orderData.siteId+1,
+                reserveTime:this.orderData.time
+
               }).then(res=>{
                   if(res.data.code===1) {
                     const h = this.$createElement;
@@ -161,22 +173,22 @@ export default {
                       offset: 100
                     });
                     // 下单后将2改为1，代表不可取消
-                    for(let record of this.sites){
+                    for(let record of this.periods){
                       record.isReserved.forEach((site,siteId)=>{
                         if(site===2) {
                           record.isReserved[siteId]=1;
-                          
+
                         }
                       })
                     }
-                   
+
                   }
               },err=>{
                 console.log(err);
               })
             }
         }
-       
+
     },
     mounted:function(){
     }

@@ -8,7 +8,7 @@
       <div class='gymList'>
           <div v-for='(gymArray,gymArraykey) in gymList' v-bind:key='gymArraykey'>
             <h3><a :name='gymArraykey'>{{gymArraykey}}</a></h3>
-            <GymBlock v-for='(gym,gymkey) in gymArray'  v-bind:key='gymkey' star=3.7 :name='gym.title' :address='gym.addr' :image='image' :url='gym.html'/>
+            <GymBlock v-for='(gym,gymkey) in gymArray'  v-bind:key='gymkey' :star='gym.rank' :name='gym.title' :address='gym.addr' :image='image' :id='gym.id'/>
           </div>
       </div>
   </div>
@@ -20,7 +20,7 @@ import swimmingSvg from '../../assets/images/swimming.svg'
 export default {
     data(){
         return {
-            href:'',
+            id:0,
             star:0,
             name:'',
             address:'',

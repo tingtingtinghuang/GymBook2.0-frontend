@@ -16,14 +16,14 @@
       </el-row>
       <el-row class="sequence">
         <span class='label'>预定场次：</span>
-        <span v-for="(item, index) in sessions[dateActiveIndex].timeSlot" :class="{'box':true,'selected':sessionActiveIndex===index}"
+        <span v-for="(item, index) in sessions[dateActiveIndex].open_time" :class="{'box':true,'selected':sessionActiveIndex===index}"
         @click="sessionToggle(index)" :key="index">
-          {{item.open_time}}
+          {{item}}
        </span>
       </el-row>
       <el-row class="orderMoney">
         <span>价格：</span>
-        <strong>{{money}}</strong>
+        <strong>{{price}}</strong>
         <span> 元</span>
       </el-row>
     </el-main>
@@ -66,12 +66,12 @@ export default {
       type: String,
       default: ''
     },
-    money: {
+    price: {
       type: Number,
-      default: 3.00
+      default: 3
     },
     gymId: {
-      type: Number
+      type: String
     },
     like:{
       type:Boolean
@@ -97,6 +97,7 @@ export default {
       // console.log(this.$store.getters.getUserLike.like)
     },
     dateToggle: function (index) {
+
       this.dateActiveIndex = index;
       this.sessionActiveIndex=0;
     },
@@ -104,7 +105,7 @@ export default {
       this.sessionActiveIndex=index;
     },
     comfirmReserve:function(){
-          this.$confirm('是否确认下单?', '提示', {
+        this.$confirm('是否确认下单?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           // type: 'warning'
@@ -115,13 +116,14 @@ export default {
       },
 
     addReserve:function(){
+      console.log(this.gymId,this.sessions[this.dateActiveIndex].date+" "+this.sessions[this.dateActiveIndex].open_time[this.sessionActiveIndex],
+)
       API.postReserveAPI({
-        time_type:1,
-        gymId:this.gymId,
-        userid:10086,
-        reservedDate:this.sessions.dateActiveIndex,
-        buy_num:1,
-        totalPrice:this.money,
+        id:this.gymId,
+        siteId:0,
+        userId:1,
+        reserveTime:this.sessions[this.dateActiveIndex].date+" "+this.sessions[this.dateActiveIndex].open_time[this.sessionActiveIndex],
+
       }).then(res=>{
           if(res.data.code===1) {
             const h = this.$createElement;
@@ -137,6 +139,9 @@ export default {
         console.log(err);
       })
     },
+  },
+  mounted:function(){
+    console.log(this.sessions)
   }
 }
 
@@ -169,7 +174,7 @@ export default {
     margin: 10px 16px 10px 30px;
 }
 .box{
-    font-size: 14px;
+    font-size: 12px;
     display: inline-block;
     color: #1a1a1a;
     border:1px solid lightgray;

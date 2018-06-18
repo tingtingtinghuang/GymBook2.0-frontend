@@ -5,7 +5,7 @@ const actions = {
 
     getGymList: ({ commit }, params) => {
       return API.getGymListAPI(params).then(res => {
-        commit(types.GYM_LIST, res.data.data.gymList);
+        commit(types.GYM_LIST, res.data.data);
       }, err => {
         if (err) {
           commit(types.GYM_LIST, {});

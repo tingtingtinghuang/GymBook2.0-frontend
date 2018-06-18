@@ -31,7 +31,7 @@ import { mapActions, mapState } from 'vuex';
             //    image:swimmingSvg
             }
         },
-        props:['star','image','name','address','url'],
+        props:['star','image','name','address','id'],
         computed:{
             ...mapState({
             // 注意这里的demo和模块名相对应
@@ -42,7 +42,7 @@ import { mapActions, mapState } from 'vuex';
         },
         methods:{
           route:function(){
-              this.$router.push(this.url);
+              this.$router.push({ path: `/reserve/${this.id}` });
           }
         }
 

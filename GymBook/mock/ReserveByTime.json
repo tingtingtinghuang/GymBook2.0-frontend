@@ -1,49 +1,45 @@
 {
 
-  "filename":"ReserveByTime",
-  "url":"/reserve",
+  "filename":"reserveByTime",
+  "url":"/reserve/:id",
   "res":{
-    "code": 1,
-    "msg": "success",
-    "data": {
-      "count": 4,
-      "gym":{
-          "title": "南校园东区足球场",
-          "description": "东区篮球场",
-          "html": "4块篮球场",
-          "addr": "英东田径场",
-          "logo":"",
-          "rank": 8,
-          "status": 0,
-          "limit_time": "2018-04-23 14:00 ~ 2018-04-23 15:00",
-          "open_time": "09:00 - 21:00",
-          "money":2,
-          "buy_limit_num": 1,
-          "days":2
-      },
-      "list":[
-              {
-                  "site":{"id": 1 },
-                  "reservedTime":[
-                      "2018-05-02 14:00 - 2018-05-02 15:00"
-                  ]
+    "code":1,
+    "msg":"get reserve",
+    "data":
+        {
+            "gym":{
+                "title":"北校区乒乓球室",
+                "description":"中山大学英东体育馆羽毛球场位于英东体育馆内，共有8片球场，与排球共用。英东羽毛球场开放时间从8：00至22：00时，非排球训练和体育教学时段均可定场，全天收费。",
+                "siteNumber":5,
+                "addr":"地址：乒乓球室",
+                "rank":4,
+                "open_time":"0:2018-04-23 07:00 ~ 21:00",
+                "price":11
               },
-              {
-                  "site":{"id": 2},
-                  "reservedTime":[
-                      "2018-05-02 18:00 - 2018-05-02 19:00",
-                      "2018-05-02 09:00 - 2018-05-02 10:00"
-                  ]
-              },
-              {
-                  "site":{"id": 0},
-                  "reservedTime":[
-                      "2018-05-02 14:00 ~ 2018-05-02 15:00",
-                      "2018-05-02 18:00 ~ 2018-05-02 19:00"
-                  ]
-              }
-      ]
+            "list":[
+                {
+                    "id":1,
+                    "reserveTime":"2018-06-16 14:00 ~ 15:00,2018-06-16 15:00 ~ 16:00"
+                },
+                {
+                    "id":2,
+                    "reserveTime":null
+                },
+                {
+                    "id":3,
+                    "reserveTime":null
+                },
+                {
+                    "id":4,
+                    "reserveTime":null
+                },
+                {
+                    "id":5,
+                    "reserveTime":null
+                }
+            ]
+        }
   }
-  }
+
 
 }

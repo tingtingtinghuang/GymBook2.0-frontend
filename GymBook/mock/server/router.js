@@ -40,7 +40,7 @@ async function init() {
     })
   })
 
-  function getApis() {
+function getApis() {
     apiPathArr.forEach(async val => {
       await fs.readFile(val, 'utf-8', (err, cont) => {
         if (err) throw err;
@@ -77,11 +77,12 @@ router.get('/gym',async(ctx,next)=>{
   ctx.response.body=apiContArr.test;
 })
 router.get('/reserve',async(ctx,next)=>{
-
-  ctx.response.body=apiContArr.reserveByDay;
+  // console.log(apiContArr.reserveByTime)
+  ctx.response.body=apiContArr.reserveByTime;
+  // ctx.response.body=apiContArr.reserveByDay;
 })
 router.post('/reserve',async(ctx,next)=>{
-  console.log(ctx.request.body);
+  // console.log(ctx.request.body);
   ctx.response.body= {
     "code": 1,
     "msg": "success",
