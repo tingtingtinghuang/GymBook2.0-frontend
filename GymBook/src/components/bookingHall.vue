@@ -3,14 +3,14 @@
         <Navigation> </Navigation>
         <Banner> </Banner>
         <div class="left">
-           <Notice style="border:none" :noticeArr='newsListOne'>
+           <!-- <Notice style="border:none" :noticeArr='newsListOne'>
                <div slot="head" class="notice-head-up">
                    <span class="ballActivity"><span>
                        <img src="../assets/bookingHall/clock.svg" alt="#">
                    </span>约球活动</span>
                    <span class="more" style="color:#069">更多>></span>
                </div>
-           </Notice>
+           </Notice> -->
             <FigureArea placeName="南校区">
                 <img src="../assets/bookingHall/100001.jpg" alt="#" slot="imgContainer">
             </FigureArea>
@@ -29,14 +29,14 @@
             </Notice>
         </div>
         <div class="right">
-            <Notice :noticeArr='newsListThree' :date = 'dateControl' :usetime="usetimeControl" :reserve="reserveControl" :rest="restControl">
+            <!-- <Notice :noticeArr='newsListThree' :date = 'dateControl' :usetime="usetimeControl" :reserve="reserveControl" :rest="restControl">
                 <div slot="head" class="notice-head-up">
                     <DropDownMenu title="选择场馆" :options="[{label:'东校区',value:'选项1'},{label:'南校区',value:'选项2'},{label:'北校区',value:'选项13'}]" class="fieldChoose"></DropDownMenu>
                     <DropDownMenu title="运动类型" :options="[{label:'羽毛球',value:'选项1'},{label:'篮球',value:'选项2'},{label:'乒乓球',value:'选项3'},{label:'棒球',value:'选项4'}]" class="sports"></DropDownMenu>
                     <el-button type="primary" icon="el-icon-search" style="width:40px;height:27px;margin-left:0;background:#036;border:none"></el-button>
                     <span class="more">更多场地>></span>
                 </div>
-            </Notice>
+            </Notice> -->
             <FigureArea placeName="北校区" style="margin-top:-2px;">
                 <img src="../assets/bookingHall/100002.gif" alt="#" slot="imgContainer">
             </FigureArea>
@@ -203,6 +203,7 @@ export default {
 .right {
   float: right;
   margin-right: 10px;
+  margin-top:7px;
   .bread {
     margin-left: 33%;
   }
