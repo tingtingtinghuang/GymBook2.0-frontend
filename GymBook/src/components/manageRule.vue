@@ -76,7 +76,7 @@ export default {
   methods: {
     init() {
       //进入该页面时展示管理制度页
-      axios.get("/newsList/rules")
+      axios.get("http://39.108.179.140:8991/news?type=1&pi=0&ps=8")
         .then(res => {
           this.tableData = res.data.data.list;
         })
@@ -96,7 +96,7 @@ export default {
     showNotice() {
       this.show = false;
       this.bg = true;
-      axios.get("http://localhost:3000/newsList/notice")
+      axios.get("http://39.108.179.140:8991/news?type=0&pi=0&ps=8")
         .then(res => {
           this.tableData = res.data.data.list;
         })

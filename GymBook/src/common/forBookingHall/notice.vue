@@ -3,7 +3,7 @@
         <slot name="head" class="head"> </slot>
         <div class="body">
             <ul>
-                <li v-for="(item, index) in noticeArr" :key="index" @click="home_newsDetail(item,index)">
+                <li v-for="(item, index) in noticeArr" :key="index" @click="newsContent(item,index)">
                     <i class="el-icon-arrow-right"> </i>
                     <!--场馆列表该字段是content,其他列表为title-->
                     <span class="title">{{ item.content || item.title }}</span>
@@ -21,104 +21,110 @@
     </div>
 </template>
 <script>
-    export default{
-        components:{
-        },
-// 要是显示的场馆信息，则不显示日期
-        props:{
-            noticeArr:"",
-            date:{
-                default:true
-            },
-            usetime:{
-                default:false
-            },
-            reserve:{
-                default:false
-            },
-            rest:{
-                default:false
-            }
-        },
-        data(){
-            return{
-            }
-        },
-        mounted(){
-        },
-        methods:{
-            home_newsDetail(){
-            },
-            fieldReserve(item,index){
-                window.location.href = `/${item.id}`
-            }
-        }
+import axios from 'axios';
+export default {
+  components: {},
+  // 要是显示的场馆信息，则不显示日期
+  props: {
+    noticeArr: "",
+    date: {
+      default: true
+    },
+    usetime: {
+      default: false
+    },
+    reserve: {
+      default: false
+    },
+    rest: {
+      default: false
     }
+  },
+  data() {
+    return {
+        newId:'',
+    };
+  },
+  mounted() {},
+  methods: {
+    newsContent(item,index) {
+        axios.get(`http://39.108.179.140:8991/news/${item.id}`)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err=>{
+            alert(err);
+        })
+    },
+    fieldReserve(item, index) {
+    }
+  }
+};
 </script>
-<style lang="scss">
-    #notice-container{
-        width:97%;
-        margin:5px auto 15px auto;
-        height:240px;
-        border:solid 1px #ccc;
-        .body {
-            ul {
-                margin: 0 auto;
-                width:97%;
-                height:200px;
-                padding:2px 10px;
-                overflow-y: auto;
-                .blackStyle{
-                    color:#000 !important;
-                }
-                li{
-                    margin: 1px auto;
-                    font-size: 14px;
-                    padding: 4px;
-                    list-style: none;
-                    border-bottom: dashed 1px #ccc;
-                    text-align: left;
-                    color:#069;
-                    &:hover {
-                        background: #ccc;
-                        color:#000;
-                        cursor: pointer;
-                    }
-                    .useTime{
-                        display:inline-block;
-                    }
-                    span.title{
-                        display:inline-block;
-                        width:55%;
-                        white-space:nowrap;
-                        overflow:hidden;
-                        text-overflow:ellipsis;
-                    }
-                    .date {
-                        float: right;
-                    }
-                    .useTime{
-                        margin-right:10px;
-                    }
-                    .reserve{
-                        display:inline-block;
-                        margin-right:20px;
-                        text-align:center;
-                        width:30px;
-                        height:20px;
-                        border-radius:6px;
-                        color:#fff;
-                        background:rgb(0, 51, 102);
-                         &:hover{
-                               cursor:pointer;
-                         }
-                     }
-                    .rest{
-                        float:right;
-                        color:#f93;
-                    }
-                }
-            }
+<style lang="scss" scoped>
+#notice-container {
+  width: 97%;
+  margin: 5px auto 15px auto;
+  height: 240px;
+  border: solid 1px #ccc;
+  .body {
+    ul {
+      margin: 0 auto;
+      width: 97%;
+      height: 200px;
+      padding: 2px 10px;
+      overflow-y: auto;
+      .blackStyle {
+        color: #000 !important;
+      }
+      li {
+        margin: 1px auto;
+        font-size: 14px;
+        padding: 4px;
+        list-style: none;
+        border-bottom: dashed 1px #ccc;
+        text-align: left;
+        color: #069;
+        &:hover {
+          background: #ccc;
+          color: #000;
+          cursor: pointer;
         }
+        .useTime {
+          display: inline-block;
+        }
+        span.title {
+          display: inline-block;
+          width: 55%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .date {
+          float: right;
+        }
+        .useTime {
+          margin-right: 10px;
+        }
+        .reserve {
+          display: inline-block;
+          margin-right: 20px;
+          text-align: center;
+          width: 30px;
+          height: 20px;
+          border-radius: 6px;
+          color: #fff;
+          background: rgb(0, 51, 102);
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .rest {
+          float: right;
+          color: #f93;
+        }
+      }
     }
+  }
+}
 </style>

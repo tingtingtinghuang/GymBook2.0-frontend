@@ -4,15 +4,16 @@
       <div class="title">中央身份验证服务(CAS)</div>
       <div class="login_input">
         <div class="login_user">NetID(网络身份标识)：</div>
-        <span :class='{rightTip:accountTip,errTip:!accountTip}' v-html='tipText' ></span>
-        <input type="text" placeholder="请输入账号" v-model=account @blur='checkUser()'>
+        <span :class='{accountTip:true}' v-html='accountTipText' ></span>
+        <input type="text" placeholder="请输入账号" v-model='account' @keyup='accountConfirm()'>
         <label class="login_password" for="pwd">密  码：</label>
-        <input type="text" placeholder="请输入密码" id='pwd' v-model=pwd>
+        <span :class='{pwdTip:pwdTipCtrl}' v-html='pwdTipText'> </span>
+        <input type="text" placeholder="请输入密码" id='pwd' v-model='pwd' @keyup='pwdConfirm()'>
         <label class="login_password" for="confirmPwd">确认密码：</label>
-        <input type="text" placeholder="确认密码" id='confirmPwd' v-model=confirmPwd>
-        <div class='roleTip' v-show='roleCtrl'>权限角色不能为空或全选</div>
-        <el-checkbox v-model="oridinary" style="display:inline-block">普通用户</el-checkbox>
-        <el-checkbox v-model="manager" style="display:inline-block">管理员</el-checkbox>
+        <span :class='{pwdTwiceTip:true}' v-html='pwdTwiceTipText'> </span>
+        <input type="text" placeholder="密码确认" id='confirmPwd' v-model='pwdTwice' @keyup='pwdTwiceFunc()'>
+        <el-radio class='el-radio' v-model='radio' label="0" @change='getRole()'>普通用户</el-radio>
+        <el-radio class='el-radio' v-model='radio' label="1" @change='getRole()'>管理员</el-radio>
         <el-button type="success" :plain="true"  @click='register()'>注册</el-button>
       </div>
      </div>
@@ -26,49 +27,70 @@ export default {
     return {
       account: "",
       pwd: "",
-      confirmPwd: "",
-      accountTip: false,
-      tipText: "",
+      pwdTwice: "",
+      accountTipCtrl: true,
+      accountTipText: "",
+      pwdTipCtrl: true,
+      pwdTipText: "",
+      pwdTwiceText: "",
+      pwdTwiceTipCtrl: true,
+      pwdTwiceTipText: "",
+      radio: "",
       role: "",
       oridinary: true,
       manager: false,
       roleCtrl: false
     };
   },
-  props: [],
   mounted: function() {},
   methods: {
+    // 获取角色值
+    getRole() {
+      console.log(this.radio);
+    },
     //验证用户名
-    checkUser() {
-      axios.post("/checkuser", { account: this.account }).then(res => {
-        if ((res.data.code = 1)) {
-          this.accountTip = true;
-          this.tipText = "用户名可用";
-        } else {
-          this.accountTip = false;
-          this.tipText = "用户名被占用";
-        }
-      });
+    accountConfirm() {
+      const accountLen = this.account.length;
+      if (accountLen >= 5 && accountLen <= 18) {
+        this.accountTipCtrl = false;
+        this.accountTipText = "";
+      } else {
+        this.accountTipCtrl = true;
+        this.accountTipText = "账号长度必须在5~25个字符";
+      }
+    },
+    // 验证密码
+    pwdConfirm() {
+      const pwdLen = this.pwd.length;
+      if (pwdLen >= 5 && pwdLen <= 25) {
+        this.pwdTipCtrl = false;
+        this.pwdTipText = "";
+      } else {
+        this.pwdTipCtrl = true;
+        this.pwdTipText = "密码长度必须在5~18个字符";
+      }
+    },
+    // 密码确认
+    pwdTwiceFunc() {
+      if (this.pwd !== this.pwdTwice) {
+        this.pwdTwiceTipCtrl = true;
+        this.pwdTwiceTipText = "两次密码不一致";
+      } else {
+        this.pwdTwiceTipCtrl = false;
+        this.pwdTwiceTipText = "";
+      }
     },
     register() {
-      // 角色选项是否合理
-      if (
-        (this.oridinary && this.manager) ||
-        (!this.oridinary && !this.manager)
-      ) {
-        this.roleCtrl = true;
-      } else {
-        this.role = this.oridinary ? 0 : "";
-        this.role = this.manager ? 1 : "";
-        // 用户名是否可用
-        if (this.accountTip) {
-          axios
-            .post("/user", {
-              account: this.account,
-              pwd: this.pwd,
-              role: this.role
-            })
-            .then(res => {
+      // 如果用户名和密码都是可用的
+      if (!this.pwdTipCtrl && !this.accountTipCtrl && !this.pwdTwiceTipCtrl) {
+        axios
+          .post("http://39.108.179.140:8991/user", {
+            account: this.account,
+            password: this.pwd,
+            role: this.radio
+          })
+          .then(res => {   
+            console.log(res);
               if (res.data.code === 1) {
                 // 点击注册toast
                 this.$message({
@@ -79,8 +101,7 @@ export default {
                   }
                 });
               }
-            });
-        }
+          });
       }
     }
   }
@@ -131,23 +152,16 @@ $height: 240px;
       padding-left: 10%;
       margin-top: 15px;
     }
-    .rightTip {
-      display: block;
-      padding-left: 10%;
-      margin-top: 15px;
-      color: #060;
-    }
-    .errTip {
-      display: block;
-      padding-left: 10%;
-      margin-top: 15px;
+    .accountTip,
+    .pwdTwiceTip,
+    .pwdTip {
       color: red;
-    }
-    .roleTip {
       display: block;
-      padding-left: 10%;
-      margin-top: 15px;
-      color: red;
+      margin-left: 10%;
+      display: block;
+    }
+    .el-radio {
+      display: inline-block;
     }
     input {
       margin-top: 10px;
@@ -160,10 +174,6 @@ $height: 240px;
       /*background-color: aqua;*/
       width: 80%;
     }
-    .el-check-box {
-      display: inline-block !important;
-    }
-
     button {
       margin: 30px auto;
       display: block;
@@ -172,11 +182,6 @@ $height: 240px;
       height: 50px;
       color: white;
       border-radius: 4px;
-    }
-    p {
-      margin: 20px 10% 30px 10%;
-      padding: 10px;
-      text-align: left;
     }
   }
 }

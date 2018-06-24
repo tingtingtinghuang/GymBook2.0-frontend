@@ -3,14 +3,6 @@
         <Navigation> </Navigation>
         <Banner> </Banner>
         <div class="left">
-           <!-- <Notice style="border:none" :noticeArr='newsListOne'>
-               <div slot="head" class="notice-head-up">
-                   <span class="ballActivity"><span>
-                       <img src="../assets/bookingHall/clock.svg" alt="#">
-                   </span>约球活动</span>
-                   <span class="more" style="color:#069">更多>></span>
-               </div>
-           </Notice> -->
             <FigureArea placeName="南校区">
                 <img src="../assets/bookingHall/100001.jpg" alt="#" slot="imgContainer">
             </FigureArea>
@@ -29,14 +21,6 @@
             </Notice>
         </div>
         <div class="right">
-            <!-- <Notice :noticeArr='newsListThree' :date = 'dateControl' :usetime="usetimeControl" :reserve="reserveControl" :rest="restControl">
-                <div slot="head" class="notice-head-up">
-                    <DropDownMenu title="选择场馆" :options="[{label:'东校区',value:'选项1'},{label:'南校区',value:'选项2'},{label:'北校区',value:'选项13'}]" class="fieldChoose"></DropDownMenu>
-                    <DropDownMenu title="运动类型" :options="[{label:'羽毛球',value:'选项1'},{label:'篮球',value:'选项2'},{label:'乒乓球',value:'选项3'},{label:'棒球',value:'选项4'}]" class="sports"></DropDownMenu>
-                    <el-button type="primary" icon="el-icon-search" style="width:40px;height:27px;margin-left:0;background:#036;border:none"></el-button>
-                    <span class="more">更多场地>></span>
-                </div>
-            </Notice> -->
             <FigureArea placeName="北校区" style="margin-top:-2px;">
                 <img src="../assets/bookingHall/100002.gif" alt="#" slot="imgContainer">
             </FigureArea>
@@ -59,7 +43,6 @@ import Banner from "../common/forBookingHall/banner";
 import Notice from "../common/forBookingHall/notice";
 import FigureArea from "../common/forBookingHall/figureArea";
 import DropDownMenu from "../common/forBookingHall/dropDownMenu";
-import { fetch } from "../utils/api.js";
 import axios from 'axios'
 
 export default {
@@ -72,9 +55,7 @@ export default {
   },
   data() {
     return {
-      newsListOne: [],
       newsListTwo: [],
-      newsListThree: [],
       newsListFour: [],
       dateControl: true,
       usetimeControl: false,
@@ -83,28 +64,20 @@ export default {
     };
   },
   created() {
-    axios.get("http://127.0.0.1:2618/newsList/home/two")
+    // 通知公告获取
+    axios.get("http://39.108.179.140:8991/news?type=0&pi=0&ps=8")
       .then(response => {
+        console.log(response);
         this.newsListTwo = response.data.data.list;
       })
       .catch(error => {
         console.log(error);
       });
-    fetch("http://127.0.0.1:2618/newsList/home/four", {}, "get")
+    // 管理制度获取
+    axios.get("http://39.108.179.140:8991/news?type=1&pi=0&ps=8", {}, "get")
       .then(response => {
+        console.log(response)
         this.newsListFour = response.data.data.list;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    fetch("http://127.0.0.1:2618/fieldList", {}, "get")
-      .then(response => {
-        this.newsListThree = response.data.data;
-        // 场馆列表模块不显示日期, 显示可开放时间段、预定按钮和剩余数量
-        this.dateControl = false;
-        this.usetimeControl = true;
-        this.reserveControl = true;
-        this.restControl = true;
       })
       .catch(error => {
         console.log(error);

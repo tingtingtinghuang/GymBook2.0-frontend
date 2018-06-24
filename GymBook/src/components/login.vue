@@ -3,11 +3,11 @@
     <div class="green_bg">
       <div class="title">中央身份验证服务(CAS)</div>
       <div class="login_input">
-        <div class="login_user">NetID(网络身份标识)：</div>
-        <input type="text" placeholder="请输入账号">
-        <div class="login_password">密  码：</div>
-        <input type="text" placeholder="请输入密码">
-        <button>登录</button>
+          <label class="login_user" for='account'>NetID(网络身份标识)：</label>
+          <input id='account' type="text" placeholder="请输入账号" v-model='account' required >
+          <label class="login_pwd" for='pwd'>密  码：</label>
+          <input id='pwd' type="text" placeholder="请输入密码" v-model='pwd' required >
+          <el-button type="success" :plain="true"  @click='login()'>登录</el-button>
         <p>出于安全考虑，一旦您访问过那些需要提供密码验证的应用时，请操作完成之后退出并<a href="">关闭</a>浏览器</p>
 
       </div>
@@ -16,7 +16,33 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+export default {
+  data() {
+    return {
+      account: "",
+      pwd: ""
+    };
+  },
+  methods: {
+    login() {
+      axios
+        .post("http://39.108.179.140:8991/session", 
+        {
+          account: this.account,
+          password: this.pwd
+        })
+        .then(res => {
+          if(res.data.code === 1){
+            this.$router.push('/')
+          }
+        })
+        .catch(err => {
+          alert(err);
+        });
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped type="text/css">
@@ -25,11 +51,6 @@ $lightGreenColor: #007731;
 $whiteColor: #fff;
 $width: 100%;
 $height: 240px;
-
-/*@mixin verticalCenter($height) {*/
-/*height: $height;*/
-/*line-height: $height;*/
-/*}*/
 
 * {
   margin: 0;
@@ -56,17 +77,12 @@ $height: 240px;
     margin-left: 30%;
     background-color: $whiteColor;
 
-    div {
+    .login_user,.login_pwd{
       margin-top: 20px;
-      /*background-color: aquamarine;*/
+      display:block;
       padding-left: 10%;
       text-align: left;
     }
-
-    .login_user {
-      /*padding-top: 30px;*/
-    }
-
     input {
       margin-top: 10px;
       margin-left: 10%;
@@ -80,9 +96,9 @@ $height: 240px;
     }
 
     button {
-      display:block;
-      margin:30px auto;
-      background-color:#060;
+      display: block;
+      margin: 30px auto;
+      background-color: #060;
       width: 80%;
       height: 50px;
       color: white;
