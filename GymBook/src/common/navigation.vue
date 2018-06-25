@@ -4,7 +4,6 @@
        <div class='login-item header-btn'><router-link to='/login'>登录</router-link></div>
        <div class='register-item header-btn'><router-link to='/register'>注册</router-link></div>
        <ul>
-
          <li><router-link to='demo'>Demo</router-link></li>
          <li><router-link to='/'>预定大厅</router-link></li>
          <li><router-link to='/bookcenter'>预订中心</router-link></li>
@@ -83,6 +82,9 @@ header {
       background-color: $lightGreenColor;
       @include verticalCenter(40px);
       padding: 0 2em;
+      &:hover{
+        background:#090;
+      }
     }
   }
 }

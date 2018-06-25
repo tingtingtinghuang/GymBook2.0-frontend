@@ -36,10 +36,14 @@
                     <Pagination> </Pagination>
                 </div>
                 <!-- 这各页面用来渲染新闻（制度的）详细内容 -->
-                 <div class="right newsDetail" v-show='show'>
-                     <h2 v-html = title class='newsTitle'> </h2>
-                     <i v-html = date class='date'> </i>
-                     <p v-html = content class='newsContent'> </p>
+                  <div class="right newsDetail" v-show='show'>
+                    <h2 v-html = title class='newsTitle'> </h2>
+                    <div class='time-info'>
+                      <time class='time'>创建时间: {{ createdAt }}</time> 
+                      <time class='time'>更新时间: {{ updatedAt }}</time> 
+                      <span class='count'>浏览量：{{ view }}</span>
+                    </div>
+                    <div class='body' v-html='newsBody'></div>
                  </div>
         </div>
     </div>
@@ -48,7 +52,7 @@
 import Navigation from "../common/navigation";
 import Pagination from "../common/forManageRule/pagination";
 import { fetch } from "../utils/api.js";
-import axios from 'axios'
+import axios from "axios";
 export default {
   components: {
     Navigation,
@@ -65,8 +69,10 @@ export default {
       inputContent: "",
       show: false,
       title: "",
-      content: "",
-      date: ""
+      createdAt: "",
+      updatedAt: "",
+      view: "",
+      newsBody: ""
     };
   },
   props: [],
@@ -76,7 +82,8 @@ export default {
   methods: {
     init() {
       //进入该页面时展示管理制度页
-      axios.get("http://39.108.179.140:8991/news?type=1&pi=0&ps=8")
+      axios
+        .get("http://39.108.179.140:8991/news?type=1&pi=0&ps=8")
         .then(res => {
           this.tableData = res.data.data.list;
         })
@@ -87,16 +94,29 @@ export default {
     // 关键字搜索
     search() {},
     newsDetail(item) {
+      console.log(item);
       // 不进入新页面。
       this.title = item.title;
-      this.date = item.createdAt;
-      this.content = item.description;
       this.show = true;
+      axios
+        .get(`http://39.108.179.140:8991/news/${item.id}`)
+        .then(response => {
+          console.log(response);
+          let data = response.data.data;
+          this.createdAt = data.createdAt;
+          this.updatedAt = data.updatedAt;
+          this.view = data.view;
+          this.newsBody = data.html;
+        })
+        .catch(err => {
+          alert(err);
+        });
     },
     showNotice() {
       this.show = false;
       this.bg = true;
-      axios.get("http://39.108.179.140:8991/news?type=0&pi=0&ps=8")
+      axios
+        .get("http://39.108.179.140:8991/news?type=0&pi=0&ps=8")
         .then(res => {
           this.tableData = res.data.data.list;
         })
@@ -112,7 +132,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 * {
   margin: 0;
   padding: 0;
@@ -181,17 +201,7 @@ export default {
     margin: auto 5px 40px auto;
     padding: 10px;
     // 新闻内容样式
-    .newsTitle {
-      margin: 0 auto;
-      padding-bottom: 30px;
-    }
-    .date {
-      display: block;
-      margin-bottom: 15px;
-    }
-    .newsContent {
-      text-align: left;
-    }
+
     input.search-input {
       @include wh-common-style(250px, 22px);
       border: 1px solid #ccc;
@@ -269,6 +279,32 @@ export default {
         height: 30px;
         width: 50px;
         margin-top: -2px;
+      }
+    }
+  }
+  .newsDetail {
+    float: right;
+    width: 1024px;
+    height: auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px #ccc;
+    // padding: 45px 15px 15px 28px;
+    margin: auto 5px 40px auto;
+    padding:20px;
+    .newsTitle {
+      text-align:center;
+      margin: 0 auto;
+      padding-bottom: 20px;
+    }
+    .time-info {
+      text-align:center;
+      margin-bottom:15px;
+      .time,
+      .count {
+        font-size: 14px;
+        display: inline-block;
+        color: #999;
+        margin-right: 10px;
       }
     }
   }

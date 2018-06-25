@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="green_bg">
+      <i class='el-icon-arrow-left' @click='back()'>返回首页</i>
       <div class="title">中央身份验证服务(CAS)</div>
       <div class="login_input">
           <label class="login_user" for='account'>NetID(网络身份标识)：</label>
@@ -25,16 +26,18 @@ export default {
     };
   },
   methods: {
+    back() {
+      this.$router.push("/");
+    },
     login() {
       axios
-        .post("http://39.108.179.140:8991/session", 
-        {
+        .post("http://39.108.179.140:8991/session", {
           account: this.account,
           password: this.pwd
         })
         .then(res => {
-          if(res.data.code === 1){
-            this.$router.push('/')
+          if (res.data.code === 1) {
+            this.$router.push("/");
           }
         })
         .catch(err => {
@@ -51,7 +54,18 @@ $lightGreenColor: #007731;
 $whiteColor: #fff;
 $width: 100%;
 $height: 240px;
-
+// modal动画
+@keyframes login-modal-animation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -60,8 +74,12 @@ $height: 240px;
 .green_bg {
   height: $height;
   width: $width;
+  padding: 5px;
   background-color: $greenColor;
-
+  .el-icon-arrow-left {
+    cursor: pointer;
+    color: #fff;
+  }
   .title {
     color: $whiteColor;
     font-weight: bold;
@@ -71,15 +89,17 @@ $height: 240px;
     /*padding-left: 30%;*/
   }
   .login_input {
+    animation: login-modal-animation 1s linear;
     border: 4px solid #72ba64;
     width: 40%;
     margin-top: 20px;
     margin-left: 30%;
     background-color: $whiteColor;
 
-    .login_user,.login_pwd{
+    .login_user,
+    .login_pwd {
       margin-top: 20px;
-      display:block;
+      display: block;
       padding-left: 10%;
       text-align: left;
     }

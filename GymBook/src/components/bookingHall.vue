@@ -3,10 +3,10 @@
         <Navigation> </Navigation>
         <Banner> </Banner>
         <div class="left">
-            <FigureArea placeName="南校区">
+            <FigureArea placeName="南校区" @reserveOnline='getEvent()'>
                 <img src="../assets/bookingHall/100001.jpg" alt="#" slot="imgContainer">
             </FigureArea>
-            <FigureArea  placeName="东校区">
+            <FigureArea  placeName="东校区" @reserveOnline='getEvent()'>
                 <img src="../assets/bookingHall/100003.jpg" alt="#" slot="imgContainer">
             </FigureArea>
             <Notice style="border-radius:5px;" :noticeArr='newsListTwo'>
@@ -21,10 +21,10 @@
             </Notice>
         </div>
         <div class="right">
-            <FigureArea placeName="北校区" style="margin-top:-2px;">
+            <FigureArea placeName="北校区" style="margin-top:-2px;" @reserveOnline='getEvent()'>
                 <img src="../assets/bookingHall/100002.gif" alt="#" slot="imgContainer">
             </FigureArea>
-            <FigureArea  placeName="珠海区">
+            <FigureArea  placeName="珠海区" @reserveOnline='getEvent()'>
                 <img src="../assets/bookingHall/100004.jpg" alt="#" slot="imgContainer">
             </FigureArea>
             <Notice style="border-radius:5px;" :noticeArr='newsListFour'>
@@ -83,7 +83,11 @@ export default {
         console.log(error);
       });
   },
-  methods: {}
+  methods: {
+    getEvent(val){
+      this.$router.push('/bookcenter');
+    }
+  }
 };
 </script>
 <style lang="scss" scoped type="text/scss">

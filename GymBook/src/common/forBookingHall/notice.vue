@@ -12,16 +12,34 @@
                         <span>---></span>
                         <span class="end">{{ item.endTime }}</span>
                     </div>
-                    <span class="reserve" v-show="reserve" @click = 'fieldReserve(item)'>预</span>
+                    <span class="reserve" v-show="reserve">预</span>
                     <span class="rest" v-show="rest">剩余{{item.remainingTime}}</span>
                     <span class="date" v-show="date">{{ item.createdAt }}</span>
                 </li>
             </ul>
+            <!-- 显示新闻具体内容 -->
+            <el-dialog
+              class='news-content-container'
+              :title="newsTitle"
+              :visible="dialogVisible"
+              width="60%"
+              :before-close="handleClose"
+              >
+              <div class='time-info'>
+                <time class='time'>创建时间 {{ createdAt }}</time> 
+                <time class='time'>更新时间 {{ updatedAt }}</time> 
+                <span class='count'>浏览量：{{ view }}</span>
+              </div>
+                <span v-html='newDetail'>##</span>
+                <span slot="footer" class="dialog-footer">
+                  <el-button @click="close">关闭</el-button>
+                </span>
+            </el-dialog>
         </div>
     </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   components: {},
   // 要是显示的场馆信息，则不显示日期
@@ -42,21 +60,40 @@ export default {
   },
   data() {
     return {
-        newId:'',
+      newId: "",
+      dialogVisible: false,
+      newDetail: "",
+      newsTitle: "",
+      createdAt: "",
+      updatedAt: "",
+      view: ""
     };
   },
-  mounted() {},
   methods: {
-    newsContent(item,index) {
-        axios.get(`http://39.108.179.140:8991/news/${item.id}`)
-        .then(response => {
-            console.log(response);
-        })
-        .catch(err=>{
-            alert(err);
-        })
+    close() {
+      this.dialogVisible = false;
+      this.newDetail = "";
     },
-    fieldReserve(item, index) {
+    handleClose() {
+      this.dialogVisible = false;
+      this.newDetail = "";
+    },
+    newsContent(item, index) {
+      this.dialogVisible = true;
+      axios
+        .get(`http://39.108.179.140:8991/news/${item.id}`)
+        .then(response => {
+          console.log(response);
+          let data = response.data.data;
+          this.newDetail = data.html;
+          this.newsTitle = data.title;
+          this.createdAt = data.createdAt;
+          this.updatedAt = data.updatedAt;
+          this.view = data.view;
+        })
+        .catch(err => {
+          alert(err);
+        });
     }
   }
 };
@@ -122,6 +159,17 @@ export default {
         .rest {
           float: right;
           color: #f93;
+        }
+      }
+    }
+    .news-content-container {
+      .time-info {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 15px;
+        .time,
+        .count {
+          display: block;
         }
       }
     }

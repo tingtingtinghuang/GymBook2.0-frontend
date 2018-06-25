@@ -38,6 +38,5 @@ export default {
   getGymListAPI: API('/gymlist', 'get'),
   getReserveAPI:API('/reserve','get'),
   postReserveAPI:API('/reserve','post'),
-
 }
 

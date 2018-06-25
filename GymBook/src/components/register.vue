@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="green_bg">
+      <i class='el-icon-arrow-left' @click='back()'>返回首页</i>
       <div class="title">中央身份验证服务(CAS)</div>
       <div class="login_input">
         <div class="login_user">NetID(网络身份标识)：</div>
@@ -44,6 +45,9 @@ export default {
   },
   mounted: function() {},
   methods: {
+    back() {
+      this.$router.push("/");
+    },
     // 获取角色值
     getRole() {
       console.log(this.radio);
@@ -89,18 +93,18 @@ export default {
             password: this.pwd,
             role: this.radio
           })
-          .then(res => {   
+          .then(res => {
             console.log(res);
-              if (res.data.code === 1) {
-                // 点击注册toast
-                this.$message({
-                  message: "注册成功，即将跳转到登录页...",
-                  center: true,
-                  onClose: function() {
-                    window.location.href = "/login";
-                  }
-                });
-              }
+            if (res.data.code === 1) {
+              // 点击注册toast
+              this.$message({
+                message: "注册成功，即将跳转到登录页...",
+                center: true,
+                onClose: function() {
+                  window.location.href = "/login";
+                }
+              });
+            }
           });
       }
     }
@@ -114,7 +118,18 @@ $lightGreenColor: #007731;
 $whiteColor: #fff;
 $width: 100%;
 $height: 240px;
-
+// modal动画
+@keyframes login-modal-animation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -124,7 +139,10 @@ $height: 240px;
   height: $height;
   width: $width;
   background-color: $greenColor;
-
+  .el-icon-arrow-left {
+    cursor: pointer;
+    color: #fff;
+  }
   .title {
     color: $whiteColor;
     font-weight: bold;
@@ -134,6 +152,7 @@ $height: 240px;
     /*padding-left: 30%;*/
   }
   .login_input {
+    animation: login-modal-animation 1s linear;
     border: 4px solid #72ba64;
     width: 40%;
     margin-top: 20px;

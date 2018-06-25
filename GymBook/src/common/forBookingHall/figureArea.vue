@@ -1,7 +1,7 @@
 <template>
     <div id="figureArea">
         <div class="figure"><slot name="imgContainer"></slot><span>{{ placeName }}</span></div>
-        <div class="booking">在线预订</div>
+        <div class="booking" @click='jumpToReserve()'>在线预订</div>
     </div>
 
 </template>
@@ -14,6 +14,12 @@
             imgUrl:'',
             placeName:''
         },
+        methods:{
+            // 保证组件的纯洁性，将组件内的点击事件传给父组件的reserveOnline执行
+           jumpToReserve(){
+               this.$emit('reserveOnline')
+           } 
+        }
 
     }
 </script>
